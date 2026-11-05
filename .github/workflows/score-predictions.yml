@@ -46,8 +46,22 @@ jobs:
               }, indent=2) + '\n')
           "
       - name: Commit live scores for Pages
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "chore(pages): refresh live prediction scores [skip ci]"
-          file_pattern: docs/data/live-scores.json docs/data/latest-scores.json public-predictions/scores-*.json
-          pull_options: "--rebase --autostash"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/live-scores.json docs/data/latest-scores.json public-predictions/scores-*.json
+          if git diff --staged --quiet; then
+            echo "No score changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(pages): refresh live prediction scores [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt"
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "Push failed after retries"
+          exit 1
