@@ -2,7 +2,8 @@ name: score-predictions
 
 on:
   schedule:
-    - cron: "7 * * * *"
+    # Every 30 minutes — refresh scores committed for GitHub Pages
+    - cron: "7,37 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -19,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -29,6 +32,7 @@ jobs:
           mkdir -p docs/data
           LATEST=$(ls -t public-predictions/scores-*.json | head -1)
           cp "$LATEST" docs/data/live-scores.json
+          cp "$LATEST" docs/data/latest-scores.json
           python3 -c "
           import json, pathlib
           reg = pathlib.Path('docs/data/registration.json')
@@ -45,4 +49,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(pages): refresh live prediction scores [skip ci]"
-          file_pattern: docs/data/live-scores.json public-predictions/scores-*.json
+          file_pattern: docs/data/live-scores.json docs/data/latest-scores.json public-predictions/scores-*.json
+          pull_options: "--rebase --autostash"
