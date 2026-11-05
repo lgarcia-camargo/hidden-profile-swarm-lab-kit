@@ -16,6 +16,13 @@ Machine-readable pre-registrations **before** outcomes. Reporters and skeptics s
 
 ## Scoring
 
-Child agents add `scripts/score_open_ledger.py` to mark predictions TRUE/FALSE/PENDING against primary sources only.
+Run from repo root (network required; fetches USGS / BLS / NOAA **primary** URLs only):
+
+```bash
+python3 scripts/score_open_ledger.py
+```
+
+Writes `public-predictions/scores-YYYY-MM-DD.json` with `TRUE` / `FALSE` / `PENDING` per `prediction_id`.
+GitHub Actions workflow `.github/workflows/score-predictions.yml` runs the same on a daily cron.
 
 Attribution to operators is optional; the commit log is the receipt.
