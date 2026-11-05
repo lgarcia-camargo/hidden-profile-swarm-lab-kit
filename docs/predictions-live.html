@@ -136,6 +136,12 @@
     return d.innerHTML;
   }
 
+  function displayStatus(st) {
+    if (st === 'TRUE') return 'PASS';
+    if (st === 'FALSE') return 'FAIL';
+    return st || 'PENDING';
+  }
+
   function renderCards(manifest, scores) {
     const byId = {};
     (scores.predictions || []).forEach(function (p) { byId[p.prediction_id] = p; });
@@ -143,8 +149,9 @@
     const rows = (manifest.predictions || []).map(function (m) {
       const s = byId[m.prediction_id] || { status: 'PENDING', detail: 'Not scored yet' };
       const st = s.status || 'PENDING';
+      const label = displayStatus(st);
       return '<article class="card" id="' + esc(m.prediction_id) + '">' +
-        '<h2>' + esc(m.prediction_id) + '<span class="status ' + esc(st) + '">' + esc(st) + '</span></h2>' +
+        '<h2>' + esc(m.prediction_id) + '<span class="status ' + esc(st) + '">' + esc(label) + '</span></h2>' +
         '<p class="meta">' + esc(m.category) + ' · resolve by ' + esc(m.resolve_by_utc) + '</p>' +
         '<p class="claim">' + esc(m.claim) + '</p>' +
         '<p class="meta">Falsifier: ' + esc(m.falsifier) + ' · <a href="' + esc(m.primary) + '" rel="noopener">primary</a></p>' +
