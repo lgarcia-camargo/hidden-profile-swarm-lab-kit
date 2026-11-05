@@ -2,8 +2,17 @@ name: score-predictions
 
 on:
   schedule:
-    - cron: "17 14 * * *"
+    - cron: "7 * * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "public-predictions/**"
+      - "scripts/score_open_ledger.py"
+      - ".github/workflows/score-predictions.yml"
+
+permissions:
+  contents: write
 
 jobs:
   score:
@@ -15,7 +24,25 @@ jobs:
           python-version: "3.12"
       - name: Score open prediction ledger (read-only primary fetches)
         run: python3 scripts/score_open_ledger.py
-      - name: Show summary
+      - name: Publish scores to GitHub Pages data path
         run: |
-          ls -la public-predictions/scores-*.json | tail -3
-          python3 -c "import json,glob; p=sorted(glob.glob('public-predictions/scores-*.json'))[-1]; d=json.load(open(p)); print('scored_at', d['scored_at_utc']); [print(x['prediction_id'], x['status']) for x in d['predictions']]"
+          mkdir -p docs/data
+          LATEST=$(ls -t public-predictions/scores-*.json | head -1)
+          cp "$LATEST" docs/data/live-scores.json
+          python3 -c "
+          import json, pathlib
+          reg = pathlib.Path('docs/data/registration.json')
+          if not reg.exists():
+              reg.write_text(json.dumps({
+                  'registration_utc': '2026-11-05T21:55:00Z',
+                  'registration_commit': '54b3797e7a2478a0a0963f44975ea8cb99864196',
+                  'registration_commit_short': '54b3797',
+                  'ledger_discussion': 'https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/2',
+                  'primary_sources_only': True,
+              }, indent=2) + '\n')
+          "
+      - name: Commit live scores for Pages
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(pages): refresh live prediction scores [skip ci]"
+          file_pattern: docs/data/live-scores.json public-predictions/scores-*.json

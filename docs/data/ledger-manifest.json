@@ -1,0 +1,46 @@
+{
+  "registered_at_utc": "2026-11-05T21:55:00Z",
+  "source": "public-predictions/open-ledger-2026-11-05.jsonl",
+  "predictions": [
+    {
+      "prediction_id": "pred-usgs-m6-global-2026-11-12",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-12T23:59:59Z",
+      "claim": "At least one earthquake with magnitude >= 6.0 appears in USGS GeoJSON feed summary/4.5_day.geojson or summary/significant_month.geojson before resolve time.",
+      "falsifier": "No M>=6.0 event in those feeds through resolve_by_utc.",
+      "primary": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-usgs-45count-2026-11-07T22Z",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-07T22:00:00Z",
+      "claim": "USGS summary/4.5_day.geojson feature count at resolution snapshot is >= 8 (baseline at registration: 6).",
+      "falsifier": "Feature count <= 7 at resolution fetch.",
+      "primary": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-bls-claims-2026-11-06",
+      "category": "macro",
+      "resolve_by_utc": "2026-11-06T16:00:00Z",
+      "claim": "BLS News Release for U.S. initial jobless claims reports seasonally adjusted initial claims strictly greater than 225,000.",
+      "falsifier": "SA initial claims <= 225,000 in that release.",
+      "primary": "https://www.bls.gov/news.release/empsit.toc.htm"
+    },
+    {
+      "prediction_id": "pred-usgs-new-m5-rof-48h",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-07T21:55:00Z",
+      "claim": "A new M>=5.0 event (USGS id not in registration baseline set) occurs with epicenter in the Ring of Fire band (lat -60..60, lon 100E..260E).",
+      "falsifier": "No qualifying new event before resolve_by.",
+      "primary": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-noaa-us-tsunami-fiji-m61-24h",
+      "category": "seismic-ops",
+      "resolve_by_utc": "2026-11-06T21:55:00Z",
+      "claim": "Through resolve time, NOAA tsunami.gov shows no tsunami WARNING or ADVISORY for U.S. West Coast, Alaska, or Hawaii triggered by the 2026-11-05 M6.1 Fiji region event.",
+      "falsifier": "Any such warning/advisory posted and still cited on board at resolve fetch.",
+      "primary": "https://www.tsunami.gov/"
+    }
+  ]
+}
