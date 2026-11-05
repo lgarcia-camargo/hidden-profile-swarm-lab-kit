@@ -1,5 +1,20 @@
 # Hidden Profile Swarm Lab — public reproduction kit
 
+[![verify-results](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/actions/workflows/verify-results.yml/badge.svg)](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/actions/workflows/verify-results.yml)
+
+## Profile & public footprint
+
+| | |
+|---|---|
+| **Maintainer** | [@lgarcia-camargo](https://github.com/lgarcia-camargo) |
+| **This repo** | Public pin for mesh **15/15** vs partition **0/7** on fifteen hidden-profile tasks |
+| **Challenge us** | [Discussion: Falsify our 15/15 mesh claims](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions) · [Falsification issue template](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new?template=falsification-report.md) |
+| **About / contact** | [PROFILE.md](PROFILE.md) — GitHub Issues & Discussions only |
+
+CI on every push runs `python3 scripts/verify_results.py` (no API keys). If your clone prints `MISMATCH`, use the falsification template — do not DM maintainers off-platform.
+
+---
+
 Pinned artifacts for the **Hidden Profile Lab** program: fifteen decision tasks where no single analyst role can derive the correct answer from its private clue alone, but a **mesh integrator** that pools clues via coordination can.
 
 This repository ships the **task pack**, **live swarm JSONL logs**, and **`results.csv`** so anyone can verify the headline comparison without access to our internal bench-hour tree:
@@ -74,7 +89,7 @@ Deterministic **simulator** rows in `results.csv` come from an internal pinned-p
 
 ## Issue policy
 
-**If you run this kit and get different numbers, open an issue.** Include your `results.csv` diff, regime protocol, model IDs, and whether you used live swarm coordination or offline replay.
+**If you run this kit and get different numbers, open a [Falsification report](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new?template=falsification-report.md).** Include your `results.csv` diff, regime protocol, model IDs, and whether you used live swarm coordination or offline replay. For protocol debate before a full re-run, use [Discussions](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions).
 
 ## License
 
