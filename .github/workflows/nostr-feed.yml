@@ -1,0 +1,33 @@
+name: nostr-feed
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: preregister or outcome
+        required: true
+        default: preregister
+  schedule:
+    - cron: "30 14 * * 4"
+    - cron: "5 23 * * 5"
+    - cron: "0 22 * * 6"
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install nostr-sdk
+      - name: Publish to Nostr relays
+        env:
+          NOSTR_NSEC: ${{ secrets.NOSTR_NSEC }}
+          NOSTR_MODE: ${{ github.event.inputs.mode || 'outcome' }}
+        run: python3 scripts/publish_nostr.py | tee nostr-out.json
+      - name: Upload nostr URLs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nostr-urls
+          path: nostr-out.json
