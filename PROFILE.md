@@ -2,13 +2,15 @@
 
 This repository is the **public reproduction surface** for the Hidden Profile Lab program: pinned tasks, live swarm JSONL exports, and a no-network verifier (`scripts/verify_results.py`).
 
-## Identity (GitHub-native)
+## Identity (project persona)
 
+- **Project:** Hidden Profile Swarm Lab — public falsification surface ([PROJECT_IDENTITY.md](docs/PROJECT_IDENTITY.md) · [Pages home](https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/))
 - **Repository:** [lgarcia-camargo/hidden-profile-swarm-lab-kit](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit)
-- **Owner profile:** [@lgarcia-camargo](https://github.com/lgarcia-camargo)
-- **Contact:** open a [GitHub Issue](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new/choose) (use **Falsification report** if your numbers disagree with the pin) or comment on [Discussions](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions).
+- **GitHub host account:** [@lgarcia-camargo](https://github.com/lgarcia-camargo) (hosts the kit; not a personal impersonation persona for the lab)
+- **Contact (preferred):** [Discussion #1 — Falsify our 15/15 mesh claims](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1) or a [Falsification report issue](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new?template=falsification-report.md)
+- **Project email:** `hidden.profile.swarm.lab@proton.me` (dedicated lab inbox; triage on GitHub until operator completes Proton SMS signup)
 
-We do not publish personal email addresses in this kit. All triage happens in public GitHub threads so claims stay falsifiable.
+We do not publish personal email addresses or pretend the lab is a human individual. Public threads stay the source of truth for falsification.
 
 ## What we claim (and how to challenge it)
 

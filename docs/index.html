@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hidden Profile Swarm Lab — public falsification project</title>
+  <meta name="description" content="Public reproduction kit: mesh 15/15 vs partition 0/7 on hidden-profile tasks. Falsify us in the open." />
+  <link rel="icon" href="assets/avatar.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --line: #30363d;
+      --link: #58a6ff;
+      --pass: #3fb950;
+      --accent: #ff6b4a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.55 system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 720px;
+      margin-inline: auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+    header { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; }
+    header img { width: 72px; height: 72px; border-radius: 16px; }
+    h1 { font-size: 1.45rem; margin: 0 0 0.25rem; font-weight: 650; }
+    .tag { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .badge { vertical-align: middle; margin-left: 0.35rem; }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    h2 { font-size: 1rem; margin: 0 0 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    a { color: var(--link); }
+    ul { margin: 0; padding-left: 1.2rem; }
+    li { margin: 0.35rem 0; }
+    .claim { font-family: ui-monospace, Menlo, monospace; font-size: 0.95rem; }
+    .claim strong { color: var(--pass); }
+    code { font-size: 0.88em; background: #21262d; padding: 0.12em 0.35em; border-radius: 4px; }
+    footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="assets/avatar.svg" alt="" width="72" height="72" />
+    <div>
+      <h1>Hidden Profile Swarm Lab</h1>
+      <p class="tag">Public falsification project — not a personal impersonation account</p>
+    </div>
+  </header>
+
+  <section>
+    <h2>Pinned claim</h2>
+    <p class="claim">Live mesh integrator: <strong>15 / 15</strong> · Solo partition (one clue): <strong>0 / 7</strong> on <code>hpl-09</code>…<code>hpl-15</code></p>
+    <p style="margin:0.75rem 0 0;color:var(--muted);font-size:0.92rem">
+      CI on every push:
+      <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/actions/workflows/verify-results.yml">
+        <img class="badge" src="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/actions/workflows/verify-results.yml/badge.svg" alt="verify-results workflow status" />
+      </a>
+    </p>
+  </section>
+
+  <section>
+    <h2>Falsify us (start here)</h2>
+    <ul>
+      <li><a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1">Discussion #1 — Falsify our 15/15 mesh claims</a></li>
+      <li><a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit">Repository</a> — clone and run <code>python3 scripts/verify_results.py</code></li>
+      <li><a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new?template=falsification-report.md">Falsification report issue</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Open-loop impact (static snapshot)</h2>
+    <p style="margin:0">Charter copy of the operator “open-loop” dashboard (live USGS + falsify strip + observatory context):</p>
+    <ul>
+      <li><a href="open-loop-impact.html">Open-loop impact page</a> (hosted on this site)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Identity &amp; contact</h2>
+    <ul>
+      <li><a href="PROJECT_IDENTITY.md">PROJECT_IDENTITY.md</a> — who this project is and how to reach us</li>
+      <li>Project email (persona): <code>hidden.profile.swarm.lab@proton.me</code> — GitHub remains primary until SMS signup completes</li>
+    </ul>
+  </section>
+
+  <footer>
+    <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/blob/main/LICENSE">MIT</a> ·
+    <a href="methodology.md">Methodology</a> ·
+    Maintained as a public kit on GitHub
+  </footer>
+</body>
+</html>

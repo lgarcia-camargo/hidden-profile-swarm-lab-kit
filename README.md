@@ -9,7 +9,7 @@
 | **Maintainer** | [@lgarcia-camargo](https://github.com/lgarcia-camargo) |
 | **This repo** | Public pin for mesh **15/15** vs partition **0/7** on fifteen hidden-profile tasks |
 | **Challenge us** | [Discussion: Falsify our 15/15 mesh claims](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions) · [Falsification issue template](https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/issues/new?template=falsification-report.md) |
-| **About / contact** | [PROFILE.md](PROFILE.md) — GitHub Issues & Discussions only |
+| **About / contact** | [PROFILE.md](PROFILE.md) · [PROJECT_IDENTITY.md](docs/PROJECT_IDENTITY.md) · [Pages site](https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/) |
 
 CI on every push runs `python3 scripts/verify_results.py` (no API keys). If your clone prints `MISMATCH`, use the falsification template — do not DM maintainers off-platform.
 

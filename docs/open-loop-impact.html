@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open-loop impact — live quake + falsify + observatory</title>
+  <!-- Public snapshot for GitHub Pages; operator Gallery URLs are localhost-only. -->
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --line: #30363d;
+      --accent: #ff6b4a;
+      --pass: #3fb950;
+      --fail: #f85149;
+      --link: #58a6ff;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.5 system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0 1rem 2.5rem;
+      max-width: 920px;
+      margin-inline: auto;
+    }
+    #honesty-badge {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      margin: 0 -1rem 1rem;
+      padding: 8px 1rem;
+      font-size: 12px;
+      text-align: center;
+      background: rgba(13, 17, 23, 0.95);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+    #honesty-badge .live { color: var(--pass); font-weight: 600; }
+    #honesty-badge .err { color: var(--fail); }
+    header { padding: 1.25rem 0 1rem; border-bottom: 2px solid var(--accent); margin-bottom: 1.5rem; }
+    h1 { font-size: clamp(1.25rem, 4vw, 1.65rem); margin: 0 0 0.35rem; font-weight: 650; }
+    .lede { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    section.block {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.25rem;
+    }
+    section.block h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 0 0 0.75rem;
+    }
+    section.block h2 .tag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      background: rgba(63, 185, 80, 0.12);
+      color: var(--pass);
+      border: 1px solid rgba(63, 185, 80, 0.35);
+      letter-spacing: 0.06em;
+    }
+    section.block h2 .tag.fail {
+      background: rgba(248, 81, 73, 0.12);
+      color: var(--fail);
+      border-color: rgba(248, 81, 73, 0.35);
+    }
+    .event-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
+      background: #0d1117;
+    }
+    .event-card h3 { margin: 0 0 0.35rem; font-size: 1.05rem; color: var(--accent); }
+    .ev-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.65rem; }
+    .actions { list-style: none; margin: 0; padding: 0; font-size: 0.88rem; }
+    .actions li {
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      gap: 4px;
+    }
+    .actions li:last-child { border-bottom: none; }
+    .actions .org { font-weight: 600; font-size: 0.8rem; color: #c9d1d9; }
+    .actions .act { color: var(--text); }
+    .actions .links { font-size: 0.85rem; }
+    .actions a { color: var(--link); word-break: break-all; }
+    .actions .ts { font-size: 0.75rem; color: var(--muted); }
+    pre.terminal {
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.45;
+      background: #010409;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      overflow-x: auto;
+      margin: 0.5rem 0 0;
+      color: #7ee787;
+    }
+    pre.terminal .prompt { color: var(--muted); user-select: none; }
+    pre.terminal .out { color: #8b949e; margin-top: 8px; display: block; }
+    .obs-verdict {
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #0d1117;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    .obs-verdict.fail { border-color: rgba(248, 81, 73, 0.5); color: #ffb4ae; }
+    table.data {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      font-variant-numeric: tabular-nums;
+    }
+    table.data th, table.data td {
+      text-align: left;
+      padding: 6px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    table.data th { color: var(--muted); font-weight: 500; }
+    .peak { color: var(--fail); font-weight: 700; }
+    footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    footer nav { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 8px; }
+    footer a { color: var(--link); text-decoration: none; }
+    #quake-loading { color: var(--muted); font-size: 0.9rem; }
+    @media (max-width: 480px) {
+      body { padding-inline: 0.75rem; }
+      pre.terminal { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+  <p id="honesty-badge">USGS M≥4.5: connecting…</p>
+
+  <header>
+    <h1>Open-loop impact</h1>
+    <p class="lede">Callable quake actions (live feed) · public HPL falsify · observatory parent-mail FAIL — real checks, not decoration.</p>
+  </header>
+
+  <section class="block" id="quake-strip" aria-labelledby="quake-h">
+    <h2 id="quake-h">Live quake strip <span class="tag" id="quake-count-tag">…</span></h2>
+    <p id="quake-loading">Fetching USGS 4.5_day.geojson…</p>
+    <div id="quake-events"></div>
+  </section>
+
+  <section class="block" id="edge-a-block" aria-labelledby="edge-a-h">
+    <h2 id="edge-a-h">Seismic Edge A — catalog bias <span class="tag">PREREG</span></h2>
+    <p style="margin:0 0 0.65rem;font-size:0.9rem;color:var(--muted)">
+      USGS instrument panel vs EM-DAT-style proxy counts (IMF WP/25/232 extension). Research artifact — not a trading UI.
+    </p>
+    <p style="margin:0;font-size:0.88rem;color:var(--muted)">
+      Full Edge A memo and charts live on the operator bench tree; on this public site start with
+      <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1">Discussion #1</a>
+      and the <a href="index.html">lab home</a>.
+    </p>
+  </section>
+
+  <section class="block" id="falsify-block" aria-labelledby="falsify-h">
+    <h2 id="falsify-h">Falsify — hidden profile public kit</h2>
+    <p style="margin:0 0 0.5rem;font-size:0.9rem;color:var(--muted)">
+      Clone and verify pinned live numbers (no API keys). Different results → open an issue on GitHub.
+    </p>
+    <pre class="terminal" id="falsify-cmd"><span class="prompt">$ </span>git clone https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit.git
+<span class="prompt">$ </span>cd hidden-profile-swarm-lab-kit
+<span class="prompt">$ </span>python3 scripts/verify_results.py<span class="out">live mesh: 15/15 (expected 15/15)
+live cot_partition (hpl-09..15): 0/7 (expected 0/7)
+OK</span></pre>
+    <p style="margin:0.75rem 0 0;font-size:0.82rem">
+      <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1" target="_blank" rel="noopener">Discussion #1 — challenge the 15/15 pin</a>
+      · <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit" target="_blank" rel="noopener">Repository</a>
+    </p>
+  </section>
+
+  <section class="block" id="obs-block" aria-labelledby="obs-h">
+    <h2 id="obs-h">Observatory <span class="tag fail" id="obs-tag" hidden>FAIL</span></h2>
+    <p id="obs-load" style="margin:0;color:var(--muted);font-size:0.9rem">Loading embed…</p>
+    <div id="obs-body" hidden></div>
+  </section>
+
+  <footer>
+    <span>Agent <code>a-bhtchg4d</code> · charter-open-loop-impact · cool-shit 2026-11-05</span>
+    <nav aria-label="Public links">
+      <a href="index.html"><strong>Lab home</strong></a>
+      <a href="https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1">Discussion #1</a>
+      <a href="PROJECT_IDENTITY.md">Project identity</a>
+    </nav>
+  </footer>
+
+  <script>
+(function () {
+  const USGS_URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson';
+  const OBS_EMBED = '';
+  const GALLERY_DECK = 'index.html';
+  const GALLERY_THESIS = 'https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/discussions/1';
+
+  function isoNow() {
+    return new Date().toISOString().replace(/\.\d{3}Z$/, 'Z');
+  }
+
+  function placeHints(place) {
+    const p = (place || '').toLowerCase();
+    if (p.includes('california') || p.includes('petrolia') || p.includes(' ca')) {
+      return [
+        { org: 'American Red Cross — North Bay', act: 'Disaster casework / mental health referral', tel: 'tel:+17075777600', href: 'https://www.redcross.org/local/california/northern-california-coastal.html' },
+        { org: 'NOAA NTWC', act: 'Confirm no tsunami warning before coastal re-entry', href: 'https://www.tsunami.gov/' },
+      ];
+    }
+    if (p.includes('nicaragua') || p.includes('chinandega')) {
+      return [
+        { org: 'SINAPRED', act: 'Report local effects to duty PBX within 15 min', tel: 'tel:+50522809910', href: 'https://www.sinapred.gob.ni/' },
+        { org: 'Ready.gov', act: 'Post-quake community checklist (aftershocks, utilities)', href: 'https://www.ready.gov/earthquakes' },
+      ];
+    }
+    if (p.includes('fiji') || p.includes('pacific')) {
+      return [
+        { org: 'NOAA NTWC', act: 'Verify no U.S. tsunami warning within 15 min', href: 'https://www.tsunami.gov/' },
+        { org: 'Fiji Meteorological Service', act: 'Cross-check weather/hydrology alerts', href: 'https://www.met.gov.fj/' },
+      ];
+    }
+    return [
+      { org: 'American Red Cross', act: 'National disaster line — shelter / casework routing', tel: 'tel:+18007332767', href: 'https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html' },
+      { org: 'NOAA NTWC', act: 'Check tsunami message board if event is coastal', href: 'https://www.tsunami.gov/' },
+    ];
+  }
+
+  function actionsForFeature(f, fetchedAt) {
+    const id = f.id;
+    const props = f.properties || {};
+    const mag = props.mag;
+    const place = props.place || 'Unknown region';
+    const felt = props.felt;
+    const time = props.time ? new Date(props.time).toISOString().replace(/\.\d{3}Z$/, 'Z') : '—';
+    const rows = [];
+
+    rows.push({
+      org: 'USGS ComCat',
+      act: 'Review origin, depth, PAGER, aftershocks before changing field ops',
+      href: 'https://earthquake.usgs.gov/earthquakes/eventpage/' + encodeURIComponent(id),
+      fetchedAt,
+    });
+
+    if (felt != null && felt > 0) {
+      rows.push({
+        org: 'USGS DYFI',
+        act: 'Submit felt report if you experienced shaking (' + felt + ' prior responses)',
+        href: 'https://earthquake.usgs.gov/dyfi/event/' + encodeURIComponent(id) + '/tellus.html',
+        fetchedAt,
+      });
+    }
+
+    const hints = placeHints(place);
+    for (let i = 0; i < hints.length && rows.length < 4; i++) {
+      const h = hints[i];
+      rows.push({ org: h.org, act: h.act, tel: h.tel, href: h.href, fetchedAt });
+    }
+
+    return { id, mag, place, time, rows: rows.slice(0, 3) };
+  }
+
+  function renderQuakeStrip(geo, fetchedAt, feedGenerated) {
+    const badge = document.getElementById('honesty-badge');
+    const features = (geo && geo.features) ? geo.features.slice().sort((a, b) => (b.properties.mag || 0) - (a.properties.mag || 0)) : [];
+    badge.innerHTML =
+      'USGS M≥4.5: <span class="live">LIVE</span> · client fetch <strong>' + fetchedAt + '</strong>' +
+      (feedGenerated ? ' · feed generated <strong>' + feedGenerated + '</strong>' : '') +
+      ' · honesty = timestamps are this browser session, not replay';
+
+    document.getElementById('quake-loading').hidden = true;
+    const tag = document.getElementById('quake-count-tag');
+    tag.textContent = features.length + ' event' + (features.length === 1 ? '' : 's');
+
+    const host = document.getElementById('quake-events');
+    if (!features.length) {
+      host.innerHTML = '<p style="color:var(--muted);margin:0">No M≥4.5 events in the past-day feed right now.</p>';
+      return;
+    }
+
+    host.innerHTML = features.map(function (f) {
+      const ev = actionsForFeature(f, fetchedAt);
+      const li = ev.rows.map(function (r) {
+        let links = '';
+        if (r.tel) links += '<a href="' + r.tel + '">' + r.tel.replace('tel:', '') + '</a>';
+        if (r.href) {
+          if (links) links += ' · ';
+          links += '<a href="' + r.href + '" target="_blank" rel="noopener">' + r.href.replace(/^https?:\/\//, '') + '</a>';
+        }
+        return '<li><span class="org">' + r.org + '</span><span class="act">' + r.act + '</span>' +
+          '<span class="links">' + links + '</span><span class="ts">Fetched ' + r.fetchedAt + '</span></li>';
+      }).join('');
+      return '<article class="event-card" id="' + ev.id + '">' +
+        '<h3>M ' + ev.mag + ' — ' + ev.place + '</h3>' +
+        '<p class="ev-meta">ID <code>' + ev.id + '</code> · origin ' + ev.time + '</p>' +
+        '<ul class="actions">' + li + '</ul></article>';
+    }).join('');
+  }
+
+  function renderObservatory(data) {
+    document.getElementById('obs-load').hidden = true;
+    document.getElementById('obs-body').hidden = false;
+    const tag = document.getElementById('obs-tag');
+    tag.hidden = false;
+
+    const series = data.export_series || [];
+    let peakParent = 0;
+    let peakRun = 0;
+    series.forEach(function (r) {
+      if (r.parent_mail_pct > peakParent) peakParent = r.parent_mail_pct;
+      if (r.running > peakRun) peakRun = r.running;
+    });
+
+    const verdict = data.falsification_verdict || {};
+    const failDetail = (verdict.failed_checks && verdict.failed_checks[0]) ? verdict.failed_checks[0].detail : '';
+    const pOutcome = series.length ? (series[series.length - 1].p_obs_outcome || '') : '';
+
+    const rows = series.map(function (r) {
+      const peakCls = r.parent_mail_pct === peakParent ? ' class="peak"' : '';
+      return '<tr><td>' + r.running + '</td><td' + peakCls + '>' + r.parent_mail_pct + '%</td>' +
+        '<td>' + r.depth_gte2_pct + '%</td><td style="font-size:10px;color:var(--muted)">' +
+        (r.exported_at || '').slice(0, 16) + 'Z</td></tr>';
+    }).join('');
+
+    document.getElementById('obs-body').innerHTML =
+      '<div class="obs-verdict fail"><strong>' + (data.claim_id || 'H-obs') + '</strong> · ' +
+      (verdict.status || 'fail').toUpperCase() + ' · ' + (pOutcome || 'P-obs-morning-2 FAIL') +
+      (failDetail ? '<br><span style="font-size:0.85rem;color:var(--muted)">' + failDetail + '</span>' : '') +
+      '</div>' +
+      '<p style="margin:0 0 0.5rem;font-size:0.88rem">Peak parent-mail <span class="peak">' + peakParent + '%</span> with running up to <strong>' + peakRun + '</strong> (open-loop coordinator load).</p>' +
+      '<table class="data"><thead><tr><th>Running</th><th>Parent%</th><th>Depth≥2%</th><th>Export</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+      '<p style="margin:0.75rem 0 0;font-size:0.85rem">' +
+      '<a href="' + GALLERY_DECK + '#surface-thesis" target="_blank" rel="noopener">Swarm Evidence Deck · thesis anchor</a> · ' +
+      '<a href="' + (data.gallery_url || GALLERY_THESIS) + '" target="_blank" rel="noopener">Observatory thesis gallery</a>' +
+      '</p>';
+  }
+
+  async function boot() {
+    const fetchedAt = isoNow();
+    try {
+      const res = await fetch(USGS_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('USGS HTTP ' + res.status);
+      const geo = await res.json();
+      let feedGen = null;
+      if (geo.metadata && geo.metadata.generated != null) {
+        const g = geo.metadata.generated;
+        feedGen = typeof g === 'number'
+          ? new Date(g).toISOString().replace(/\.\d{3}Z$/, 'Z')
+          : String(g).replace(/\.\d+Z?$/, 'Z').replace(/\+00:00$/, 'Z');
+      }
+      renderQuakeStrip(geo, fetchedAt, feedGen);
+    } catch (e) {
+      document.getElementById('honesty-badge').innerHTML =
+        'USGS M≥4.5: <span class="err">fetch failed</span> — ' + e.message;
+      document.getElementById('quake-loading').textContent = 'Could not load live feed. Retry or open static ledger in footer.';
+    }
+
+    try {
+      const ores = await fetch(OBS_EMBED, { cache: 'no-store' });
+      if (!ores.ok) throw new Error('embed HTTP ' + ores.status);
+      const obs = await ores.json();
+      renderObservatory(obs);
+    } catch (e) {
+      document.getElementById('obs-load').textContent = 'Observatory embed failed: ' + e.message;
+    }
+  }
+
+  boot();
+})();
+  </script>
+</body>
+</html>
