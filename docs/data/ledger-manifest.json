@@ -1,5 +1,8 @@
 {
   "registered_at_utc": "2026-11-05T21:55:00Z",
+  "canonical_npub": "npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
+  "canonical_nostr_profile": "https://njump.me/npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
+  "receipt_url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html",
   "source": "public-predictions/open-ledger-2026-11-05.jsonl",
   "predictions": [
     {

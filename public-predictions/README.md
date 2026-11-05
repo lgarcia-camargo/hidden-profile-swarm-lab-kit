@@ -8,6 +8,12 @@ Machine-readable pre-registrations **before** outcomes. Reporters and skeptics s
 - The **commit SHA** that first published each line (immutable timestamp)
 - USGS / BLS / NOAA primary URLs in each record — not secondary blog posts
 
+## Public discovery feed (canonical)
+
+- **Nostr (follow for pre-reg + outcome posts):** [npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk](https://njump.me/npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk)
+- **Live receipt (browser):** https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html
+- **Machine manifest:** `feed-manifest.json` (deprecated duplicate npubs listed there)
+
 ## Registration snapshot
 
 - **Registered (UTC):** 2026-11-05T21:55:00Z

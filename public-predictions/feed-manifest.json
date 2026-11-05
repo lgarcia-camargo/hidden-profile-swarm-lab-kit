@@ -1,0 +1,18 @@
+{
+  "schema": "open-prediction-feed/v1",
+  "canonical_npub": "npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
+  "canonical_profile": "https://njump.me/npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
+  "preregister_pin": "https://njump.me/24d30ddf797297703ae86d8e295578312712f43badae8250ef9f201c48798f89",
+  "receipt_url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html",
+  "deprecated_npubs": [
+    {
+      "npub": "npub1fea4nqc5suqs34dhsv5sp3hj8st6j3vg80v43zl0365l9ryzzspsc9phwn",
+      "reason": "duplicate charter identity; pointer note posted then silent"
+    }
+  ],
+  "scheduled_outcomes_utc": {
+    "bls_claims": "2026-11-06T14:30:00Z",
+    "usgs_45count": "2026-11-07T23:05:00Z",
+    "fiji_tsunami_window": "2026-11-06T22:00:00Z"
+  }
+}
