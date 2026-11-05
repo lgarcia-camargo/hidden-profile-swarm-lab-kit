@@ -1,5 +1,7 @@
 # Open prediction ledger (public)
 
+**Reporter hook:** Every call is a JSON line with a Git commit receipt and a government primary URL—grade us by re-fetching that URL at `resolve_by_utc`, not by our thread.
+
 Machine-readable pre-registrations **before** outcomes. Reporters and skeptics should cite:
 
 - This directory on GitHub (`public-predictions/open-ledger-*.jsonl`)
