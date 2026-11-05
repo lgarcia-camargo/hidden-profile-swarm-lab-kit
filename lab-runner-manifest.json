@@ -1,0 +1,47 @@
+{
+  "schema": "hidden-profile-lab/runner-manifest/v1",
+  "pinned_at": "2026-11-05T07:00:00Z",
+  "pinned_by": "bench-curriculum (a-mk1nwi0q)",
+  "program_ref": "a-audsp339 m-9kzfdlv5",
+  "tasks_path": "analysis/hidden-profile-lab/tasks.json",
+  "task_count": 15,
+  "task_ids": [
+    "hpl-01-wildfire-evac",
+    "hpl-02-clinical-trial-site",
+    "hpl-03-satellite-downlink",
+    "hpl-04-supply-chain-resin",
+    "hpl-05-university-supercomputer",
+    "hpl-06-restaurant-lease",
+    "hpl-07-cyber-insurance-carrier",
+    "hpl-08-museum-loan-route",
+    "hpl-09-datacenter-region",
+    "hpl-10-vaccine-carrier",
+    "hpl-11-grid-battery-vendor",
+    "hpl-12-film-location",
+    "hpl-13-refugee-housing-site",
+    "hpl-14-llm-router-policy",
+    "hpl-15-antarctic-expedition-port"
+  ],
+  "extension_paths": [
+    "analysis/hidden-profile-lab/tasks/hpl-09-15-extension.json",
+    "analysis/hidden-profile-lab/tasks-09-15.json",
+    "analysis/cool-shit-10h/hidden-profile-lab/tasks/hpl-09-15-extension.json"
+  ],
+  "draft_doc": "analysis/hidden-profile-lab/task-pack-15-draft.md",
+  "gallery_draft": "http://127.0.0.1:4318/#/gallery/hidden-profile-task-pack-15-draft",
+  "runs": {
+    "regime_a": "analysis/hidden-profile-lab/runs/regime_a.jsonl",
+    "regime_b": "analysis/hidden-profile-lab/runs/regime_b.jsonl",
+    "regime_c": "analysis/hidden-profile-lab/runs/regime_c.jsonl",
+    "regime_c_partition": "analysis/hidden-profile-lab/runs/regime_c_partition.jsonl"
+  },
+  "results_csv": "analysis/hidden-profile-lab/results.csv",
+  "results_schema": "analysis/hidden-profile-lab/results.csv.schema.md",
+  "build_gallery": "analysis/hidden-profile-lab/build_gallery.py",
+  "expansion_charter": {
+    "slice": "hpl-09..15",
+    "run_owner": "a-ibvos3i1",
+    "full_15_regime_sweep": false,
+    "note": "Append JSONL + results.csv per regime; prior hpl-01..08 logs preserved."
+  }
+}

@@ -1,0 +1,894 @@
+{
+  "schema": "hidden-profile-swarm-lab/summary/v2",
+  "generated_at": "2026-11-05T08:05:01.086251+00:00",
+  "mesh_send_ratio": 0.0926,
+  "mesh_send_ratio_source": "pulse/weekly-mesh.json",
+  "simulator": {
+    "source": "analysis/cool-shit-10h/hidden-profile-lab/out/aggregate.json",
+    "regimes": [
+      {
+        "regime": "mesh",
+        "task_count": 11,
+        "correct": 11,
+        "accuracy": 1.0,
+        "aggregate": {
+          "tokens": 1992,
+          "wall_ms": 0,
+          "mesh_posts_count": 37
+        }
+      },
+      {
+        "regime": "compete",
+        "task_count": 11,
+        "correct": 5,
+        "accuracy": 0.45454545454545453,
+        "aggregate": {
+          "tokens": 391,
+          "wall_ms": 0,
+          "mesh_posts_count": 74
+        }
+      },
+      {
+        "regime": "cot",
+        "task_count": 11,
+        "correct": 0,
+        "accuracy": 0.0,
+        "aggregate": {
+          "tokens": 590,
+          "wall_ms": 0,
+          "mesh_posts_count": 0
+        }
+      }
+    ],
+    "verdict": {
+      "mesh_accuracy": 1.0,
+      "cot_accuracy": 0.0,
+      "mesh_beats_solo_cot": true
+    }
+  },
+  "live": {
+    "missing_logs": [],
+    "partial": false,
+    "regimes": [
+      {
+        "regime": "mesh",
+        "task_count": 15,
+        "correct": 15,
+        "accuracy": 1.0,
+        "aggregate": {
+          "tokens": 63600,
+          "wall_ms": 3030000,
+          "mesh_posts_count": 47
+        }
+      },
+      {
+        "regime": "compete",
+        "task_count": 15,
+        "correct": 15,
+        "accuracy": 1.0,
+        "aggregate": {
+          "tokens": 63000,
+          "wall_ms": 2585960,
+          "mesh_posts_count": 56
+        }
+      },
+      {
+        "regime": "cot",
+        "task_count": 15,
+        "correct": 15,
+        "accuracy": 1.0,
+        "aggregate": {
+          "tokens": 334,
+          "wall_ms": 0,
+          "mesh_posts_count": 0
+        }
+      },
+      {
+        "regime": "cot_partition",
+        "task_count": 10,
+        "correct": 1,
+        "accuracy": 0.1,
+        "aggregate": {
+          "tokens": 247,
+          "wall_ms": 0,
+          "mesh_posts_count": 0
+        }
+      }
+    ],
+    "note": "15-task pin on disk; live JSONL mesh 15/15, compete 15/15, full-clue cot 15/15, C_partition 10 rows (single-clue batches)."
+  },
+  "rows": [
+    {
+      "track": "simulator",
+      "task_id": "hp-cloud-vendor-01",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 32,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-hire-lead-02",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 42,
+      "wall_ms": 0,
+      "mesh_posts_count": 8
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-security-patch-03",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 32,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-bridge-04",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 37,
+      "wall_ms": 0,
+      "mesh_posts_count": 8
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-route-05",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 28,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-model-pick-06",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 32,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-vendor-sla-07",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 32,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-incident-owner-08",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 42,
+      "wall_ms": 0,
+      "mesh_posts_count": 8
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-cloud-vendor-01",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 50,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-hire-lead-02",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 57,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-security-patch-03",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 50,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-bridge-04",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 30,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-route-05",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 32,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-model-pick-06",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 53,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-vendor-sla-07",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 52,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-incident-owner-08",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 52,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-cloud-vendor-01",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 150,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-hire-lead-02",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 197,
+      "wall_ms": 0,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-security-patch-03",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 152,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-bridge-04",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 182,
+      "wall_ms": 0,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "simulator",
+      "task_id": "silo-route-05",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 128,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-model-pick-06",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 154,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-vendor-sla-07",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 154,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hp-incident-owner-08",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 197,
+      "wall_ms": 0,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 212,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 209,
+      "wall_ms": 0,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 257,
+      "wall_ms": 0,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 36,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 36,
+      "wall_ms": 0,
+      "mesh_posts_count": 6
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "compete",
+      "correct": false,
+      "tokens": 42,
+      "wall_ms": 0,
+      "mesh_posts_count": 8
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 72,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 74,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "simulator",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "cot",
+      "correct": false,
+      "tokens": 68,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-01-wildfire-evac",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-02-clinical-trial-site",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-03-satellite-downlink",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-04-supply-chain-resin",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-05-university-supercomputer",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4800,
+      "wall_ms": 210000,
+      "mesh_posts_count": 5
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-09-datacenter-region",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-10-vaccine-carrier",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-11-grid-battery-vendor",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-12-film-location",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-13-refugee-housing-site",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-14-llm-router-policy",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-15-antarctic-expedition-port",
+      "regime": "mesh",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 180000,
+      "mesh_posts_count": 3
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-01-wildfire-evac",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-02-clinical-trial-site",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-03-satellite-downlink",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-04-supply-chain-resin",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-05-university-supercomputer",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 185000,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-09-datacenter-region",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-10-vaccine-carrier",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-11-grid-battery-vendor",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-12-film-location",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-13-refugee-housing-site",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-14-llm-router-policy",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-15-antarctic-expedition-port",
+      "regime": "compete",
+      "correct": true,
+      "tokens": 4200,
+      "wall_ms": 240000,
+      "mesh_posts_count": 4
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-01-wildfire-evac",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 33,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-02-clinical-trial-site",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 21,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-03-satellite-downlink",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 16,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-04-supply-chain-resin",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 23,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-05-university-supercomputer",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 29,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 31,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 29,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 26,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-09-datacenter-region",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 23,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-10-vaccine-carrier",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 19,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-11-grid-battery-vendor",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 18,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-12-film-location",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 17,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-13-refugee-housing-site",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 17,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-14-llm-router-policy",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 16,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-15-antarctic-expedition-port",
+      "regime": "cot",
+      "correct": true,
+      "tokens": 16,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-06-restaurant-lease",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 20,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-07-cyber-insurance-carrier",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 20,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-08-museum-loan-route",
+      "regime": "cot_partition",
+      "correct": true,
+      "tokens": 28,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-09-datacenter-region",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 26,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-10-vaccine-carrier",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 25,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-11-grid-battery-vendor",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 28,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-12-film-location",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 28,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-13-refugee-housing-site",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 25,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-14-llm-router-policy",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 22,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    },
+    {
+      "track": "live",
+      "task_id": "hpl-15-antarctic-expedition-port",
+      "regime": "cot_partition",
+      "correct": false,
+      "tokens": 25,
+      "wall_ms": 0,
+      "mesh_posts_count": 0
+    }
+  ]
+}

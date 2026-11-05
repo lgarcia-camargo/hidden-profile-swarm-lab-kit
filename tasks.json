@@ -1,0 +1,394 @@
+{
+  "schema": "hidden-profile-lab/tasks/v1",
+  "created_by": "hpl-task-pack (a-bqocr8mj)",
+  "channel": "hidden-profile-lab",
+  "task_count": 15,
+  "note": "Original scenarios for swarm hidden-profile evaluation. Each task satisfies the hidden-profile condition: no single role can derive ground_truth from its clues alone; pooling all role-specific clues is necessary. Shared misleading context is embedded in question text (all roles see the question). Extended hpl-09..15 merged by bench-curriculum (a-mk1nwi0q) from hpl-09-15-extension.json.",
+  "tasks": [
+    {
+      "id": "hpl-01-wildfire-evac",
+      "question": "A county must pick one primary evacuation hub before sundown. Public briefings emphasize West Pier (fast ferry capacity) and Canyon Mall (indoor space). North Ridge Campground is listed as a backup with 'limited amenities'. Which hub should be designated the primary evacuation site?",
+      "ground_truth": "North Ridge Campground",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Harbor authority radar shows West Pier ferry channel will be closed for dredging from 17:00; no waiver issued."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Fire ops map: only access road to Canyon Mall is within the current flame front polygon; convoys were turned back at mile 4."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Red Cross logistics: North Ridge has potable water hookups, generator fuel delivery confirmed, and is outside the smoke AQI threshold for sensitive groups."
+        }
+      ]
+    },
+    {
+      "id": "hpl-02-clinical-trial-site",
+      "question": "Pharma ops must lock one investigative site for a Phase II trial requiring daily cold-chain samples and 6-hour lab turnaround. Site Alpha advertises the lowest per-patient stipend. Site Beta is closest to headquarters on the org chart. Site Gamma is labeled 'remote' in the slide deck. Which site should be selected?",
+      "ground_truth": "Site Gamma",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c",
+        "analyst-d"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Courier audit: Alpha's freezer trucks failed temperature excursion logging on two runs last month; QA flagged hold status."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Central lab SLA matrix: only Gamma's partner lab certifies 4-hour STAT processing for the biomarker panel; Beta's partner is 18-hour batch."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Regulatory memo: Alpha lacks updated IRB amendment for the new inclusion criterion; enrollment cannot start there until signed."
+        },
+        {
+          "role": "analyst-d",
+          "text": "Travel desk: Beta principal investigator is on sabbatical through Q3; no delegate PI on file with the sponsor."
+        }
+      ]
+    },
+    {
+      "id": "hpl-03-satellite-downlink",
+      "question": "Mission control must choose one ground station for tonight's time-critical downlink: Station Lima (newest dish, marketing highlight), Station Kilo (legacy but 'always available' in the wiki), or Station Juliet (listed as spare). Which station should receive the pass?",
+      "ground_truth": "Station Juliet",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "RF interference survey: Lima's band is contaminated by a nearby 5G tower on the exact downlink frequency; SNR below lock threshold."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Maintenance ticket: Kilo azimuth motor stuck at 214\u00b0; cannot track tonight's max elevation pass without manual repair (ETA 36h)."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Weather cell: Juliet sits in the only clear-sky pocket along the ground track; Lima and Kilo are both under convective cloud cover at AOS."
+        }
+      ]
+    },
+    {
+      "id": "hpl-04-supply-chain-resin",
+      "question": "Manufacturing must approve one resin supplier for medical-device housings this quarter. Vendor Prism offers 12% discount on volume. Vendor Quartz wins the internal popularity poll for responsiveness. Vendor Obsidian is the incumbent but labeled 'expensive' in the CFO slide. Which supplier should be approved?",
+      "ground_truth": "Vendor Obsidian",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Biocompatibility lab: Prism batch #4412 failed cytotoxicity retest; lot quarantined pending root cause."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Audit trail: Quartz changed polymer grade without change-control notification; FDA consultant rated response 'major finding'."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Obsidian submitted ISO 13485 renewal plus accelerated aging data showing zero creep at 5-year equivalent; only supplier with closed CAPA on prior nonconformance."
+        }
+      ]
+    },
+    {
+      "id": "hpl-05-university-supercomputer",
+      "question": "A research consortium must allocate one queue for a 72-hour climate ensemble run. Cluster Aurora has the highest peak FLOPS headline. Cluster Borealis is advertised as 'green energy'. Cluster Cirrus is described as 'older but stable'. Which cluster should run the job?",
+      "ground_truth": "Cluster Cirrus",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c",
+        "analyst-d"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Scheduler telemetry: Aurora has 41% GPU nodes offline due to cooling failure in rack row C; effective capacity below job size."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Network team: Borealis lacks InfiniBand path to the 800TB scratch volume; staging would require 14h serial copy before first timestep."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Software stack: only Cirrus has the licensed coupler module v3.2 preinstalled; other clusters need a 2-day license server migration."
+        },
+        {
+          "role": "analyst-d",
+          "text": "Ops on-call log: Cirrus finished three consecutive large ensembles without checkpoint corruption; Aurora last run aborted at hour 19 with silent data loss."
+        }
+      ]
+    },
+    {
+      "id": "hpl-06-restaurant-lease",
+      "question": "A restaurant group must sign one storefront lease before the holiday season. Location Harbor View has waterfront foot traffic stats in the broker deck. Location Metro Arcade is 'steps from the subway'. Location Alley Lantern is described as 'needs marketing'. Which location should they lease?",
+      "ground_truth": "Location Alley Lantern",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "City planning: Harbor View seawall construction will block pedestrian access for nine months starting next week."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Landlord disclosure (Metro): mandatory HVAC shutdown for asbestos abatement during December\u2013January peak dining weeks."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Alley Lantern: liquor license transferable, grease trap upgraded to code, and rent abatement during optional patio build\u2014only site meeting fire egress for 120 seats."
+        }
+      ]
+    },
+    {
+      "id": "hpl-07-cyber-insurance-carrier",
+      "question": "Legal must bind one cyber insurance carrier before renewal. Carrier Redwood quotes the lowest premium in the broker summary. Carrier Sequoia is recommended in the board deck for 'brand recognition'. Carrier Juniper is noted as 'niche'. Which carrier should be bound?",
+      "ground_truth": "Carrier Juniper",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Policy fine print: Redwood excludes nation-state ransomware riders; our threat model requires that rider per CISO memo."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Claims history request: Sequoia imposed 90-day waiting period on business interruption after a portfolio peer's delayed payout scandal."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Juniper policy draft includes unlimited forensics hours, 24h breach coach, and matches our SOC2 scope without sublimits on SaaS dependency failures."
+        }
+      ]
+    },
+    {
+      "id": "hpl-08-museum-loan-route",
+      "question": "A museum must choose one shipping route for a fragile terracotta loan: Route Air (fastest transit time on the poster), Route Rail (marked 'climate controlled'), or Route Sea (cheapest in the finance appendix). Which route should be used?",
+      "ground_truth": "Route Rail",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c",
+        "analyst-d"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Conservator report: Air cargo hold humidity swung 30\u201370% RH on last three Asia lanes; exceeds loan agreement \u00b15% RH."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Rail manifest: dedicated climate car with active logging and museum-approved vibration dampers on the Paris\u2013Berlin segment."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Port agent: Sea container missed two transshipment windows; cumulative dwell time would exceed insurance max of 14 days."
+        },
+        {
+          "role": "analyst-d",
+          "text": "Customs liaison: Air route requires temporary export license waiver not yet approved; Rail route uses existing cultural-goods carnet."
+        }
+      ]
+    },
+    {
+      "id": "hpl-09-datacenter-region",
+      "question": "Platform SRE must pick one AWS region for a latency-sensitive API before launch. us-east-1 is highlighted for lowest published inter-AZ pricing. eu-west-1 is favored in the exec deck for GDPR optics. ap-southeast-2 is labeled 'experimental' in the capacity spreadsheet. Which region should be primary?",
+      "ground_truth": "ap-southeast-2",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Network telemetry: us-east-1 p99 cross-coast RTT to our West Coast user cohort exceeds 180ms SLA; no Direct Connect path approved before launch."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Legal review: eu-west-1 data residency OK for EU users only; our launch cohort is 78% ANZ + Pacific enterprise contracts requiring in-region processing."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Capacity board: ap-southeast-2 has reserved GPU quota for inference and signed peering to Telstra; us-east-1 GPU waitlist is 6+ weeks."
+        }
+      ]
+    },
+    {
+      "id": "hpl-10-vaccine-carrier",
+      "question": "A hospital pharmacy must select one carrier for overnight mRNA vaccine replenishment. Carrier FrostLine advertises the cheapest dry-ice tariff. Carrier PolarExpress is the incumbent on the vendor slide. Carrier CryoLink is listed as 'regional alternative'. Which carrier should be contracted?",
+      "ground_truth": "Carrier CryoLink",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c",
+        "analyst-d"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "QA audit: FrostLine loggers showed two excursions below -60\u00b0C on the last three lanes; lot release blocked pending CAPA."
+        },
+        {
+          "role": "analyst-b",
+          "text": "PolarExpress contract renewal adds 72-hour liability cap; our protocol requires 24-hour chain-of-custody with named pharmacist sign-off."
+        },
+        {
+          "role": "analyst-c",
+          "text": "CryoLink route sheet includes validated IoT probes, redundant dry-ice recharge at hub B, and same-night handoff to pharmacy loading dock."
+        },
+        {
+          "role": "analyst-d",
+          "text": "State board rule 14.3: mRNA shipments must use carriers with active medical-device transport license; FrostLine license lapsed last quarter."
+        }
+      ]
+    },
+    {
+      "id": "hpl-11-grid-battery-vendor",
+      "question": "A utility pilot must award one battery vendor for a 4-hour grid buffer. Vendor VoltPeak leads the RFP score on nameplate kWh. Vendor StackForge wins the sustainability committee slide. Vendor CellHarbor is footnoted as 'small batch'. Which vendor should receive the award?",
+      "ground_truth": "Vendor CellHarbor",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Field tests: VoltPeak units derate 40% above 35\u00b0C ambient; our substation enclosure hits 42\u00b0C in summer load tests."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Interconnection study: StackForge BMS firmware failed IEEE 1547 ride-through on two simulated faults; utility cannot energize without patch."
+        },
+        {
+          "role": "analyst-c",
+          "text": "CellHarbor pack passed full cycle count at site temperature, includes utility-grade fire suppression integration, and meets 4-hour dispatch with 10% headroom."
+        }
+      ]
+    },
+    {
+      "id": "hpl-12-film-location",
+      "question": "Production must lock one exterior location for a night shoot requiring controlled rain effects. Lot A (Waterfront Pier) is booked in the lookbook for skyline reflections. Lot B (Desert Ridge) is cheapest in the budget appendix. Lot C (Quarry Stage) is marked 'needs scout'. Which lot should be locked?",
+      "ground_truth": "Lot C (Quarry Stage)",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Harbor master: Waterfront Pier rain rigs forbidden 22:00\u201306:00 due to nesting-bird ordinance; no variance for this week."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Meteorology: Desert Ridge forecast is zero precip probability all week; artificial rain would read visually inconsistent with background."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Quarry Stage has permitted drainage, tanker access, and union rain crew on hold; insurance rider for water effects already bound."
+        }
+      ]
+    },
+    {
+      "id": "hpl-13-refugee-housing-site",
+      "question": "An NGO must open one temporary housing site this month. Site Harbor Gym is shown with the most beds in the donor brochure. Site Hillside School is nearest to the transit map pin. Site Riverside Warehouse is described as 'under review'. Which site should open?",
+      "ground_truth": "Site Riverside Warehouse",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c",
+        "analyst-d"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Fire marshal: Harbor Gym failed occupancy recertification after the flood; maximum legal capacity is zero until remediation."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Hillside School contract requires classes to resume Monday; housing cannot overlap without school board waiver (not granted)."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Riverside Warehouse has HVAC, separated family units, and UNHCR WASH checklist signed off yesterday."
+        },
+        {
+          "role": "analyst-d",
+          "text": "Transit NGO memo: bus loop for Hillside is one-way only; 40-foot coaches cannot turn around for nightly intake."
+        }
+      ]
+    },
+    {
+      "id": "hpl-14-llm-router-policy",
+      "question": "Platform team must pick one default routing policy for customer support LLM traffic. Policy CheapFirst always sends to the smallest model. Policy BrandSafe routes to the vendor named in marketing. Policy Adaptive is described as 'complex' in the wiki. Which policy should be default?",
+      "ground_truth": "Policy Adaptive",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Incident review: CheapFirst caused 12% escalation spike on billing disputes requiring tool-use; smallest model lacks function-calling reliability."
+        },
+        {
+          "role": "analyst-b",
+          "text": "BrandSafe vendor SLA excludes PII-heavy EU tickets; 34% of queue volume is EU GDPR tier requiring on-prem router path only Adaptive supports."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Adaptive policy met cost cap in shadow mode while matching human accept rate on tier-2 intents in last week's A/B."
+        }
+      ]
+    },
+    {
+      "id": "hpl-15-antarctic-expedition-port",
+      "question": "Expedition logistics must choose one departure port for icebreaker resupply. Port Punta Arenas is highlighted for tourist infrastructure. Port Ushuaia is listed as fastest in the sailing blog. Port Lyttelton is footnoted 'limited'. Which port should be used?",
+      "ground_truth": "Port Lyttelton",
+      "roles": [
+        "analyst-a",
+        "analyst-b",
+        "analyst-c"
+      ],
+      "clues": [
+        {
+          "role": "analyst-a",
+          "text": "Ice pilot chart: Punta Arenas approach has uncharted bergy bits this season; insurance underwriter denied coverage for heavy hull class."
+        },
+        {
+          "role": "analyst-b",
+          "text": "Canal schedule: Ushuaia fuel depot strike extends bunkering delay to 11 days; mission window allows 5 days max in port."
+        },
+        {
+          "role": "analyst-c",
+          "text": "Lyttelton has confirmed ice-class pilot roster, diesel grade for our engines, and signed cargo manifest for Scott Base resupply."
+        }
+      ]
+    }
+  ]
+}
