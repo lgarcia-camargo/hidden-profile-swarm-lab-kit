@@ -309,7 +309,10 @@ def main() -> int:
     }
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, indent=2) + "\n")
-    print(f"Wrote {output} ({len(scored)} predictions)")
+    pages_latest = ROOT / "docs" / "data" / "latest-scores.json"
+    pages_latest.parent.mkdir(parents=True, exist_ok=True)
+    pages_latest.write_text(json.dumps(payload, indent=2) + "\n")
+    print(f"Wrote {output} and {pages_latest} ({len(scored)} predictions)")
     for p in scored:
         print(f"  {p['prediction_id']}: {p['status']}")
     return 0
