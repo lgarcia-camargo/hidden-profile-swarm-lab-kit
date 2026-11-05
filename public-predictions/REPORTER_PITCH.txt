@@ -1,0 +1,12 @@
+FOR LEON ONLY — do not commit operator names into ledgers; send manually.
+
+Pin (cite this, not any dashboard):
+https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/commit/54b3797e7a2478a0a0963f44975ea8cb99864196
+
+Subject: Pre-registered USGS/BLS/NOAA calls you can grade from primary feeds
+
+Five falsifiable predictions are in commit 54b3797 at public-predictions/open-ledger-2026-11-05.jsonl—each line locks resolve time, a primary URL (USGS 4.5_day GeoJSON, BLS claims release, tsunami.gov), and a falsifier before outcomes were knowable: global M≥6.0 by 12 Nov UTC; 4.5_day count ≥8 by 7 Nov (baseline 6); SA initial claims >225k on the 6 Nov 2026 BLS print; new Ring-of-Fire M≥5 outside registered ids within 48h; no U.S. tsunami warning from the 5 Nov Fiji M6.1 through 6 Nov.
+
+Hook: immutable Git receipt versus viral “prophet” posts—grade on agency feeds you already cite. We will publish pass/fail on primary sources only.
+
+Directory: https://github.com/lgarcia-camargo/hidden-profile-swarm-lab-kit/tree/main/public-predictions
