@@ -1,9 +1,11 @@
 {
-  "scored_at_utc": "2026-11-05T21:56:40Z",
+  "scored_at_utc": "2026-11-05T21:58:39Z",
   "ledger_file": "open-ledger-2026-11-05.jsonl",
+  "ledger_path": "public-predictions/open-ledger-2026-11-05.jsonl",
   "predictions": [
     {
       "prediction_id": "pred-usgs-m6-global-2026-11-12",
+      "category": "seismic",
       "resolve_by_utc": "2026-11-12T23:59:59Z",
       "status": "TRUE",
       "detail": "1 feature(s) with mag>=6.0, e.g. id=us7000tw8r",
@@ -11,27 +13,35 @@
     },
     {
       "prediction_id": "pred-usgs-45count-2026-11-07T22Z",
+      "category": "seismic",
       "resolve_by_utc": "2026-11-07T22:00:00Z",
       "status": "PENDING",
-      "detail": "Resolution snapshot at 2026-11-07T22:00:00Z"
+      "detail": "Resolution snapshot at 2026-11-07T22:00:00Z",
+      "primary_url_fetched": null
     },
     {
       "prediction_id": "pred-bls-claims-2026-11-06",
+      "category": "macro",
       "resolve_by_utc": "2026-11-06T16:00:00Z",
       "status": "PENDING",
-      "detail": "Awaiting BLS release (server-side scorer)"
+      "detail": "BLS fetch HTTP 403",
+      "primary_url_fetched": "https://www.bls.gov/news.release/empsit.toc.htm"
     },
     {
       "prediction_id": "pred-usgs-new-m5-rof-48h",
+      "category": "seismic",
       "resolve_by_utc": "2026-11-07T21:55:00Z",
       "status": "PENDING",
-      "detail": "No qualifying new event yet"
+      "detail": "No qualifying new event yet; resolve_by not reached",
+      "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
     },
     {
       "prediction_id": "pred-noaa-us-tsunami-fiji-m61-24h",
+      "category": "seismic-ops",
       "resolve_by_utc": "2026-11-06T21:55:00Z",
       "status": "PENDING",
-      "detail": "No disqualifying alert yet"
+      "detail": "No disqualifying alert yet; awaiting resolve_by",
+      "primary_url_fetched": "https://www.tsunami.gov/"
     }
   ]
 }
