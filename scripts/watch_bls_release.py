@@ -24,6 +24,9 @@ PREDICTION_ID = "pred-bls-claims-2026-11-06"
 CLAIMS_THRESHOLD = 225_000
 DEFAULT_URL = "https://www.bls.gov/news.release/claims.nr0.htm"
 USER_AGENT = "hidden-profile-swarm-lab-kit-wire-beater/1.0 (+public ledger monitor)"
+WIRE_BEAT_SCRIPT = ROOT / "scripts" / "publish_wire_beat.py"
+PAYLOAD_PATH = ROOT / "var" / "last-beat-payload.json"
+API_BASE = __import__("os").environ.get("PRIMARY_CALLER_API", "http://127.0.0.1:8787")
 
 
 def utc_now_ms() -> int:
@@ -82,19 +85,76 @@ def ledger_grade(sa_value: int | None) -> str | None:
     return "PASS" if sa_value > CLAIMS_THRESHOLD else "FAIL"
 
 
-def append_beat_log(record: dict[str, Any]) -> None:
-    BEAT_LOG.parent.mkdir(parents=True, exist_ok=True)
-    with BEAT_LOG.open("a", encoding="utf-8") as f:
-        f.write(json.dumps(record, separators=(",", ":")) + "\n")
+def ledger_status_for(sa_value: int | None) -> str:
+    if sa_value is None:
+        return "PENDING"
+    return "TRUE" if sa_value > CLAIMS_THRESHOLD else "FALSE"
 
 
-def post_nostr_if_requested(do_post: bool, dry_run: bool) -> None:
-    if not do_post or dry_run:
+def build_wire_payload(
+    *,
+    sa_value: int | None,
+    latency_ms: int,
+    primary_url: str,
+    content_hash: str,
+    dry_run: bool,
+    first_seen_utc: str,
+) -> dict[str, Any]:
+    return {
+        "source": "bls",
+        "sa_initial_claims": sa_value,
+        "latency_ms": latency_ms,
+        "primary_url": primary_url if not primary_url.startswith("fixture:") else DEFAULT_URL,
+        "ledger_prediction_id": PREDICTION_ID,
+        "ledger_status": ledger_status_for(sa_value),
+        "threshold": CLAIMS_THRESHOLD,
+        "page_fingerprint": content_hash,
+        "dry_run": dry_run,
+        "first_seen_utc": first_seen_utc,
+    }
+
+
+def post_beat_to_api(payload: dict[str, Any]) -> dict[str, Any] | None:
+    body = json.dumps(
+        {
+            "source": payload["source"],
+            "sa_initial_claims": payload["sa_initial_claims"],
+            "latency_ms": payload["latency_ms"],
+            "primary_url": payload["primary_url"],
+            "ledger_prediction_id": payload["ledger_prediction_id"],
+            "ledger_status": payload["ledger_status"],
+            "threshold": payload["threshold"],
+            "page_fingerprint": payload.get("page_fingerprint"),
+            "dry_run": payload.get("dry_run", False),
+            "first_seen_utc": payload.get("first_seen_utc"),
+        }
+    ).encode()
+    req = urllib.request.Request(
+        f"{API_BASE.rstrip('/')}/v1/beats",
+        data=body,
+        headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            return json.loads(resp.read().decode())
+    except Exception as exc:  # noqa: BLE001 — monitor continues if API down
+        return {"api_error": str(exc)}
+
+
+def emit_wire_beat(payload: dict[str, Any], *, post_nostr: bool) -> None:
+    PAYLOAD_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PAYLOAD_PATH.write_text(json.dumps(payload, indent=2))
+    post_beat_to_api(payload)
+    if not WIRE_BEAT_SCRIPT.is_file():
         return
-    env = {**dict(__import__("os").environ)}
-    env["NOSTR_MODE"] = "wire-beat"
-    script = ROOT / "scripts" / "publish_nostr.py"
-    subprocess.run([sys.executable, str(script)], cwd=str(ROOT), env=env, check=False)
+    cmd = [sys.executable, str(WIRE_BEAT_SCRIPT), "--payload", str(PAYLOAD_PATH)]
+    nsec = __import__("os").environ.get("NOSTR_NSEC", "").strip()
+    if post_nostr and nsec and not payload.get("dry_run"):
+        subprocess.run(cmd, cwd=str(ROOT), check=False)
+    else:
+        cmd.append("--artifacts-only")
+        subprocess.run(cmd, cwd=str(ROOT), check=False)
 
 
 def poll_once(
@@ -146,27 +206,59 @@ def poll_once(
     sa_value = parse_sa_initial_claims(text)
     grade = ledger_grade(sa_value)
 
+    first_seen_utc = datetime.fromtimestamp(
+        first_seen_ms / 1000, tz=timezone.utc
+    ).isoformat().replace("+00:00", "Z")
+    if sa_value is None:
+        state_path.parent.mkdir(parents=True, exist_ok=True)
+        state_path.write_text(
+            json.dumps(
+                {
+                    "content_hash": content_hash,
+                    "etag": etag,
+                    "last_modified": lm_raw,
+                    "updated_utc": first_seen_utc,
+                    "url": url,
+                    "parse": "pending",
+                },
+                indent=2,
+            )
+        )
+        return {
+            "event": "bls_page_changed_unparsed",
+            "primary_url": fetched_url,
+            "content_hash": content_hash,
+        }
+
+    wire_payload = build_wire_payload(
+        sa_value=sa_value,
+        latency_ms=latency_ms,
+        primary_url=fetched_url,
+        content_hash=content_hash,
+        dry_run=dry_run,
+        first_seen_utc=first_seen_utc,
+    )
+    emit_wire_beat(wire_payload, post_nostr=post_nostr)
     record: dict[str, Any] = {
         "schema": "wire-beat/v1",
         "event": "bls_claims_detected",
         "prediction_id": PREDICTION_ID,
-        "first_seen_utc": datetime.fromtimestamp(
-            first_seen_ms / 1000, tz=timezone.utc
-        ).isoformat().replace("+00:00", "Z"),
+        "first_seen_utc": first_seen_utc,
         "first_seen_utc_ms": first_seen_ms,
         "first_seen_ms": first_seen_ms,
         "latency_ms": latency_ms,
         "sa_claims": sa_value,
         "sa_initial_claims": sa_value,
         "ledger_grade": grade,
+        "ledger_status": wire_payload["ledger_status"],
         "ledger_rule": f"SA initial claims > {CLAIMS_THRESHOLD}",
         "primary_url": fetched_url,
         "content_hash": content_hash,
         "etag": etag,
         "last_modified": lm_raw,
         "dry_run": dry_run,
+        "api_payload": wire_payload,
     }
-    append_beat_log(record)
     state_path.parent.mkdir(parents=True, exist_ok=True)
     state_path.write_text(
         json.dumps(
@@ -180,7 +272,6 @@ def poll_once(
             indent=2,
         )
     )
-    post_nostr_if_requested(post_nostr, dry_run)
     return record
 
 
@@ -190,7 +281,11 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Use fixtures/bls_claims_sample.html")
     parser.add_argument("--once", action="store_true", help="Single poll then exit")
     parser.add_argument("--interval", type=float, default=2.0, help="Seconds between polls")
-    parser.add_argument("--post-nostr", action="store_true", help="Call publish_nostr wire-beat after detect")
+    parser.add_argument(
+        "--post-nostr",
+        action="store_true",
+        help="After detect, publish_wire_beat.py with NOSTR_NSEC (else artifacts-only)",
+    )
     parser.add_argument(
         "--state-file",
         default=str(ROOT / "var" / "wire-beater-state.json"),

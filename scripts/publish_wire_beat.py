@@ -89,6 +89,11 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--payload", type=Path, help="JSON payload file from monitor")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument(
+        "--artifacts-only",
+        action="store_true",
+        help="Update beat-log.jsonl + wire-beater-status.json without Nostr",
+    )
     args = ap.parse_args()
     raw = os.environ.get("WIRE_BEAT_JSON", "")
     if args.payload:
@@ -101,6 +106,10 @@ def main() -> None:
 
     text = format_note(payload)
     print("NOTE:\n", text, sep="")
+    if args.artifacts_only:
+        write_artifacts(payload, "artifacts-only", "artifacts-only")
+        print(json.dumps({"artifacts_only": True, "note": text}, indent=2))
+        return
     if args.dry_run:
         print(json.dumps({"dry_run": True, "note": text}, indent=2))
         return

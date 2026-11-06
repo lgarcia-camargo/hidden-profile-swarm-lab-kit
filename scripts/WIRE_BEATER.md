@@ -1,6 +1,6 @@
 # Wire Beater monitor (BLS Nov 6 2026)
 
-Polls `https://www.bls.gov/news.release/claims.nr0.htm` every 2s from Leon's Mac. On content change, parses SA initial claims, appends `docs/data/beat-log.jsonl`, and optionally posts Nostr (`NOSTR_MODE=wire-beat` via repo secret pattern).
+Polls `https://www.bls.gov/news.release/claims.nr0.htm` every 2s from Leon's Mac. On content change: builds payload (`docs/data/wire-beater-payload.schema.json`), **POSTs `PRIMARY_CALLER_API/v1/beats`** (BeatEvent SQLite), runs `publish_wire_beat.py --payload var/last-beat-payload.json` (Pages `beat-log.jsonl` + `wire-beater-status.json` + Nostr when `NOSTR_NSEC` set).
 
 ## Dry-run (fixture)
 
