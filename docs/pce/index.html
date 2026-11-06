@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contradiction Card #1 — PCE-2026-11-06-01</title>
-  <meta name="description" content="Primary Contradiction Engine: two official USGS magnitudes, timestamped." />
+  <meta name="description" content="PCE Card #1: weather.tsunami_origin_vs_usgs — USGS 4.96 vs tsunami.gov 4.5 (to0j1g / nc75462637)." />
   <style>
     :root {
       --bg: #0d1117; --panel: #161b22; --text: #e6edf3; --muted: #8b949e;
@@ -13,72 +13,137 @@
     }
     * { box-sizing: border-box; }
     body { margin: 0; font: 15px/1.55 system-ui, sans-serif; background: var(--bg); color: var(--text);
-      max-width: 900px; margin-inline: auto; padding: 0 1.25rem 3rem; }
+      max-width: 960px; margin-inline: auto; padding: 0 1.25rem 3rem; }
     header { padding: 1.25rem 0 0.75rem; border-bottom: 2px solid var(--accent); margin-bottom: 1rem; }
     h1 { font-size: 1.3rem; margin: 0 0 0.35rem; }
     h2 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; }
+    h3 { font-size: 0.95rem; margin: 0 0 0.35rem; color: var(--muted); }
     .lede { color: var(--muted); font-size: 0.92rem; }
     a { color: var(--link); }
     .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; margin: 0.75rem 0; }
     .badge { font-family: var(--mono); font-size: 0.72rem; padding: 0.12rem 0.4rem; border-radius: 4px; border: 1px solid var(--line); margin-right: 0.35rem; }
     .badge.fail { color: var(--fail); border-color: var(--fail); }
     .badge.open { color: var(--warn); border-color: var(--warn); }
+    .badge.review { color: var(--warn); border-color: var(--accent); }
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0.5rem 0; }
     th, td { border: 1px solid var(--line); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
     th { color: var(--muted); font-weight: 600; }
     .mono { font-family: var(--mono); font-size: 0.82rem; word-break: break-all; }
     .gate { border-left: 3px solid var(--fail); padding-left: 0.75rem; color: var(--muted); font-size: 0.9rem; }
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 280px); gap: 1rem; align-items: start; }
+    @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+    .sidebar .card { margin-top: 0; border-color: var(--line); }
     footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
   </style>
 </head>
 <body>
-  <div class="card gate" style="border-left-color: var(--warn); margin-top: 1rem;">
-    <strong>No open cross-primary incidents — skeptic review 2026-11-06</strong>
-    <p class="lede" style="margin:0.35rem 0 0">Draft Card #1 below is gated (<code>publish_allowed: false</code>, skeptic FAIL). Not counted in API open list.</p>
-  </div>
+  <div id="top-banner" class="card gate" style="border-left-color: var(--warn); margin-top: 1rem;"></div>
   <header>
     <h1>Contradiction Card #1</h1>
-    <p class="lede">Primary Contradiction Engine · Charter #5 · <span id="card-id">PCE-2026-11-06-01</span></p>
+    <p class="lede">Primary Contradiction Engine · Charter #5 · <span class="mono">PCE-2026-11-06-01</span> · rule <span class="mono">weather.tsunami_origin_vs_usgs</span></p>
   </header>
-  <div id="gate-banner" class="card gate"></div>
   <div id="main"></div>
   <footer>
-    <p>JSON: <code>incidents/PCE-2026-11-06-01.json</code> · Source: <code>contradiction-card-01-2026-11-06.md</code></p>
-    <p><a href="data/usgs-pairwise-2026-11-06.json">usgs-pairwise</a> · <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a> · <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
+    <p>Pairwise: <a href="data/weather-pairwise-2026-11-06.json">weather-pairwise-2026-11-06.json</a> ·
+      <a href="data/usgs-pairwise-2026-11-06.json">usgs-pairwise</a> ·
+      <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a> ·
+      <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
+    <p>Incident stub: <code>incidents/PCE-2026-11-06-01.json</code> · <code>cmp-00258orc</code> · API <code id="api-line">…</code></p>
   </footer>
   <script>
 (function () {
-  const INC = 'incidents/PCE-2026-11-06-01.json';
+  var WEATHER = 'data/weather-pairwise-2026-11-06.json';
+  var RULE_ID = 'weather.tsunami_origin_vs_usgs';
   function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  fetch(INC).then(r => r.json()).then(function (c) {
-    document.getElementById('card-id').textContent = c.card_id;
-    var gate = document.getElementById('gate-banner');
-    if (c.publish_allowed === false) {
-      gate.innerHTML = '<strong>Publish gated</strong> — skeptic PASS required (current: <span class="badge fail">FAIL</span> on ' +
-        esc(c.skeptic_gate && c.skeptic_gate.checks && c.skeptic_gate.checks[0] && c.skeptic_gate.checks[0].id) + '). Draft HTML for integrator/API handoff only.';
+  function weatherSkepticPass(wp) {
+    var g = wp.skeptic_gate;
+    if (!g) return false;
+    if (g.status === 'PASS') return true;
+    var checks = g.checks || [];
+    return checks.some(function (c) { return c.id === RULE_ID && c.status === 'PASS'; });
+  }
+
+  function incidentPass(inc) {
+    if (!inc || !inc.skeptic_gate) return false;
+    if (inc.publish_allowed === true && String(inc.skeptic_gate.status || '').toUpperCase() === 'PASS') return true;
+    var checks = inc.skeptic_gate.checks || [];
+    return checks.some(function (c) { return c.id === 'pce-weather-t2ssp5-mag' && c.status === 'PASS'; });
+  }
+
+  Promise.all([
+    fetch('incidents/PCE-2026-11-06-01.json').then(function (r) { return r.ok ? r.json() : {}; }),
+    fetch(WEATHER).then(function (r) { return r.json(); })
+  ]).then(function (pair) {
+    var inc = pair[0];
+    var wp = pair[1];
+    var el = document.getElementById('api-line');
+    if (el) {
+      var st = (inc.api_status || (inc.api && inc.api.detail_get_status) || 'unknown').toLowerCase();
+      var list = inc.publish_allowed ? 'open list eligible' : 'open list empty';
+      el.textContent = 'GET ' + ((inc.api && inc.api.endpoints && inc.api.endpoints.detail) || '/v1/contradictions/PCE-2026-11-06-01') + ' → ' + st + '; ' + list;
     }
-    var prim = (c.primaries || []).map(function (p) {
-      return '<tr><td>' + esc(p.label) + '</td><td class="mono">' + esc(p.field) + '</td><td><strong>' + esc(p.value) + '</strong></td>' +
-        '<td><a href="' + esc(p.url) + '">' + esc(p.url.replace(/^https:\\/\\//,'')) + '</a></td>' +
-        '<td class="mono">' + esc(p.snapshot_sha256 && p.snapshot_sha256.slice(0,16)) + '…</td></tr>';
-    }).join('');
-    var sg = c.secondary_gap || {};
+    var open = incidentPass(inc) || weatherSkepticPass(wp);
+    var displayStatus = open ? 'CONTRADICTION OPEN' : 'SKEPTIC REVIEW';
+    var rule = (wp.open_candidates || []).find(function (c) { return c.rule_id === RULE_ID; })
+      || (wp.candidates || []).find(function (c) { return c.rule_id === RULE_ID; });
+    var ev = (rule && rule.evidence) || {};
+    var focus = wp.focus_event || {};
+
+    document.getElementById('top-banner').innerHTML =
+      '<strong>' + esc(displayStatus) + '</strong> — Card #1 lede is cross-agency magnitude (' + esc(RULE_ID) + '). ' +
+      (open
+        ? 'Skeptic PASS <span class="mono">pce-weather-t2ssp5-mag</span> — Card #1 hero shipped (weather cross-primary). USGS display + BLS 403 = footnotes only.'
+        : '<code>publish_allowed: false</code> until skeptic PASS on <span class="mono">pce-weather-t2ssp5-mag</span>.');
+
+    var rows =
+      '<tr><td>USGS · detail feed</td><td class="mono">properties.mag (mw)</td><td><strong>' + esc(ev.usgs_mag) + '</strong></td>' +
+      '<td><span class="mono">nc' + esc(ev.usgs_id) + '</span> · ' + esc(ev.usgs_place) + '<br/>' +
+      '<a href="https://earthquake.usgs.gov/earthquakes/eventpage/nc' + esc(ev.usgs_id) + '">eventpage</a></td>' +
+      '<td class="mono">' + esc(ev.usgs_time_utc) + '</td></tr>' +
+      '<tr><td>NTWC / tsunami.gov</td><td class="mono">Preliminary Magnitude (Ml)</td><td><strong>' + esc(ev.tsunami_mag) + '</strong></td>' +
+      '<td>PAAQ Information · <span class="mono">' + esc(focus.eventID) + '</span><br/>' +
+      '<a href="https://www.tsunami.gov/events/xml/PAAQAtom.xml">PAAQAtom.xml</a></td>' +
+      '<td class="mono">' + esc(ev.tsunami_originTime) + '<br/>Δt ' + esc(ev.delta_seconds) + 's</td></tr>';
+
+    var sidebar =
+      '<aside class="sidebar">' +
+      '<h2 style="margin-top:0">Sidebar — USGS display plane</h2>' +
+      '<div class="card gate" style="border-left-color: var(--fail);">' +
+      '<h3>Skeptic FAIL (strict cross-primary)</h3>' +
+      '<p><span class="badge fail">FAIL</span> <span class="mono">pce-usgs-nc75462637</span> · <span class="mono">m-vtbcvjen</span></p>' +
+      '<p class="lede" style="margin:0">Title <strong>M 5.0</strong> vs machine <strong>mag 4.96</strong> on the same USGS primary — display rounding, not a second agency.</p>' +
+      '</div>' +
+      '<div class="card">' +
+      '<h3>Skeptic PASS (reframed USGS hero)</h3>' +
+      '<p><span class="badge open">PASS</span> <span class="mono">m-1fkpi58q</span> / <span class="mono">m-4o38sz4h</span></p>' +
+      '<p class="lede" style="margin:0">Publish only as <em>display-plane mismatch</em> essay; lede must not claim feed-vs-detail lag. Supersedes strict FAIL for USGS-only copy.</p>' +
+      '</div>' +
+      '<p class="lede">This sidebar is not Card #1 A1 after weather pivot; kept for mesh audit trail.</p>' +
+      '</aside>';
+
+    var delib =
+      '<h2>Deliberation excerpt</h2><div class="card">' +
+      '<p>The swarm called <strong>CONTRADICTION OPEN</strong> in pairwise JSON for three reasons—display rounding, provenance gap, and <strong>NOAA/USGS magnitude delta</strong>—and <code>#pce-lab</code> debate is which reason earns the public OPEN label. ' +
+      'Weather lane (<span class="mono">m-kf5no9z5</span>): <strong>' + esc(RULE_ID) + '</strong> — USGS <span class="mono">nc' + esc(ev.usgs_id) + '</span> mag <strong>' + esc(ev.usgs_mag) + '</strong> vs NTWC <strong>' + esc(ev.tsunami_mag) + '</strong> (Δt ~' + esc(ev.delta_seconds) + 's OK); tied to tsunami event <span class="mono">' + esc(focus.eventID) + '</span>.</p>' +
+      '<p class="lede">Integration fork (<span class="mono">m-o0kma90j</span> vs PASS arc): do not headline OPEN until skeptic signs the weather rule.</p>' +
+      '<p><a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt-2026-11-06.md</a> · ' +
+      '<a href="data/weather-pairwise-2026-11-06.json">weather-pairwise-2026-11-06.json</a> · generated ' + esc(wp.generated_at_utc) + '</p></div>';
+
     document.getElementById('main').innerHTML =
-      '<p><span class="badge open">' + esc(c.status) + '</span> <span class="badge">' + esc(c.severity) + '</span> ' +
-      esc(c.competition_id) + ' · observed ' + esc(c.detected_at_utc) + '</p>' +
-      '<div class="card"><h2 style="margin-top:0">A1 — ' + esc(c.a1_headline) + '</h2>' +
-      '<p>Lead <span class="mono">' + esc(c.lead_event_id) + '</span> · ' + esc(c.lead_place) + ' · origin ' + esc(c.origin_utc) + '</p>' +
-      '<p>' + esc(c.summary) + '</p>' +
-      '<table><thead><tr><th>Plane</th><th>Field</th><th>Magnitude</th><th>Source</th><th>Hash</th></tr></thead><tbody>' + prim + '</tbody></table></div>' +
-      '<h2>Secondary gap — feed roll-off</h2><div class="card"><p><span class="mono">' + esc(sg.event_id) + '</span> · ' + esc(sg.place) +
-      ' — absent from <code>4.5_day</code> while <code>detail/' + esc(sg.event_id) + '.geojson</code> still serves mag ' + esc(sg.mag) + '.</p>' +
-      '<p class="mono">detail SHA-256: ' + esc(sg.detail_sha256) + '</p></div>' +
-      '<h2>Method credibility (EM-DAT)</h2><div class="card"><p>v1.1→v2.0 earthquakes: <strong>' + esc(c.credibility_box && c.credibility_box.material_revisions) +
-      '</strong> material revisions / ' + esc(c.credibility_box && c.credibility_box.overlapping_records) + ' overlapping · ' +
-      '<a href="' + esc(c.credibility_box && c.credibility_box.doi) + '">Dataverse DOI</a></p></div>' +
-      '<h2>BLS integrity callout (not lede)</h2><div class="card"><p>' + esc(c.bls_integrity_callout && c.bls_integrity_callout.note) + '</p></div>' +
-      '<h2>Deliberation excerpt</h2><div class="card"><p>Full mesh log: <a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt-2026-11-06.md</a> — skeptic did not PASS; card framed as display-integrity pending qualifying cross-primary candidate.</p></div>';
+      '<p><span class="badge ' + (open ? 'open' : 'review') + '">' + esc(displayStatus) + '</span> ' +
+      '<span class="badge">' + esc((rule && rule.severity) || 'medium').toUpperCase()) + '</span> ' +
+      '<span class="mono">cmp-00258orc</span> · observed ' + esc(wp.generated_at_utc) + '</p>' +
+      '<div class="layout"><div>' +
+      '<div class="card"><h2 style="margin-top:0">A1 — Cross-agency magnitude at the same origin window</h2>' +
+      '<p>When two government feeds tie to one origin (~' + esc(ev.delta_seconds) + 's), which magnitude do you trust: USGS <strong>' + esc(ev.usgs_mag) + '</strong> (mw) or NTWC/tsunami.gov <strong>' + esc(ev.tsunami_mag) + '</strong> (Ml)?</p>' +
+      '<p class="lede">Events <span class="mono">nc' + esc(ev.usgs_id) + '</span> (USGS) · <span class="mono">' + esc(focus.eventID) + '</span> (tsunami.gov) · ' + esc(focus.quakeLocation) + '</p>' +
+      '<p class="mono">' + esc((rule && rule.summary) || '') + '</p>' +
+      '<table><thead><tr><th>Primary</th><th>Field</th><th>Magnitude</th><th>Source</th><th>Time</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      delib +
+      '<h2>Method credibility (EM-DAT)</h2><div class="card"><p class="lede">v1.1→v2.0 earthquakes: 433 material revisions / 1602 overlapping · <a href="https://doi.org/10.14428/DVN/I0LTPH">Dataverse DOI</a> — parallel method warning on the card.</p></div>' +
+      '<h2>BLS integrity callout (not lede)</h2><div class="card"><p class="lede">Hosted 403 on claims.nr0 + wire-beater fixture; see <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a>. Not headline fight.</p></div>' +
+      '</div>' + sidebar + '</div>';
   }).catch(function (e) {
     document.getElementById('main').innerHTML = '<p class="lede">Load error: ' + esc(e.message) + '</p>';
   });

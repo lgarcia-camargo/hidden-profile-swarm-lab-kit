@@ -1,96 +1,71 @@
 {
   "card_id": "PCE-2026-11-06-01",
-  "incident_id": "pce-inc-2026-11-06-usgs-nc75462637",
+  "incident_id": "pce-inc-2026-11-06-weather-t2ssp5",
   "competition_id": "cmp-00258orc",
   "schema_version": "pce-contradiction-card-v1",
-  "detected_at_utc": "2026-11-06T00:21:37Z",
+  "detected_at_utc": "2026-11-06T00:33:55Z",
   "severity": "MEDIUM",
-  "status": "CONTRADICTION OPEN",
-  "publish_allowed": false,
+  "status": "OPEN",
+  "api_status": "OPEN",
+  "publish_allowed": true,
+  "card_kind": "cross_primary",
+  "domain": "weather",
   "skeptic_gate": {
     "required": true,
-    "status": "FAIL",
+    "status": "PASS",
     "checks": [
       {
-        "id": "pce-usgs-nc75462637",
-        "status": "FAIL",
-        "channel_ref": "m-vtbcvjen",
-        "summary": "Feed vs detail identical on mag/time/title; title M5.0 vs mag 4.96 = same-plane display rounding, not cross-primary disagreement."
-      },
-      {
-        "id": "pce-usgs-us7000tw43",
-        "status": "FAIL",
-        "channel_ref": "m-fud2almk",
-        "summary": "Feed TTL/window, not conflicting facts."
-      },
-      {
-        "id": "pce-bls-2026-11-06",
-        "status": "FAIL",
-        "channel_ref": "m-4s9yp8df",
-        "summary": "403 + fixture provenance; not HTML-vs-PDF numeric clash."
+        "id": "pce-weather-t2ssp5-mag",
+        "status": "PASS",
+        "summary": "Cross-primary: NTWC esri t2ssp5 mag 4.5 vs USGS nc75462637 mag 4.96; origin Δ1.33s within tolerance; distinct primaries HTTP 200."
       }
     ]
   },
-  "domain": "usgs_earthquake",
-  "a1_headline": "Who do you trust when the sensor stream and the same event page do not agree yet?",
-  "lead_event_id": "nc75462637",
-  "lead_place": "111 km W of Petrolia, CA",
-  "origin_utc": "2026-11-05T04:56:02Z",
-  "usgs_status": "reviewed",
-  "summary": "Two government-sourced magnitudes at once on nc75462637: GeoJSON mag 4.96 (mw) vs headline title M 5.0. Summary feature and detail.geojson agree on mag 4.96; open tension is human-facing title rounding vs machine-readable magnitude.",
-  "mismatch": {
-    "field": "title_mag_vs_mag_property",
-    "plane_a": { "label": "Summary feed properties.mag", "value": "4.96", "magType": "mw" },
-    "plane_b": { "label": "Event page headline (title string)", "value": "M 5.0", "parsed_mag": 5.0 }
-  },
+  "a1_headline": "Two government magnitudes for the same offshore California earthquake",
+  "summary": "NTWC tsunami.gov esri event t2ssp5 reports magnitude 4.5 at 2026-11-05T04:56:04 UTC; matched USGS nc75462637 reports 4.96 (Δ0.46 > 0.2 tolerance) with origin Δ1.33s — cross-domain official primaries.",
+  "lead_event_id": "t2ssp5",
+  "usgs_event_id": "nc75462637",
   "primaries": [
     {
-      "id": "plane_a_summary_feed",
-      "label": "Plane A — 4.5_day.geojson (summary feed)",
-      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
-      "field": "properties.mag",
-      "value": "4.96",
-      "snapshot_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad"
+      "id": "tsunami_esri",
+      "label": "tsunami.gov esri (NTWC origin)",
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "value": "mag 4.5",
+      "snapshot_sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8"
     },
     {
-      "id": "plane_b_event_headline",
-      "label": "Plane B — event page headline / properties.title",
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637",
-      "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
-      "field": "properties.title",
-      "value": "M 5.0 - 111 km W of Petrolia, CA",
-      "snapshot_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
+      "id": "usgs_4.5_day",
+      "label": "USGS 4.5_day summary feed",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "value": "mag 4.96 (nc75462637)",
+      "snapshot_sha256": "34a853f8ff47797411c7d18e6805754f01c10e9e69d2c27607f1a59337f9d8df"
     }
   ],
-  "secondary_gap": {
-    "event_id": "us7000tw43",
-    "place": "south of the Fiji Islands",
-    "mag": 4.6,
-    "feed_state": "absent_from_4.5_day",
-    "detail_state": "present_reviewed",
-    "detail_sha256": "32bd5eabdea426594d0585896b1b54b5674f4f4fa084d221ee56e04557afd622",
-    "prior_snapshot_utc": "2026-11-05T20:20:22Z"
+  "mismatch": {
+    "rule_id": "weather.tsunami_origin_vs_usgs",
+    "field": "magnitude",
+    "eventID": "t2ssp5",
+    "usgs_id": "nc75462637",
+    "usgs_mag": 4.96,
+    "tsunami_mag": 4.5,
+    "delta_seconds": 1.33,
+    "cross_primary": true
   },
-  "credibility_box": {
-    "title": "EM-DAT v1.1 → v2.0 (method)",
-    "material_revisions": 433,
-    "overlapping_records": 1602,
-    "doi": "https://doi.org/10.14428/DVN/I0LTPH",
-    "audit_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/emdat-revision-audit/emdat-revision-audit-2026-11-05.md"
+  "evidence_json": "analysis/cool-shit-10h/pce/weather-seismic-pairwise-2026-11-06.json",
+  "deliberation_excerpt_path": "analysis/cool-shit-10h/pce/deliberation-excerpt-2026-11-06.md",
+  "display_integrity_footnote": {
+    "card_id": "PCE-2026-11-06-display-nc75462637",
+    "note": "Same USGS stack: title M5.0 vs mag 4.96 display rounding — not hero."
   },
-  "bls_integrity_callout": {
-    "source_json": "../data/bls-pairwise-2026-11-06.json",
-    "role": "integrity_only_not_lede",
-    "note": "Hosted 403 on claims.nr0.htm + claims.pdf; wire-beater fingerprint = dry-run fixture. Do not treat 228k vs FRED 189k as headline fight."
+  "bls_integrity_callout": "analysis/cool-shit-10h/pce/bls-pairwise-2026-11-06.json",
+  "api": {
+    "list_open_eligible": true,
+    "detail_get_status": "open",
+    "endpoints": {
+      "list": "/v1/contradictions",
+      "detail": "/v1/contradictions/PCE-2026-11-06-01"
+    }
   },
-  "timeliness_footer": {
-    "verify_note": "Six M≥4.5 in day feed; USGS/tsunami.gov/JMA HTTP 200 @ 2026-11-05 build host",
-    "sidebar_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/press/front-page-package-2026-11-05/live-quake-sidebar-2026-11-05.md"
-  },
-  "source_markdown": "../contradiction-card-01-2026-11-06.md",
-  "machine_record": "../data/usgs-pairwise-2026-11-06.json",
-  "deliberation_excerpt_path": "../data/deliberation-excerpt-2026-11-06.md",
-  "wild_pitch_ref": "press/wild-front-page-brainstorm-2026-11-05.md #8",
   "generated_by": "pce-integrator-card (a-7pplfb5l)",
-  "generated_at_utc": "2026-11-06T00:35:00Z"
+  "generated_at_utc": "2026-11-06T00:55:00Z"
 }

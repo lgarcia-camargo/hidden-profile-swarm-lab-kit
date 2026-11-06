@@ -1,58 +1,52 @@
 # PCE mesh deliberation excerpt (redacted)
 
-**Charter:** Primary Contradiction Engine v1 — Card #1 (`PCE-2026-11-06-01`)  
+**Charter:** Primary Contradiction Engine v1 — Card #1 / competition **`cmp-00258orc`**  
 **Channel:** `#pce-lab`  
-**Updated:** 2026-11-06 UTC (deliberation-scribe, post-PASS + api)  
-**Public API:** `fleet-swarm/bench-hour/primary-contradiction-engine` · `curl -sf localhost:8777/v1/contradictions` → **200**  
-**Roles anonymized; `#pce-lab` message ids cited.**
+**Updated:** 2026-11-06 UTC (deliberation-scribe, fork + cross-domain)  
+**API:** `curl -sf localhost:8777/v1/contradictions` → **200** (**[m-0imnovqb]**)  
+**Roles anonymized; message ids cited.**
 
 ---
 
-## Why the swarm called **CONTRADICTION OPEN** — and how **skeptic reframed PASS**
+## Why the swarm called **CONTRADICTION OPEN** (and why leads disagree)
 
-Domain and press first proposed a cross-primary USGS story. **Role: skeptic** initially **FAIL**ed strict cross-primary reads, then **PASS**ed Card #1 under a **narrower, honest lede**: *same-USGS-primary display-plane mismatch* (not feed-vs-detail lag).
+Three layers emerged on `#pce-lab`: **USGS display-plane** (same agency, two strings), **ingest/provenance** (BLS 403, fixture fingerprint), and **cross-agency magnitude** (USGS vs NTWC on the same origin window). Skeptic and charter-integration leads **did not agree** on whether Card #1 may ship as “OPEN contradiction” versus **display-integrity essay** only.
 
-### Kickoff → merge (selected citations)
+### Skeptic arc → PASS (USGS hero)
 
-**[m-mxf7s7ug]** / **[m-chnqwrm9]** — PCE kickoff; RSS MVP killed; **`cmp-00258orc`**; skeptic PASS gate before publish.
+**[m-vtbcvjen]** / **[m-fud2almk]** / **[m-4s9yp8df]** — initial **FAIL**s (strict cross-primary, roll-off, BLS provenance).
 
-**[m-o9cylnqv]** / **[m-6mr7thwb]** — USGS pairwise; lead merge → **`nc75462637`** hero; BLS integrity-only.
+**[m-1fkpi58q]** — **PASS** Card #1 gate: **GO** `nc75462637` **severity 2** as *same-USGS-primary display-plane mismatch* (mag **4.96** vs title **M 5.0**); BLS integrity-only; `us7000tw43` sidebar only. Supersedes **[m-vtbcvjen]** for Card #1 only.
 
-**[m-i5o7qwbr]** — **`bls_claims_nr0`** registered; macro/changelog owns poll+pairwise.
+**[m-7zcmbqs7]** / **[m-h3oon2ie]** — **Role: BLS domain** aligns: no numeric lede; callout from `bls-pairwise-2026-11-06.json`.
 
-**[m-ahav2bqd]** / **[m-ov4f85fr]** — Draft `contradiction-card-01-2026-11-06.md`; press confirms wild **#8** composition.
+**[m-4o38sz4h]** — **Role: skeptic** ack: PASS on record; gate **clear** for external publish on USGS hero; Gallery/handoff when HTML ships (api 200 per **[m-0imnovqb]**).
 
-### Skeptic arc (channel citations)
+### Integration fork (competition still contested)
 
-**[m-vtbcvjen]** — **FAIL** `pce-usgs-nc75462637` (strict): title M5.0 vs mag 4.96 = same-plane rounding, not cross-primary.
+**[m-o0kma90j]** — **Role: charter pivot lead** (integration): cites **0 PASS** on strict reads (**[m-vtbcvjen]** et al.); **do not ship Card #1 as OPEN contradiction** — re-label *display-integrity essay* or wait for skeptic-clean candidate; **`cmp-00258orc` open**; spawned **EM-DAT v1.1/v2.0** hunt; SPO schema `schema-alignment-spo-pce.md`.
 
-**[m-fud2almk]** — **FAIL** `pce-usgs-us7000tw43`: digest roll-off, not conflicting facts.
+*Mesh tension:* **[m-1fkpi58q]** / **[m-4o38sz4h]** vs **[m-o0kma90j]** — PASS on reframed USGS hero vs “no OPEN contradiction headline.” Integrator must pick copy bar explicitly.
 
-**[m-4s9yp8df]** — **FAIL** `pce-bls-2026-11-06`: provenance/403/fixture, not HTML↔PDF numeric clash.
+### Cross-domain OPEN (new Card #1 candidate)
 
-**[m-7zcmbqs7]** — **Role: BLS domain** accepts FAIL — matches `bls-pairwise` intent; integrity callout only; no JSON revision unless integrator adds skeptic cite block.
+**[m-kf5no9z5]** — **Role: weather domain:** `weather-pairwise-2026-11-06.json`; **`weather.tsunami_origin_vs_usgs` OPEN** — USGS **nc75462637** mag **4.96** vs NTWC **4.5** (Δt ~1.3s OK); same quake as USGS headline plane; **cross-domain magnitude mismatch**.
 
-**[m-1fkpi58q]** — **SKEPTIC: PASS** (Card #1 publish gate, reply **[m-chnqwrm9]**):
+**[m-ajs6qu8j]** — **Role: weather×seismic pair:** `weather-seismic-pairwise-2026-11-06.json`; rule engine confirms OPEN on origin mag; display-plane OPEN on title vs `mag`; NWS/tsunami product rules **CLEAR**.
 
-- **GO** `nc75462637` **severity 2** — live re-check: `4.5_day` + `detail/nc75462637.geojson` **200**; feed/detail match; official `mag` **4.96** vs title **M 5.0** (Δ0.04). Publish as **display-plane mismatch**; lede **must not** claim feed-vs-detail lag. *(Supersedes strict FAIL **[m-vtbcvjen]** for Card #1 only.)*
-- **NO-GO** BLS numeric lede — integrity callout only.
-- **NO-GO** `us7000tw43` as A1 — **severity 1** sidebar if used.
+**[m-ie405avg]** — **Role: seismic domain:** `seismic-nc75462637` OPEN (`USGS-SEISMIC-002` title vs mag); feed/detail agree (001 clean @ 00:32Z).
 
-Integrator + api **curl 200** may proceed on USGS hero per **`cmp-00258orc`**.
-
-**[m-9w5weh11]** — BLS callout copy from `bls-pairwise-2026-11-06.json`; no lede edits from BLS lane.
-
-**[m-0imnovqb]** — **Role: API coder:** `pce-public` **:8777**; verified **`curl -sf localhost:8777/v1/contradictions` 200** (stub `PCE-2026-11-06-01`); static UI `/`; tunnel optional via deploy lane.
+**[m-yccwazbi]** / **[m-ovibhx5f]** / **[m-c62y69o2]** — macro BLS/FRED integrity OPEN (403/fixture); energy WPSR aligned on archive slice; reg SEC/FDA pairwise shipped — parallel lanes, not A1 without skeptic.
 
 ### Deliberation takeaway
 
-The mesh **changed the claim** between first pairwise JSON and publish gate: reporters still get “two official strings, timestamped,” but skeptic forced the lede to admit **one primary, two presentation planes**—the debate **[m-vtbcvjen]** → **[m-1fkpi58q]** is the product, not embarrassment. BLS **[m-4s9yp8df]** / **[m-7zcmbqs7]** stays a **method warning** parallel to EM-DAT versioned primaries on the card.
+The swarm called **CONTRADICTION OPEN** in pairwise JSON for **three different reasons**—display rounding, provenance gap, and **NOAA/USGS magnitude delta**—and `#pce-lab` debate is which reason earns the public **OPEN** label. That fork (**[m-o0kma90j]** vs **[m-1fkpi58q]**) plus NTWC **4.5** vs USGS **4.96** (**[m-kf5no9z5]**, **[m-ajs6qu8j]**) is the deliberation product: reporters see *why* the mesh paused before calling two agencies “wrong,” not just a single bot verdict.
 
 ---
 
 **Evidence paths:**
 
+- `~/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/weather-seismic-pairwise-2026-11-06.json`
+- `~/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/weather-pairwise-2026-11-06.json`
 - `~/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/usgs-pairwise-2026-11-06.json`
-- `~/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/bls-pairwise-2026-11-06.json`
 - `~/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/contradiction-card-01-2026-11-06.md`
-- `~/fleet-swarm/bench-hour/primary-contradiction-engine` (API surface)
