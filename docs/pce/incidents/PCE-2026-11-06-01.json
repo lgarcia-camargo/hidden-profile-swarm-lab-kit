@@ -1,0 +1,101 @@
+{
+  "card_id": "PCE-2026-11-06-01",
+  "incident_id": "pce-inc-2026-11-06-usgs-nc75462637",
+  "competition_id": "cmp-00258orc",
+  "schema_version": "pce-contradiction-card-v1",
+  "detected_at_utc": "2026-11-06T00:21:37Z",
+  "severity": "MEDIUM",
+  "status": "CONTRADICTION OPEN",
+  "publish_allowed": true,
+  "skeptic_gate": {
+    "required": true,
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "pce-usgs-nc75462637",
+        "status": "FAIL",
+        "channel_ref": "m-vtbcvjen",
+        "summary": "Feed vs detail identical on mag/time/title; title M5.0 vs mag 4.96 = same-plane display rounding, not cross-primary disagreement."
+      },
+      {
+        "id": "pce-usgs-us7000tw43",
+        "status": "FAIL",
+        "channel_ref": "m-fud2almk",
+        "summary": "Feed TTL/window, not conflicting facts."
+      },
+      {
+        "id": "pce-bls-2026-11-06",
+        "status": "FAIL",
+        "channel_ref": "m-4s9yp8df",
+        "summary": "403 + fixture provenance; not HTML-vs-PDF numeric clash."
+      }
+    ]
+  },
+  "domain": "usgs_earthquake",
+  "a1_headline": "Who do you trust when the sensor stream and the same event page do not agree yet?",
+  "lead_event_id": "nc75462637",
+  "lead_place": "111 km W of Petrolia, CA",
+  "origin_utc": "2026-11-05T04:56:02Z",
+  "usgs_status": "reviewed",
+  "summary": "Two government-sourced magnitudes at once on nc75462637: GeoJSON mag 4.96 (mw) vs headline title M 5.0. Summary feature and detail.geojson agree on mag 4.96; open tension is human-facing title rounding vs machine-readable magnitude.",
+  "mismatch": {
+    "field": "title_mag_vs_mag_property",
+    "plane_a": { "label": "Summary feed properties.mag", "value": "4.96", "magType": "mw" },
+    "plane_b": { "label": "Event page headline (title string)", "value": "M 5.0", "parsed_mag": 5.0 }
+  },
+  "primaries": [
+    {
+      "id": "plane_a_summary_feed",
+      "label": "Plane A — 4.5_day.geojson (summary feed)",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "field": "properties.mag",
+      "value": "4.96",
+      "snapshot_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad"
+    },
+    {
+      "id": "plane_b_event_headline",
+      "label": "Plane B — event page headline / properties.title",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637",
+      "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
+      "field": "properties.title",
+      "value": "M 5.0 - 111 km W of Petrolia, CA",
+      "snapshot_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
+    }
+  ],
+  "secondary_gap": {
+    "event_id": "us7000tw43",
+    "place": "south of the Fiji Islands",
+    "mag": 4.6,
+    "feed_state": "absent_from_4.5_day",
+    "detail_state": "present_reviewed",
+    "detail_sha256": "32bd5eabdea426594d0585896b1b54b5674f4f4fa084d221ee56e04557afd622",
+    "prior_snapshot_utc": "2026-11-05T20:20:22Z"
+  },
+  "credibility_box": {
+    "title": "EM-DAT v1.1 → v2.0 (method)",
+    "material_revisions": 433,
+    "overlapping_records": 1602,
+    "doi": "https://doi.org/10.14428/DVN/I0LTPH",
+    "audit_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/emdat-revision-audit/emdat-revision-audit-2026-11-05.md"
+  },
+  "bls_integrity_callout": {
+    "source_json": "../data/bls-pairwise-2026-11-06.json",
+    "role": "integrity_only_not_lede",
+    "note": "Hosted 403 on claims.nr0.htm + claims.pdf; wire-beater fingerprint = dry-run fixture. Do not treat 228k vs FRED 189k as headline fight."
+  },
+  "timeliness_footer": {
+    "verify_note": "Six M≥4.5 in day feed; USGS/tsunami.gov/JMA HTTP 200 @ 2026-11-05 build host",
+    "sidebar_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/press/front-page-package-2026-11-05/live-quake-sidebar-2026-11-05.md"
+  },
+  "source_markdown": "../contradiction-card-01-2026-11-06.md",
+  "machine_record": "../data/usgs-pairwise-2026-11-06.json",
+  "deliberation_excerpt_path": "../data/deliberation-excerpt-2026-11-06.md",
+  "wild_pitch_ref": "press/wild-front-page-brainstorm-2026-11-05.md #8",
+  "generated_by": "pce-integrator-card (a-7pplfb5l)",
+  "generated_at_utc": "2026-11-06T00:35:00Z",
+  "deliberation_excerpt": {
+    "status": "published",
+    "source_agent": "pce-deliberation-scribe (a-migo7qc2)",
+    "text": "Skeptic reframed PASS (m-1fkpi58q): publish nc75462637 as display-plane mismatch — official mag 4.96 vs title M 5.0; do not claim feed-vs-detail lag. BLS integrity-only; us7000tw43 sidebar severity 1."
+  }
+}

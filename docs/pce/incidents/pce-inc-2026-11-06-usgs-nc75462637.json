@@ -1,0 +1,50 @@
+{
+  "incident_id": "pce-inc-2026-11-06-usgs-nc75462637",
+  "schema_version": "pce-contradiction-card-v1",
+  "detected_at_utc": "2026-11-06T00:21:37Z",
+  "severity": "MEDIUM",
+  "status": "OPEN",
+  "domain": "usgs_earthquake",
+  "title": "USGS headline magnitude rounds up while API mag stays 4.96 (Petrolia, CA)",
+  "summary": "On event nc75462637, the GeoJSON mag property is 4.96 but the published title string parses as M 5.0. Feed summary and per-event detail agree on the numeric mag; the cross-primary tension is human-facing title vs machine-readable magnitude on the same USGS planes.",
+  "chosen_rationale": "Strongest verified open mismatch with HTTP 200 on both USGS primaries (4.5_day.geojson membership + detail.geojson). BLS lane remains OPEN but HTML/PDF returned 403 on hosted fetch; FRED vs wire-beater delta is week-lagged and not same-week verified.",
+  "event_id": "nc75462637",
+  "mismatch": {
+    "field": "title_mag_vs_mag_property",
+    "primary_a_value": "mag: 4.96 (GeoJSON property)",
+    "primary_b_value": "title_parsed_mag: 5.0 (M 5.0 headline)",
+    "delta": 0.04,
+    "note": "Display rounding on eventpage headline; detail API mag is higher precision."
+  },
+  "primaries": [
+    {
+      "id": "usgs_feed_4_5_day",
+      "label": "USGS M4.5+ day summary feed",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "snapshot_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+      "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z",
+      "local_snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json"
+    },
+    {
+      "id": "usgs_detail_geojson",
+      "label": "USGS per-event detail GeoJSON",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
+      "snapshot_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612",
+      "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z",
+      "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637"
+    }
+  ],
+  "integration": {
+    "usgs_pairwise_json": "../data/usgs-pairwise-2026-11-06.json",
+    "bls_pairwise_json": "../data/bls-pairwise-2026-11-06.json",
+    "bls_lane_status": "OPEN",
+    "bls_lane_note": "BLS HTML/PDF 403 on hosted fetch; wire-beater page_fingerprint matches dry-run fixture SHA-256 (see bls-pairwise)."
+  },
+  "deliberation_excerpt": {
+    "status": "published",
+    "source_agent": "pce-deliberation-scribe (a-migo7qc2)",
+    "text": "Skeptic arc: strict FAIL on same-plane rounding, then PASS for Card #1 as display-plane mismatch (mag 4.96 vs title M 5.0 on nc75462637). Lede must not claim feed-vs-detail lag; BLS lane stays integrity-only. Full mesh citations in data/deliberation-excerpt-2026-11-06.md."
+  },
+  "generated_by": "pce-integrator-card (a-7pplfb5l)",
+  "generated_at_utc": "2026-11-06T00:25:00Z"
+}

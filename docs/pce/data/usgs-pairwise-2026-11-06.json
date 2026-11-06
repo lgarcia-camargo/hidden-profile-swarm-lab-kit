@@ -1,0 +1,407 @@
+{
+  "generated_at_utc": "2026-11-06T00:21:37Z",
+  "primary_event_id": "nc75462637",
+  "finding_summary": "4.5_day.geojson matches detail.geojson on mag/time/status for in-feed events; open contradictions are feed roll-off (us7000tw43) and nc75462637 mag 4.96 vs title M 5.0 on eventpage headline.",
+  "method": "Pairwise summary feature vs detail.geojson (eventpage data plane). Title magnitude parsed from M x.x string.",
+  "snapshot_ids_checked": [
+    "us7000tw8r",
+    "us7000tw8p",
+    "us7000tw7b",
+    "us7000tw76",
+    "nc75462637",
+    "us7000tw43"
+  ],
+  "feed_metadata_generated_ms": 1793924440000,
+  "any_contradiction_open": true,
+  "events": [
+    {
+      "event_id": "us7000tw8r",
+      "feed_fields": {
+        "mag": 6.1,
+        "time": 1793899305305,
+        "updated": 1793915618317,
+        "status": "reviewed",
+        "magType": "mww",
+        "place": "Fiji region",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 572,
+        "title": "M 6.1 - Fiji region",
+        "coordinates": [
+          -178.7145,
+          -21.1984,
+          535
+        ],
+        "id": "us7000tw8r"
+      },
+      "detail_fields": {
+        "mag": 6.1,
+        "time": 1793899305305,
+        "updated": 1793915618317,
+        "status": "reviewed",
+        "magType": "mww",
+        "place": "Fiji region",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 572,
+        "title": "M 6.1 - Fiji region",
+        "coordinates": [
+          -178.7145,
+          -21.1984,
+          535
+        ],
+        "id": "us7000tw8r"
+      },
+      "mismatches": [],
+      "contradiction_open": false,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tw8r.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tw8r",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "672db39adc4aec986029543946c4ce56a5c1fa75f4ff25f4df6436020cca95c9"
+      }
+    },
+    {
+      "event_id": "us7000tw8p",
+      "feed_fields": {
+        "mag": 5,
+        "time": 1793897785875,
+        "updated": 1793898826040,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "130 km NE of Thang, India",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": null,
+        "sig": 385,
+        "title": "M 5.0 - 130 km NE of Thang, India",
+        "coordinates": [
+          77.9399,
+          35.6318,
+          76.944
+        ],
+        "id": "us7000tw8p"
+      },
+      "detail_fields": {
+        "mag": 5,
+        "time": 1793897785875,
+        "updated": 1793898826040,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "130 km NE of Thang, India",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": null,
+        "sig": 385,
+        "title": "M 5.0 - 130 km NE of Thang, India",
+        "coordinates": [
+          77.9399,
+          35.6318,
+          76.944
+        ],
+        "id": "us7000tw8p"
+      },
+      "mismatches": [],
+      "contradiction_open": false,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tw8p.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tw8p",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "2b81082f997c70113c5d7df0c511d0af5e3c7008685da4439bd490ba53c2ae66"
+      }
+    },
+    {
+      "event_id": "us7000tw7b",
+      "feed_fields": {
+        "mag": 4.8,
+        "time": 1793873373723,
+        "updated": 1793874271040,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "Sea of Okhotsk",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": null,
+        "sig": 354,
+        "title": "M 4.8 - Sea of Okhotsk",
+        "coordinates": [
+          147.7534,
+          49.2594,
+          554.419
+        ],
+        "id": "us7000tw7b"
+      },
+      "detail_fields": {
+        "mag": 4.8,
+        "time": 1793873373723,
+        "updated": 1793874271040,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "Sea of Okhotsk",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": null,
+        "sig": 354,
+        "title": "M 4.8 - Sea of Okhotsk",
+        "coordinates": [
+          147.7534,
+          49.2594,
+          554.419
+        ],
+        "id": "us7000tw7b"
+      },
+      "mismatches": [],
+      "contradiction_open": false,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tw7b.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tw7b",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "47813e185364034cdaa58378742a543e5a82e43ce9aee45d9826e55b07220616"
+      }
+    },
+    {
+      "event_id": "us7000tw76",
+      "feed_fields": {
+        "mag": 5.1,
+        "time": 1793870552714,
+        "updated": 1793901329804,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "19 km NNW of Masumbwe, Tanzania",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 410,
+        "title": "M 5.1 - 19 km NNW of Masumbwe, Tanzania",
+        "coordinates": [
+          32.149,
+          -3.4641,
+          10
+        ],
+        "id": "us7000tw76"
+      },
+      "detail_fields": {
+        "mag": 5.1,
+        "time": 1793870552714,
+        "updated": 1793901329804,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "19 km NNW of Masumbwe, Tanzania",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 410,
+        "title": "M 5.1 - 19 km NNW of Masumbwe, Tanzania",
+        "coordinates": [
+          32.149,
+          -3.4641,
+          10
+        ],
+        "id": "us7000tw76"
+      },
+      "mismatches": [],
+      "contradiction_open": false,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tw76.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tw76",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "ebdd655b34f22c09ac08d87ff265fc1fd370dfafa42e1468d545546410d35d58"
+      }
+    },
+    {
+      "event_id": "nc75462637",
+      "feed_fields": {
+        "mag": 4.96,
+        "time": 1793854562670,
+        "updated": 1793923364178,
+        "status": "reviewed",
+        "magType": "mw",
+        "place": "111 km W of Petrolia, CA",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 432,
+        "title": "M 5.0 - 111 km W of Petrolia, CA",
+        "coordinates": [
+          -125.585333333333,
+          40.4073333333333,
+          10
+        ],
+        "id": "nc75462637"
+      },
+      "detail_fields": {
+        "mag": 4.96,
+        "time": 1793854562670,
+        "updated": 1793923364178,
+        "status": "reviewed",
+        "magType": "mw",
+        "place": "111 km W of Petrolia, CA",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": "green",
+        "sig": 432,
+        "title": "M 5.0 - 111 km W of Petrolia, CA",
+        "coordinates": [
+          -125.585333333333,
+          40.4073333333333,
+          10
+        ],
+        "id": "nc75462637"
+      },
+      "mismatches": [
+        {
+          "field": "title_mag_vs_mag_property",
+          "feed": {
+            "mag": 4.96,
+            "title": "M 5.0 - 111 km W of Petrolia, CA",
+            "title_parsed_mag": 5.0
+          },
+          "detail": "eventpage headline uses title; API mag is higher precision",
+          "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637"
+        }
+      ],
+      "contradiction_open": true,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
+      }
+    },
+    {
+      "event_id": "us7000tw43",
+      "feed_fields": null,
+      "detail_fields": {
+        "mag": 4.6,
+        "time": 1793827464646,
+        "updated": 1793838838040,
+        "status": "reviewed",
+        "magType": "mb",
+        "place": "south of the Fiji Islands",
+        "type": "earthquake",
+        "tsunami": 0,
+        "alert": null,
+        "sig": 326,
+        "title": "M 4.6 - south of the Fiji Islands",
+        "coordinates": [
+          179.8797,
+          -25.2286,
+          502.294
+        ],
+        "id": "us7000tw43"
+      },
+      "mismatches": [
+        {
+          "field": "feed_membership",
+          "feed": "absent_from_4.5_day.geojson",
+          "detail": "present_in_detail.geojson",
+          "note": "snapshot listed id at 2026-11-05T20:20:22Z"
+        }
+      ],
+      "contradiction_open": true,
+      "provenance": {
+        "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+        "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tw43.geojson",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tw43",
+        "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+        "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+      },
+      "content_hashes": {
+        "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+        "detail_feature_sha256": "32bd5eabdea426594d0585896b1b54b5674f4f4fa084d221ee56e04557afd622"
+      }
+    }
+  ],
+  "primary_event": {
+    "event_id": "nc75462637",
+    "feed_fields": {
+      "mag": 4.96,
+      "time": 1793854562670,
+      "updated": 1793923364178,
+      "status": "reviewed",
+      "magType": "mw",
+      "place": "111 km W of Petrolia, CA",
+      "type": "earthquake",
+      "tsunami": 0,
+      "alert": "green",
+      "sig": 432,
+      "title": "M 5.0 - 111 km W of Petrolia, CA",
+      "coordinates": [
+        -125.585333333333,
+        40.4073333333333,
+        10
+      ],
+      "id": "nc75462637"
+    },
+    "detail_fields": {
+      "mag": 4.96,
+      "time": 1793854562670,
+      "updated": 1793923364178,
+      "status": "reviewed",
+      "magType": "mw",
+      "place": "111 km W of Petrolia, CA",
+      "type": "earthquake",
+      "tsunami": 0,
+      "alert": "green",
+      "sig": 432,
+      "title": "M 5.0 - 111 km W of Petrolia, CA",
+      "coordinates": [
+        -125.585333333333,
+        40.4073333333333,
+        10
+      ],
+      "id": "nc75462637"
+    },
+    "mismatches": [
+      {
+        "field": "title_mag_vs_mag_property",
+        "feed": {
+          "mag": 4.96,
+          "title": "M 5.0 - 111 km W of Petrolia, CA",
+          "title_parsed_mag": 5.0
+        },
+        "detail": "eventpage headline uses title; API mag is higher precision",
+        "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637"
+      }
+    ],
+    "contradiction_open": true,
+    "provenance": {
+      "feed_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "detail_url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
+      "eventpage_url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637",
+      "snapshot_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/live_feed_snapshot.json",
+      "snapshot_fetched_at_utc": "2026-11-05T20:20:22Z"
+    },
+    "content_hashes": {
+      "feed_collection_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad",
+      "detail_feature_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
+    }
+  }
+}

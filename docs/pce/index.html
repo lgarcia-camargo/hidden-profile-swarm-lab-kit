@@ -3,134 +3,86 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PCE Card #1 — Primary Contradiction Engine</title>
-  <meta name="description" content="Charter #5: timestamped disagreement among official USGS primaries (display vs API; feed roll-off vs detail)." />
-  <link rel="icon" href="../assets/avatar.svg" type="image/svg+xml" />
+  <title>Contradiction Card #1 — PCE-2026-11-06-01</title>
+  <meta name="description" content="Primary Contradiction Engine: two official USGS magnitudes, timestamped." />
   <style>
     :root {
-      --bg: #0d1117;
-      --panel: #161b22;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --line: #30363d;
-      --link: #58a6ff;
-      --warn: #d29922;
-      --open: #ff6b4a;
+      --bg: #0d1117; --panel: #161b22; --text: #e6edf3; --muted: #8b949e;
+      --line: #30363d; --link: #58a6ff; --accent: #f0883e; --warn: #d29922;
+      --fail: #f85149; --mono: ui-monospace, Menlo, Consolas, monospace;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font: 16px/1.55 system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      max-width: 760px;
-      margin-inline: auto;
-      padding: 1.5rem 1.25rem 3rem;
-    }
+    body { margin: 0; font: 15px/1.55 system-ui, sans-serif; background: var(--bg); color: var(--text);
+      max-width: 900px; margin-inline: auto; padding: 0 1.25rem 3rem; }
+    header { padding: 1.25rem 0 0.75rem; border-bottom: 2px solid var(--accent); margin-bottom: 1rem; }
+    h1 { font-size: 1.3rem; margin: 0 0 0.35rem; }
+    h2 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; }
+    .lede { color: var(--muted); font-size: 0.92rem; }
     a { color: var(--link); }
-    h1 { font-size: 1.35rem; margin: 0 0 0.35rem; }
-    .meta { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.25rem; }
-    .status {
-      display: inline-block;
-      background: rgba(255, 107, 74, 0.15);
-      color: var(--open);
-      border: 1px solid var(--open);
-      border-radius: 6px;
-      padding: 0.2rem 0.55rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-    section {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 1rem 1.15rem;
-      margin-bottom: 1rem;
-    }
-    h2 { font-size: 0.95rem; margin: 0 0 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; margin: 0.75rem 0; }
+    .badge { font-family: var(--mono); font-size: 0.72rem; padding: 0.12rem 0.4rem; border-radius: 4px; border: 1px solid var(--line); margin-right: 0.35rem; }
+    .badge.fail { color: var(--fail); border-color: var(--fail); }
+    .badge.open { color: var(--warn); border-color: var(--warn); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0.5rem 0; }
     th, td { border: 1px solid var(--line); padding: 0.45rem 0.55rem; text-align: left; vertical-align: top; }
-    th { background: #21262d; color: var(--muted); font-weight: 600; }
-    code, .mono { font-family: ui-monospace, Menlo, monospace; font-size: 0.88em; }
-    code { background: #21262d; padding: 0.12em 0.35em; border-radius: 4px; }
-    ul { margin: 0; padding-left: 1.2rem; }
-    li { margin: 0.35rem 0; }
+    th { color: var(--muted); font-weight: 600; }
+    .mono { font-family: var(--mono); font-size: 0.82rem; word-break: break-all; }
+    .gate { border-left: 3px solid var(--fail); padding-left: 0.75rem; color: var(--muted); font-size: 0.9rem; }
     footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
-    .gate { border-color: var(--warn); color: var(--warn); font-size: 0.88rem; margin-top: 0.75rem; }
   </style>
 </head>
 <body>
-  <p class="meta"><a href="../index.html">← Lab home</a></p>
-  <h1>Contradiction Card #1 — Two official truths, timestamped</h1>
-  <p class="meta">
-    <span class="status">Contradiction open</span>
-    · Engine: Primary Contradiction Engine (Charter #5)
-    · Card <code class="mono">PCE-2026-11-06-01</code>
-    · Observed (UTC): 2026-11-06T00:21:37Z
-  </p>
-
-  <section>
-    <h2>Lead — headline vs API on the same USGS event</h2>
-    <p>After the North Coast California sequence, a resident refreshing the USGS magnitude list and opening the official event page for the same earthquake can see <strong>two government-sourced magnitudes at once</strong>—without any third-party aggregator.</p>
-    <p><strong>Lead incident:</strong> <code>nc75462637</code> — 111 km W of Petrolia, CA · origin 2026-11-05T04:56:02Z · status reviewed</p>
-    <table>
-      <thead><tr><th>Plane</th><th>What you read</th><th>Magnitude</th><th>Source</th></tr></thead>
-      <tbody>
-        <tr>
-          <td>A — Summary feed</td>
-          <td>GeoJSON <code>properties.mag</code> on <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson">4.5_day.geojson</a></td>
-          <td><strong>4.96</strong> (mw)</td>
-          <td>Wire-style dashboards</td>
-        </tr>
-        <tr>
-          <td>B — Event page headline</td>
-          <td><code>properties.title</code> / event page banner</td>
-          <td><strong>M 5.0</strong> (parsed from title)</td>
-          <td><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637">eventpage/nc75462637</a></td>
-        </tr>
-      </tbody>
-    </table>
-    <p>Summary feature and <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson">detail/nc75462637.geojson</a> agree on <code>mag</code> 4.96 at observation time. The open contradiction is <strong>human-facing rounding in the title</strong> versus machine-readable magnitude.</p>
-    <p class="mono" style="font-size:0.85rem;color:var(--muted);margin:0.75rem 0 0">
-      Feed SHA-256: a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad<br />
-      Detail SHA-256: a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612
-    </p>
-    <p style="margin:0.75rem 0 0"><a href="usgs-pairwise-2026-11-06.json">Machine record (JSON)</a></p>
-  </section>
-
-  <section>
-    <h2>Secondary — feed membership vs persistent detail</h2>
-    <p><strong>Incident:</strong> <code>us7000tw43</code> (M 4.6, south of Fiji Islands)</p>
-    <table>
-      <thead><tr><th>Plane</th><th>State @ 2026-11-06T00:21Z</th></tr></thead>
-      <tbody>
-        <tr><td><code>4.5_day.geojson</code></td><td>Absent (rolled off past-day M≥4.5 window)</td></tr>
-        <tr><td><code>detail/us7000tw43.geojson</code></td><td>Present — reviewed, mag 4.6</td></tr>
-      </tbody>
-    </table>
-    <p>Automations keyed only on the summary feed stop seeing an event the event page still serves.</p>
-  </section>
-
-  <section>
-    <h2>BLS pairwise (same charter clock)</h2>
-    <p>BLS <code>claims.nr0.htm</code> + PDF returned HTTP 403 from the build host; FRED ICSA series captured for cross-check. See <a href="bls-pairwise-2026-11-06.json">bls-pairwise-2026-11-06.json</a>.</p>
-  </section>
-
-  <section>
-    <h2>Deliberation (redacted)</h2>
-    <ul>
-      <li><strong>pce-domain-usgs:</strong> Pairwise poll vs live <code>4.5_day</code> + <code>detail/{id}.geojson</code>; flagged <code>title_mag_vs_mag_property</code> on <code>nc75462637</code> and feed roll-off on <code>us7000tw43</code>.</li>
-      <li><strong>False-positive check:</strong> In-feed events matched exactly; open items are display precision and feed window, not third-party claims.</li>
-    </ul>
-    <p class="gate">Skeptic gate (2026-11-06): full public publish not cleared — card ships as verified pairwise slice for Charter #5 routing. Source markdown: bench-hour <code>pce/contradiction-card-01-2026-11-06.md</code>.</p>
-  </section>
-
+  <p class="lede" style="margin-top:1rem"><a href="../index.html">← Lab home</a></p>
+  <header>
+    <h1>Contradiction Card #1</h1>
+    <p class="lede">Primary Contradiction Engine · Charter #5 · <span id="card-id">PCE-2026-11-06-01</span></p>
+  </header>
+  <div id="gate-banner" class="card gate"></div>
+  <div id="main"></div>
   <footer>
-    <a href="../index.html">Hidden Profile Swarm Lab</a> ·
-    <a href="deploy-instructions.md">Deploy to GitHub Pages</a> ·
-    MIT
+    <p>JSON: <code>incidents/PCE-2026-11-06-01.json</code> · Source: <code>contradiction-card-01-2026-11-06.md</code></p>
+    <p><a href="data/usgs-pairwise-2026-11-06.json">usgs-pairwise</a> · <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a> · <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
   </footer>
+  <script>
+(function () {
+  const INC = 'incidents/PCE-2026-11-06-01.json';
+  function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  fetch(INC).then(r => r.json()).then(function (c) {
+    document.getElementById('card-id').textContent = c.card_id;
+    var gate = document.getElementById('gate-banner');
+    if (c.publish_allowed === false) {
+      gate.innerHTML = '<strong>Publish gated</strong> — skeptic PASS required (current: <span class="badge fail">FAIL</span> on ' +
+        esc(c.skeptic_gate && c.skeptic_gate.checks && c.skeptic_gate.checks[0] && c.skeptic_gate.checks[0].id) + '). Draft HTML for integrator/API handoff only.';
+    } else if (c.skeptic_gate && c.skeptic_gate.status === 'PASS') {
+      gate.innerHTML = '<strong>Skeptic PASS</strong> — Card #1 cleared for publish (display-plane mismatch lede).';
+    }
+    var prim = (c.primaries || []).map(function (p) {
+      return '<tr><td>' + esc(p.label) + '</td><td class="mono">' + esc(p.field) + '</td><td><strong>' + esc(p.value) + '</strong></td>' +
+        '<td><a href="' + esc(p.url) + '">' + esc(p.url.replace(/^https:\\/\\//,'')) + '</a></td>' +
+        '<td class="mono">' + esc(p.snapshot_sha256 && p.snapshot_sha256.slice(0,16)) + '…</td></tr>';
+    }).join('');
+    var sg = c.secondary_gap || {};
+    document.getElementById('main').innerHTML =
+      '<p><span class="badge open">' + esc(c.status) + '</span> <span class="badge">' + esc(c.severity) + '</span> ' +
+      esc(c.competition_id) + ' · observed ' + esc(c.detected_at_utc) + '</p>' +
+      '<div class="card"><h2 style="margin-top:0">A1 — ' + esc(c.a1_headline) + '</h2>' +
+      '<p>Lead <span class="mono">' + esc(c.lead_event_id) + '</span> · ' + esc(c.lead_place) + ' · origin ' + esc(c.origin_utc) + '</p>' +
+      '<p>' + esc(c.summary) + '</p>' +
+      '<table><thead><tr><th>Plane</th><th>Field</th><th>Magnitude</th><th>Source</th><th>Hash</th></tr></thead><tbody>' + prim + '</tbody></table></div>' +
+      '<h2>Secondary gap — feed roll-off</h2><div class="card"><p><span class="mono">' + esc(sg.event_id) + '</span> · ' + esc(sg.place) +
+      ' — absent from <code>4.5_day</code> while <code>detail/' + esc(sg.event_id) + '.geojson</code> still serves mag ' + esc(sg.mag) + '.</p>' +
+      '<p class="mono">detail SHA-256: ' + esc(sg.detail_sha256) + '</p></div>' +
+      '<h2>Method credibility (EM-DAT)</h2><div class="card"><p>v1.1→v2.0 earthquakes: <strong>' + esc(c.credibility_box && c.credibility_box.material_revisions) +
+      '</strong> material revisions / ' + esc(c.credibility_box && c.credibility_box.overlapping_records) + ' overlapping · ' +
+      '<a href="' + esc(c.credibility_box && c.credibility_box.doi) + '">Dataverse DOI</a></p></div>' +
+      '<h2>BLS integrity callout (not lede)</h2><div class="card"><p>' + esc(c.bls_integrity_callout && c.bls_integrity_callout.note) + '</p></div>' +
+      '<h2>Deliberation excerpt</h2><div class="card"><p>' + esc(c.deliberation_excerpt && c.deliberation_excerpt.text) +
+      '</p><p class="lede">Full mesh log: <a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt-2026-11-06.md</a></p></div>';
+  }).catch(function (e) {
+    document.getElementById('main').innerHTML = '<p class="lede">Load error: ' + esc(e.message) + '</p>';
+  });
+})();
+  </script>
 </body>
 </html>
