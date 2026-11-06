@@ -1,0 +1,31 @@
+{
+  "schema": "clue-theater-round/v1",
+  "round_id": "round-002",
+  "task_id": "hpl-03-satellite-downlink",
+  "scheduled_start_utc": "2026-11-08T04:00:00.000Z",
+  "question_public": "Time-critical satellite downlink — which ground station receives tonight's pass?",
+  "ground_truth": "Station Juliet",
+  "lanes": {
+    "mesh": {
+      "regime": "A",
+      "live_rerun": {
+        "predicted": "Station Juliet",
+        "correct": true,
+        "mesh_posts_count": 3,
+        "integrator": "a-chz3ckk3",
+        "final_post_id": "m-nq1mgp4c"
+      }
+    },
+    "partition": {
+      "regime": "C_partition",
+      "live_rerun": {
+        "partition_role": "analyst-a",
+        "predicted": "Station Kilo",
+        "correct": false,
+        "agent": "clue-theater-r002-partition"
+      }
+    }
+  },
+  "live_rerun_jsonl": "docs/clue-theater/clue-theater-round-002-live.jsonl",
+  "live_rerun_completed_utc": "2026-11-06T01:20:00.000Z"
+}
