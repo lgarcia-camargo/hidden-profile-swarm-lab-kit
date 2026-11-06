@@ -1,0 +1,71 @@
+:root {
+  font-family: system-ui, sans-serif;
+  background: #0f1419;
+  color: #e7ecf1;
+}
+body {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.tagline {
+  opacity: 0.75;
+}
+.meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.board {
+  display: grid;
+  gap: 1rem;
+}
+.card {
+  border: 1px solid #334;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #1a222c;
+}
+.card.pass {
+  border-color: #3a8f5c;
+}
+.card.fail {
+  border-color: #c44;
+}
+.card.pending {
+  border-color: #886622;
+}
+.badge {
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: #333;
+}
+.pass .badge {
+  background: #1e4d32;
+}
+.fail .badge {
+  background: #4d1e1e;
+}
+.pending .badge {
+  background: #4d3a1e;
+}
+.detail,
+.stakes,
+.resolve {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+.track {
+  background: #1a222c;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow: auto;
+}
+.beats {
+  font-size: 0.85rem;
+}
+.error {
+  color: #f88;
+}
