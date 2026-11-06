@@ -14,6 +14,7 @@ python3 scripts/watch_bls_release.py --dry-run --once
 ```bash
 export NOSTR_NSEC=...   # same as GitHub Actions nostr-feed workflow
 python3 scripts/watch_bls_release.py --interval 2 --post-nostr
+# or after a detect: python3 scripts/post_wire_beat_nostr.py
 ```
 
 ## launchd (persistent Mac worker)

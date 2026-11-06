@@ -119,12 +119,18 @@ def poll_once(
         except json.JSONDecodeError:
             state = {}
 
-    prev_hash = state.get("content_hash")
-    if prev_hash == content_hash and not dry_run:
-        return None
+    etag = headers.get("etag")
+    lm_raw = headers.get("last-modified") or headers.get("date")
+    if not dry_run:
+        unchanged = (
+            state.get("content_hash") == content_hash
+            and state.get("etag") == etag
+            and state.get("last_modified") == lm_raw
+        )
+        if unchanged:
+            return None
 
     first_seen_ms = utc_now_ms()
-    lm_raw = headers.get("last-modified") or headers.get("date")
     ref_ms = first_seen_ms
     if lm_raw:
         try:
@@ -147,14 +153,16 @@ def poll_once(
         "first_seen_utc": datetime.fromtimestamp(
             first_seen_ms / 1000, tz=timezone.utc
         ).isoformat().replace("+00:00", "Z"),
+        "first_seen_utc_ms": first_seen_ms,
         "first_seen_ms": first_seen_ms,
         "latency_ms": latency_ms,
+        "sa_claims": sa_value,
         "sa_initial_claims": sa_value,
         "ledger_grade": grade,
         "ledger_rule": f"SA initial claims > {CLAIMS_THRESHOLD}",
         "primary_url": fetched_url,
         "content_hash": content_hash,
-        "etag": headers.get("etag"),
+        "etag": etag,
         "last_modified": lm_raw,
         "dry_run": dry_run,
     }
@@ -164,6 +172,8 @@ def poll_once(
         json.dumps(
             {
                 "content_hash": content_hash,
+                "etag": etag,
+                "last_modified": lm_raw,
                 "updated_utc": record["first_seen_utc"],
                 "url": url,
             },

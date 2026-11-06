@@ -69,7 +69,7 @@
     <h2 style="margin:0 0 0.5rem;font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em">Stopwatch</h2>
     <p id="monitor-state" class="big status-wait">WAITING</p>
     <p id="headline" style="margin:0;font-family:var(--mono)">—</p>
-    <p id="meta" style="margin:0.75rem 0 0;color:var(--muted);font-size:0.9rem">Scheduled BLS window: 2026-11-06 ~13:30 UTC (8:30 AM ET). Log: <code>docs/data/beat-log.jsonl</code></p>
+    <p id="meta" style="margin:0.75rem 0 0;color:var(--muted);font-size:0.9rem">Scheduled BLS release: 2026-11-06 ~13:30 UTC (08:30 ET). Polls <code>data/beat-log.jsonl</code> every 15s.</p>
   </section>
 
   <section class="card">
@@ -85,8 +85,15 @@
   </footer>
 
   <script>
-    const MANIFEST = 'data/ledger-manifest.json';
+    const MANIFEST = 'data/feed-manifest.json';
     const LOG_URL = 'data/beat-log.jsonl?t=' + Date.now();
+
+    function parseLogLines(text) {
+      return text.trim().split('\n').filter(Boolean).flatMap(line => {
+        if (line.startsWith('#')) return [];
+        try { return [JSON.parse(line)]; } catch (_) { return []; }
+      });
+    }
 
     async function loadManifest() {
       try {
@@ -94,17 +101,32 @@
         const m = await r.json();
         const a = document.getElementById('npub-link');
         a.textContent = m.canonical_npub.slice(0, 20) + '…';
-        a.href = m.canonical_nostr_profile || m.canonical_profile || '#';
+        a.href = m.canonical_profile || '#';
+        a.title = m.canonical_npub;
       } catch (_) {}
     }
 
-    function renderRows(lines) {
-      const events = lines.filter(l => l.event === 'bls_claims_detected');
+    function setMonitorState(label, className) {
+      const st = document.getElementById('monitor-state');
+      st.textContent = label;
+      st.className = 'big ' + className;
+    }
+
+    function renderRows(records) {
+      const armed = records.some(r => r.event === 'monitor_armed');
+      const events = records.filter(r => r.event === 'bls_claims_detected');
+      const live = events.filter(e => !e.dry_run);
+      const latest = live.length ? live[live.length - 1] : (events.length ? events[events.length - 1] : null);
       const tbody = document.getElementById('log-body');
+
       if (!events.length) {
-        tbody.innerHTML = '<tr><td colspan="5">No detections yet — monitor armed.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5">No detections yet.</td></tr>';
+        if (armed) setMonitorState('ARMED', 'status-wait');
+        else setMonitorState('WAITING', 'status-wait');
+        document.getElementById('headline').textContent = 'SA claims — · latency — · grade —';
         return;
       }
+
       tbody.innerHTML = events.slice().reverse().slice(0, 20).map(e => {
         const g = e.ledger_grade || '—';
         const cls = g === 'PASS' ? 'status-pass' : g === 'FAIL' ? 'status-fail' : '';
@@ -117,22 +139,27 @@
         </tr>`;
       }).join('');
 
-      const latest = events[events.length - 1];
-      const st = document.getElementById('monitor-state');
-      st.textContent = latest.dry_run ? 'DRY-RUN HIT' : 'LIVE HIT';
-      st.className = 'big ' + (latest.ledger_grade === 'PASS' ? 'status-pass' : latest.ledger_grade === 'FAIL' ? 'status-fail' : 'status-wait');
+      if (latest && !latest.dry_run) {
+        const grade = latest.ledger_grade || '—';
+        setMonitorState(grade, grade === 'PASS' ? 'status-pass' : grade === 'FAIL' ? 'status-fail' : 'status-wait');
+      } else if (armed) {
+        setMonitorState('ARMED', 'status-wait');
+      } else {
+        setMonitorState('WAITING', 'status-wait');
+      }
+
+      const show = latest || {};
       document.getElementById('headline').textContent =
-        `SA=${latest.sa_initial_claims} · ${latest.latency_ms}ms · ${latest.ledger_grade} · ${latest.primary_url}`;
+        `SA claims ${show.sa_initial_claims ?? '—'} · ${show.latency_ms ?? '—'} ms · ${show.ledger_grade ?? '—'}${show.primary_url ? ' · ' + show.primary_url : ''}`;
     }
 
     async function refresh() {
       try {
         const r = await fetch(LOG_URL);
-        const text = await r.text();
-        const lines = text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
-        renderRows(lines);
+        renderRows(parseLogLines(await r.text()));
       } catch (e) {
         document.getElementById('log-body').innerHTML = '<tr><td colspan="5">Could not load beat-log.jsonl</td></tr>';
+        setMonitorState('WAITING', 'status-wait');
       }
     }
 
