@@ -43,6 +43,7 @@
     <p>Pairwise: <a href="data/usgs-pairwise-2026-11-06.json">usgs</a> ·
       <a href="data/weather-seismic-pairwise-2026-11-06.json">weather×seismic (Card #2 stub)</a> ·
       <a href="data/bls-pairwise-2026-11-06.json">bls footnote</a> ·
+      <a href="data/energy-pairwise-2026-11-06.json">energy footnote</a> ·
       <a href="data/emdat-pairwise-2026-11-06.json">emdat pairwise</a> ·
       <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
     <p><code>incidents/PCE-2026-11-06-01.json</code> · <code id="api-line">…</code></p>
@@ -87,13 +88,14 @@
       '<h2>BLS integrity (footnote only)</h2><div class="card"><p class="lede">' +
       esc((inc.bls_integrity_footnote || {}).note || 'Mac/hosted claims.nr0 403 — see bls-pairwise + bls-live-fetch.') +
       ' · <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a></p></div>' +
-      '<h2>EM-DAT catalog revision (annex — under review)</h2><div class="card"><p class="lede">' +
+      '<h2>Energy / WPSR (footnote only)</h2><div class="card"><p class="lede">WPSR summary vs table1 aligned; <code>contradiction_open: false</code> — ' +
+      '<a href="data/energy-pairwise-2026-11-06.json">energy-pairwise</a> · <a href="data/energy-macro-pairwise-2026-11-06.json">energy-macro</a>. Not Card #1 hero.</p></div>' +
+      '<h2>EM-DAT catalog revision (annex severity 4)</h2><div class="card"><p class="lede">' +
       (em.hero_entity ? ('Hero <span class="mono">' + esc(em.hero_entity.disno) + '</span>: deaths ' +
-      esc(em.hero_entity.value_v11) + ' (v1.1) vs ' + esc(em.hero_entity.value_v20) + ' (v2.0). ') : '') +
-      esc(em.diff_summary ? em.diff_summary.slice(0, 220) + '…' : 'Pairwise on disk.') +
+      esc(em.hero_entity.value_v11) + ' (v1.1 tab) vs ' + esc(em.hero_entity.value_v20) + ' (v2.0 xlsx). ') : '') +
+      'Skeptic <span class="badge review">FAIL OPEN</span> <span class="mono">pce-emdat-vintage-2023-0636-AFG</span> (m-vt3t9tp4) — catalog vintage, not cross-agency lede.' +
       '</p><p><a href="data/emdat-pairwise-2026-11-06.json">emdat-pairwise</a> · ' +
-      '<a href="data/emdat-contradiction-card-candidate-2026-11-06.json">card candidate</a> · ' +
-      '<span class="badge review">NOT OPEN hero</span></p></div>' +
+      '<a href="data/emdat-contradiction-card-candidate-2026-11-06.json">card candidate</a></p></div>' +
       '<div class="card"><p><a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt</a></p></div>' +
       '</div><aside><h2 style="margin-top:0">Card #2 stub</h2><div class="card">' +
       '<p class="lede">Weather×seismic NTWC 4.5 vs USGS 4.96 — <a href="incidents/PCE-2026-11-06-02.json">PCE-2026-11-06-02</a> under review until skeptic PASS.</p></div></aside></div>';

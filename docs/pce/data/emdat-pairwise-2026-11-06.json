@@ -8,6 +8,8 @@
   "contradiction_open": false,
   "archive_revision_open": true,
   "skeptic_clean_for_card1_open_headline": false,
+  "skeptic_open_verdict": "FAIL",
+  "skeptic_channel_ref": "m-vt3t9tp4",
   "diff_summary": "Verified pairwise on freshly downloaded Dataverse primaries: v1.1 tab (file id 28130) vs v2.0 xlsx (file id 38893). Among 1,602 earthquake rows sharing DisNo., 433 rows differ materially on deaths and/or CPI-adjusted damage (426 dam_adj-only, median |%\u0394|\u22482.95%; 7 death revisions). Hero row 2023-0636-AFG: Total Deaths 2445 (v1.1) vs 1480 (v2.0), \u0394965. This is same-institution published archive vintage disagreement on one entity key \u2014 strong press/catalog-revision evidence, not independent-agency cross-primary (cf. skeptic FAIL on USGS title rounding). Do not broadcast CONTRADICTION OPEN for Card #1 hero without skeptic PASS.",
   "counts": {
     "earthquake_rows_v11": 1611,

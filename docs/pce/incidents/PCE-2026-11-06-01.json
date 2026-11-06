@@ -63,10 +63,12 @@
     "detail_get_status": "under_review"
   },
   "emdat_annex": {
-    "status": "under_review",
+    "status": "annex_only_fail",
+    "skeptic_check_id": "pce-emdat-vintage-2023-0636-AFG",
+    "channel_ref": "m-vt3t9tp4",
     "pairwise_json": "data/emdat-pairwise-2026-11-06.json",
     "card_candidate_json": "data/emdat-contradiction-card-candidate-2026-11-06.json",
     "hero_disno": "2023-0636-AFG",
-    "note": "Catalog-revision annex (m-730pukrk) — not CONTRADICTION OPEN headline until skeptic PASS on cross-primary bar."
+    "note": "Skeptic FAIL OPEN — same CRED archive vintage; press annex severity 4 only (m-vt3t9tp4). Not Card #1 hero."
   }
 }
