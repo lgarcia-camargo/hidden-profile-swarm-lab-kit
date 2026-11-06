@@ -41,7 +41,7 @@ def build_posts(mode: str) -> list[str]:
         beat = load_latest_beat()
         if not beat:
             return [f"WIRE BEATER armed — waiting for BLS SA initial claims. Stopwatch: {WIRE_BEAT_PAGE}"]
-        sa = beat.get("sa_initial_claims")
+        sa = beat.get("sa_claims") if beat.get("sa_claims") is not None else beat.get("sa_initial_claims")
         lat = beat.get("latency_ms")
         grade = beat.get("ledger_grade") or "UNKNOWN"
         url = beat.get("primary_url", "")
