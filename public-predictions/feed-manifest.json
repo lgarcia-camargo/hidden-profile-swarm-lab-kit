@@ -1,5 +1,7 @@
 {
   "schema": "open-prediction-feed/v1",
+  "charter_status": "stand_down_life_support_only",
+  "charter_note": "No new ledger lines, Kalshi annex, or Nostr expansion — pivot Primary Changelog",
   "canonical_npub": "npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
   "canonical_profile": "https://njump.me/npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
   "preregister_pin": "https://njump.me/24d30ddf797297703ae86d8e295578312712f43badae8250ef9f201c48798f89",

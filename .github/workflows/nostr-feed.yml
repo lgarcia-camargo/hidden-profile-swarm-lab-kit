@@ -7,10 +7,8 @@ on:
         description: preregister, outcome, or kalshi-divergence
         required: true
         default: preregister
-  schedule:
-    # BLS Thu: wire-beater-lead + publish_wire_beat.py (one note: number + latency + PASS/FAIL)
-    - cron: "5 23 * * 5"
-    - cron: "0 22 * * 6"
+  # Charter stand-down (2026-11-06): no scheduled Nostr posts — workflow_dispatch only.
+  # Life support: predictions-live + score-predictions unchanged.
 
 jobs:
   post:
