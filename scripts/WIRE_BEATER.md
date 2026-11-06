@@ -1,6 +1,8 @@
 # Wire Beater monitor (BLS Nov 6 2026)
 
-Polls `https://www.bls.gov/news.release/claims.nr0.htm` every 2s from Leon's Mac. On content change: builds payload (`docs/data/wire-beater-payload.schema.json`), **POSTs `PRIMARY_CALLER_API/v1/beats`** (BeatEvent SQLite), runs `publish_wire_beat.py --payload var/last-beat-payload.json` (Pages `beat-log.jsonl` + `wire-beater-status.json` + Nostr when `NOSTR_NSEC` set).
+**STAND-DOWN (2026-11-06):** Do not run `com.lgarcia.wire-beater` launchd — BLS polling belongs in **Primary Changelog** diff engine (`primary-changelog-lead`). This script is life-support reference only (Thu beat → `publish_wire_beat.py` if triggered at zero cost).
+
+Polls `https://www.bls.gov/news.release/claims.nr0.htm` every 2s from Leon's Mac (when explicitly run). On content change: builds payload (`docs/data/wire-beater-payload.schema.json`), **POSTs `PRIMARY_CALLER_API/v1/beats`** (BeatEvent SQLite), runs `publish_wire_beat.py --payload var/last-beat-payload.json` (Pages `beat-log.jsonl` + `wire-beater-status.json` + Nostr when `NOSTR_NSEC` set).
 
 ## Dry-run (fixture)
 
