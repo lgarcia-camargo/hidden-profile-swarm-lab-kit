@@ -1,0 +1,163 @@
+{
+  "release": "eia_wpsr_energy_2026-11-06",
+  "fetched_at_utc": "2026-11-06T00:30:00Z",
+  "agent": "pce-domain-energy (a-36l3vklp)",
+  "charter": "cool-shit #5 PCE energy domain",
+  "contradiction_open": false,
+  "diff_summary": "No open numeric contradictions on aligned WPSR primaries; live IR CSV is one week ahead of Oct 28 archive (incomparable skew).",
+  "alignment_rules_ref": "primary-contradiction-engine/pce/rules/energy.py",
+  "tolerances_mbbl": {
+    "commercial_change": 0.15,
+    "commercial_level": 0.05
+  },
+  "findings": [
+    {
+      "rule_id": "energy.wpsr_summary_vs_table1_commercial",
+      "contradiction_open": false,
+      "summary": "WPSR 2026_10_28: summary.txt aligns with table1 Commercial row (\u00b10.15 Mbbl change, \u00b10.05 Mbbl level)",
+      "field_mismatches": [],
+      "metadata": {
+        "release_slug": "2026_10_28",
+        "parsed_table_week_ending": "10/23/26",
+        "parsed_commercial": {
+          "level_mbbl": 410.625,
+          "prior_level_mbbl": 412.517,
+          "change_mbbl": -1.892,
+          "pct_change": -0.5
+        },
+        "parsed_summary": {
+          "change_mbbl": -1.9,
+          "level_mbbl": 410.6
+        }
+      },
+      "primary_a": {
+        "label": "WPSR summary.txt",
+        "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_10_28/download/summary.txt",
+        "sha256": "919e2afa6797f9948db0487ad6987e306fc94785f00ab6c427e88a431c36a092"
+      },
+      "primary_b": {
+        "label": "WPSR table1.csv",
+        "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_10_28/download/table1.csv",
+        "sha256": "9c07d94ee29932c267d5c49e914554ebe14a9aa19cfa12f62077e35667f7359f"
+      }
+    },
+    {
+      "rule_id": "energy.wpsr_html_week_ending_vs_table1_stub",
+      "contradiction_open": false,
+      "summary": "WPSR 2026_10_28: HTML banner week ending matches table1 STUB",
+      "field_mismatches": [],
+      "metadata": {
+        "html_week_ending": "2026-10-23",
+        "csv_week_ending": "2026-10-23"
+      },
+      "primary_a": {
+        "label": "WPSR archive HTML",
+        "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_10_28/wpsr_2026_10_28.php",
+        "sha256": null
+      },
+      "primary_b": {
+        "label": "WPSR table1.csv",
+        "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_10_28/download/table1.csv",
+        "sha256": null
+      }
+    },
+    {
+      "rule_id": "energy.wpsr_ir_live_csv_vs_archive_table1",
+      "contradiction_open": false,
+      "summary": "Live IR table1 (week 2026-10-30) vs archive 2026_10_28 (week 2026-10-23): incomparable \u2014 release lag, not contradiction",
+      "field_mismatches": [
+        {
+          "field": "week_ending_skew",
+          "ir_live_week": "2026-10-30",
+          "archive_week": "2026-10-23",
+          "note": "different release weeks \u2014 numeric delta is not a contradiction"
+        }
+      ],
+      "metadata": {
+        "incomparable_week_skew": true,
+        "live_week": "2026-10-30",
+        "arch_week": "2026-10-23"
+      },
+      "primary_a": {
+        "label": "ir.eia.gov live table1.csv",
+        "url": "https://ir.eia.gov/wpsr/table1.csv",
+        "sha256": null
+      },
+      "primary_b": {
+        "label": "archive table1.csv",
+        "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_10_28/download/table1.csv",
+        "sha256": null
+      }
+    },
+    {
+      "rule_id": "energy.eia_api_v2_vs_ir_opendata",
+      "contradiction_open": false,
+      "summary": "EIA API v2 blocked without key; ir.eia.gov table1.csv available \u2014 use archive HTML+CSV as published primary pair",
+      "field_mismatches": [
+        {
+          "field": "eia_api_v2",
+          "http_status": 403,
+          "note": "requires api_key query param \u2014 not comparable to HTML/ir CSV without credentials"
+        },
+        {
+          "field": "ir_wpsr_json",
+          "http_status": 403,
+          "note": "outside release window or access restricted \u2014 use archive HTML+CSV instead"
+        }
+      ],
+      "metadata": {
+        "api_http_status": 403,
+        "ir_json_http_status": 403,
+        "ir_csv_http_status": 200,
+        "api_body_prefix": "{\n  \"error\": {\n    \"code\": \"API_KEY_MISSING\",\n    \"message\": \"No api_key was supplied.  Please register for one at https://www.eia.gov/opendata/register.php\"\n  }\n}"
+      },
+      "primary_a": {
+        "label": "EIA API v2 petroleum/sum/sndw",
+        "url": "https://api.eia.gov/v2/petroleum/sum/sndw/data/?frequency=weekly&data[0]=value&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=3&facets[series][]=WCESTUS1",
+        "sha256": null
+      },
+      "primary_b": {
+        "label": "ir.eia.gov WPSR table1.csv",
+        "url": "https://ir.eia.gov/wpsr/table1.csv",
+        "sha256": null
+      }
+    }
+  ],
+  "macro_lane_note": "Seismic-macro memo cites EIA Today in Energy for Fukushima LNG narrative \u2014 not WPSR inventory series; petroleum weekly timing is Wed ~10:30 ET (HTML Released at). Child pce-pair-energy-macro compares macro release-timing claims.",
+  "sources": [
+    {
+      "id": "ir_live_table1",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_eia_table1.csv",
+      "sha256": "6e7111336bb6bdd0e8143c17a2cad49f7c0296444ef611ad1440cf320266efb8"
+    },
+    {
+      "id": "archive_table1_oct28",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_archive_table1_2026_10_28.csv",
+      "sha256": "9c07d94ee29932c267d5c49e914554ebe14a9aa19cfa12f62077e35667f7359f"
+    },
+    {
+      "id": "archive_summary_oct28",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_archive_summary_2026_10_28.txt",
+      "sha256": "919e2afa6797f9948db0487ad6987e306fc94785f00ab6c427e88a431c36a092"
+    },
+    {
+      "id": "archive_html_oct28",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_wpsr_2026_10_28.php.html",
+      "sha256": "1538794d96815ed202af4ded9da60f41961ac6606937946ba4ef6d8c706d5e23"
+    },
+    {
+      "id": "eia_api_v2_probe",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_eia_api_sndw.json",
+      "sha256": "b71fb384d31b5e7ccc66d279785c9e6cd51fa51f07820a3363c849034b9608bd"
+    }
+  ],
+  "verified": [
+    "Archive 2026-10-28: summary commercial -1.9 Mbbl / 410.6 Mbbl aligns with table1 -1.892 / 410.625 within tolerance.",
+    "Archive HTML week ending October 23, 2026 matches table1 STUB 10/23/26.",
+    "Live ir table1 week 10/30/26 vs archive 10/23/26 flagged incomparable (not contradiction).",
+    "api.eia.gov v2 returns 403 without api_key; ir table1.csv HTTP 200."
+  ],
+  "inferred": [
+    "ir.eia.gov/wpsr/wpsr.json returns 403 outside release window on this fetch \u2014 use archive bundle for pairwise tests."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "truth-latency-observatory-v1",
+  "domain_pack": "gulf_hormuz",
+  "episode_id": "w45-gulf-midterm-fuse-2026-11-06",
+  "window_start_utc": "2026-11-05T00:00:00Z",
+  "window_end_utc": "2026-11-06T12:00:00Z",
+  "attention_topics": ["#2 Iran/Gulf/Hormuz", "#7 prediction markets", "#1 midterm fallout"],
+  "grounding": "~/fleet-swarm/bench-hour/analysis/cool-shit-10h/research/world-pulse-2026-11-06.md",
+  "owner_agent": "a-glaww3aj",
+  "methodology": "Parallel fetch in one mesh slice; first_seen_utc = agent capture time. Market mids via public aggregators only (no wallet UX). Unknowns explicit.",
+  "rows": [
+    {
+      "signal_id": "st-nov6-midterm-hormuz",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:24:00Z",
+      "primary_url": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026",
+      "summary": "ST ties GOP midterm loss to Iran war; reports three more tankers damaged in Hormuz Nov 5.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "signal_id": "aj-nov5-tankers-ukmto",
+      "source_class": "official",
+      "first_seen_utc": "2026-11-05T12:00:00Z",
+      "primary_url": "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack",
+      "summary": "IRGC/army statements + UKMTO projectile report; shipping peril while Gulf war unresolved.",
+      "who_moved_first_hint": "official"
+    },
+    {
+      "signal_id": "aj-nov6-live-trump-qatar",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:00:00Z",
+      "primary_url": "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran",
+      "summary": "Liveblog: Trump destroy-rest-of-Iran rhetoric; nuclear proposal via Qatari mediators under review.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "signal_id": "pm-iran-invasion-theme",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-05T18:00:00Z",
+      "primary_url": "https://www.worldmonitor.app/tools/prediction-markets/",
+      "summary": "Aggregator cites ~$78M on US invade Iran before 2027 theme, 12.5% yes; Hormuz traffic normal by Dec 31 ~$16.8M, 10.5% yes (world-pulse table, Nov 5).",
+      "who_moved_first_hint": "unknown"
+    },
+    {
+      "signal_id": "verify-qeshm-fake-strike",
+      "source_class": "verify",
+      "first_seen_utc": "2026-11-04T08:00:00Z",
+      "primary_url": "https://www.thaipbs.or.th/verify/en/content/18053",
+      "summary": "Qeshm strike clip AI-generated; real Nov 2 explosions reported separately — narrative-vs-price divergence row for scoped #1.",
+      "who_moved_first_hint": "narrative"
+    }
+  ],
+  "fuse_note": "Not a war blog — priced risk pane. Embed contract mids as signals; no new exchange.",
+  "unknowns": ["Exact UKMTO publish lag vs IRGC statements", "Sub-minute contract mid move vs wire timestamps not fully captured in v1"]
+}

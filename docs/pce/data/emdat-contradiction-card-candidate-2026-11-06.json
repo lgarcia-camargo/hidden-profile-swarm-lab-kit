@@ -1,0 +1,39 @@
+{
+  "card_id": "PCE-2026-11-06-EMDAT-VINTAGE",
+  "domain": "seismic_catalog",
+  "status": "under_review",
+  "severity": "medium",
+  "headline": "EM-DAT Archive v1.1 vs v2.0 disagree on deaths for 2023-0636-AFG",
+  "summary": "Verified pairwise on freshly downloaded Dataverse primaries: v1.1 tab (file id 28130) vs v2.0 xlsx (file id 38893). Among 1,602 earthquake rows sharing DisNo., 433 rows differ materially on deaths and/or CPI-adjusted damage (426 dam_adj-only, median |%\u0394|\u22482.95%; 7 death revisions). Hero row 2023-0636-AFG: Total Deaths 2445 (v1.1) vs 1480 (v2.0), \u0394965. This is same-institution published archive vintage disagreement on one entity key \u2014 strong press/catalog-revision evidence, not independent-agency cross-primary (cf. skeptic FAIL on USGS title rounding). Do not broadcast CONTRADICTION OPEN for Card #1 hero without skeptic PASS.",
+  "observed_at_iso": "2026-11-06T01:13:19Z",
+  "primary_a": {
+    "label": "EM-DAT Archive v1.1 (241204_emdat_archive.tab)",
+    "url": "https://dataverse.uclouvain.be/api/access/datafile/28130",
+    "observed_value": "Total Deaths=2445",
+    "content_sha256": "636e02f55e2ea05af277ad6b1dcea4b3a9d0a09a1d637c447f89119a2187c78f"
+  },
+  "primary_b": {
+    "label": "EM-DAT Archive v2.0 (260430_emdat_archive.xlsx)",
+    "url": "https://dataverse.uclouvain.be/api/access/datafile/38893",
+    "observed_value": "Total Deaths=1480",
+    "content_sha256": "21c210e479623144cef32c11c0a57c21094ea66f4ad0a0a248d8239f3a5e9847"
+  },
+  "field_mismatches": [
+    {
+      "entity_key": "2023-0636-AFG",
+      "field": "Total Deaths",
+      "v11": 2445,
+      "v20": 1480,
+      "delta": -965
+    }
+  ],
+  "snapshot_refs": [
+    "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/emdat-2026-11-06/241204_emdat_archive.tab",
+    "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/emdat-2026-11-06/260430_emdat_archive.xlsx"
+  ],
+  "publish_allowed": false,
+  "skeptic_gate": {
+    "status": "PENDING",
+    "reason": "same_publisher_archive_vintage_not_independent_cross_primary"
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "generated_at_utc": "2026-11-06T00:33:55Z",
+  "agent": "pce-pair-weather-seismic a-6to9jcvy",
+  "parent": "pce-domain-weather a-n9d6s5d3",
+  "seismic_peer": "pce-domain-seismic a-9rit0d05",
+  "origin_tolerance_seconds": 60,
+  "focus_event": {
+    "eventID": "t2ssp5",
+    "ntwc_bulletin_slug": "to0j1g",
+    "usgs_id": "nc75462637",
+    "category": "Information",
+    "originTime": "2026-11-05T04:56:04 UTC",
+    "magnitude": "4.5",
+    "magnitude_type_ntwc": "Ml",
+    "latitude": "40.396",
+    "longitude": "-125.484",
+    "bulletinIssueTime": "2026-11-05T05:01:47Z",
+    "id_disambiguation": "PAAQ Atom/CAP paths use slug to0j1g for this Eureka bulletin; esri.php eventID for same incident is t2ssp5 (esri eventID to0j1g is a different Oct-2025 Atlantic quake in the feed)."
+  },
+  "integrator_guidance": {
+    "updated_utc": "2026-11-06T00:48:00Z",
+    "strict_open_cross_primary_gate": "0 PASS — lead m-o0kma90j / m-5rodnu8l; m-1fkpi58q = display-integrity essay only (USGS mag vs title, severity 2), not superseding OPEN PASS.",
+    "card_1_hero": "Do not ship Card #1 as OPEN cross-primary (cmp-00258orc needs skeptic-clean candidate). testlib pivot PCE-2026-11-06-01 weather hero is contested — treat as engine seed pending EM-DAT hunt / integrator.",
+    "weather_tsunami_origin_vs_usgs": "Pairwise engine: magnitude mismatch OPEN (4.5 Ml Information vs 4.96 mw, Δt 1.33s CLEAR @ 60s). Skeptic FAIL m-8azc3dlh: unequal precision / mag-type — publish cap severity-2 sidebar (Card #2 candidate per m-7y57v23j), not A1 OPEN.",
+    "usgs_display_plane": "seismic.title_mag_vs_mag_property — essay severity 2 max (m-vtbcvjen, m-eya2xer8); same-stack footnote if cross-agency sidebar ships.",
+    "id_join": "Use esri eventID t2ssp5 + ntwc_bulletin_slug to0j1g + USGS atto0j1g/nc75462637; do not join esri eventID to0j1g alone.",
+    "post_restart_2026-11-06": "Card #1 HTML (m-5bumtrjz / pce-card1-weather-revise): UNDER_REVIEW, publish_allowed false, weather rule sidebar severity-2 only — matches this JSON. BLS/macro footnotes closed (m-z1ku9tj3, m-02nvb2jr). Lane CLOSED for a-6to9jcvy."
+  },
+  "card1_incident_ref": "analysis/cool-shit-10h/pce/public/incidents/PCE-2026-11-06-01.json",
+  "skeptic_reviews": [
+    {"message": "m-8azc3dlh", "rule_id": "weather.tsunami_origin_vs_usgs", "verdict": "FAIL", "publish": "sidebar_severity_2_max"},
+    {"message": "m-5rodnu8l", "scope": "card_1_open_gate", "verdict": "align_lead_0_pass"},
+    {"message": "m-1fkpi58q", "scope": "nc75462637", "verdict": "PASS_display_integrity_essay_only"}
+  ],
+  "sources": [
+    {
+      "name": "tsunami.gov esri",
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json"
+    },
+    {
+      "name": "tsunami.gov PAAQ Atom",
+      "url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml"
+    },
+    {
+      "name": "NWS alerts/active",
+      "url": "https://api.weather.gov/alerts/active"
+    },
+    {
+      "name": "USGS 4.5_day",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    }
+  ],
+  "snapshots": [
+    {
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8",
+      "captured_at": "2026-11-06T00:33:55Z"
+    },
+    {
+      "url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml",
+      "sha256": "a7a61a4b2ac4727ed4862bacb6c25fe34ec9bd1d03dd152ad62c987467b6ddb7",
+      "captured_at": "2026-11-06T00:33:55Z"
+    },
+    {
+      "url": "https://api.weather.gov/alerts/active",
+      "sha256": "7ec2297fc8a9a91a747e040d48e706c6fa58b101189d7c53a1d781148e6600da",
+      "captured_at": "2026-11-06T00:33:55Z"
+    },
+    {
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "sha256": "34a853f8ff47797411c7d18e6805754f01c10e9e69d2c27607f1a59337f9d8df",
+      "captured_at": "2026-11-06T00:33:55Z"
+    }
+  ],
+  "snapshots_extended": [
+    {
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8",
+      "captured_at": "2026-11-06T00:33:55Z",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-seismic-2026-11-06/tsunami_esri.json",
+      "bytes": 25710
+    },
+    {
+      "url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml",
+      "sha256": "a7a61a4b2ac4727ed4862bacb6c25fe34ec9bd1d03dd152ad62c987467b6ddb7",
+      "captured_at": "2026-11-06T00:33:55Z",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-seismic-2026-11-06/paaq_atom.xml",
+      "bytes": 1983
+    },
+    {
+      "url": "https://api.weather.gov/alerts/active",
+      "sha256": "7ec2297fc8a9a91a747e040d48e706c6fa58b101189d7c53a1d781148e6600da",
+      "captured_at": "2026-11-06T00:33:55Z",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-seismic-2026-11-06/nws_alerts_active.bin",
+      "bytes": 2470362
+    },
+    {
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "sha256": "34a853f8ff47797411c7d18e6805754f01c10e9e69d2c27607f1a59337f9d8df",
+      "captured_at": "2026-11-06T00:33:55Z",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-seismic-2026-11-06/usgs_4_5_day.json",
+      "bytes": 6052
+    }
+  ],
+  "candidates": [
+    {
+      "severity": "low",
+      "rule_id": "weather.tsunami_product_vs_nws_alerts",
+      "contradiction_open": false,
+      "evidence": {
+        "eventID": "t2ssp5",
+        "category": "Information",
+        "nws_tsunami_alert_count": 0,
+        "nws_tsunami_events_sample": []
+      }
+    },
+    {
+      "severity": "low",
+      "rule_id": "weather.paaq_atom_vs_esri_category",
+      "contradiction_open": false,
+      "evidence": {
+        "eventID": "t2ssp5",
+        "atom_category": "Information",
+        "esri_category": "Information"
+      }
+    },
+    {
+      "severity": 2,
+      "rule_id": "weather.tsunami_origin_vs_usgs",
+      "contradiction_open": true,
+      "publish_open": false,
+      "skeptic_verdict": "FAIL_m-8azc3dlh",
+      "publish_label": "cross_agency_sidebar_not_card1_open",
+      "evidence": {
+        "eventID": "t2ssp5",
+        "mismatches": [
+          {
+            "field": "magnitude",
+            "usgs_id": "75462637",
+            "usgs_time_utc": "2026-11-05T04:56:02.670000+00:00",
+            "tsunami_originTime": "2026-11-05T04:56:04 UTC",
+            "delta_seconds": 1.33,
+            "origin_tolerance_s": 60,
+            "usgs_mag": 4.96,
+            "tsunami_mag": 4.5,
+            "mag_tolerance": 0.2,
+            "usgs_place": "111 km W of Petrolia, CA",
+            "tsunami_flag": 0
+          }
+        ],
+        "matched_usgs": {
+          "usgs_id": "75462637",
+          "usgs_time_utc": "2026-11-05T04:56:02.670000+00:00",
+          "tsunami_originTime": "2026-11-05T04:56:04 UTC",
+          "delta_seconds": 1.33,
+          "origin_tolerance_s": 60,
+          "usgs_mag": 4.96,
+          "tsunami_mag": 4.5,
+          "mag_tolerance": 0.2,
+          "usgs_place": "111 km W of Petrolia, CA",
+          "tsunami_flag": 0
+        },
+        "cross_domain_seismic_peer": "a-9rit0d05"
+      }
+    },
+    {
+      "severity": 2,
+      "rule_id": "seismic.title_mag_vs_mag_property",
+      "contradiction_open": true,
+      "publish_open": false,
+      "skeptic_verdict": "FAIL_display_plane_m-eya2xer8",
+      "publish_label": "display_integrity_essay_only",
+      "evidence": {
+        "usgs_id": "75462637",
+        "title": "M 5.0 - 111 km W of Petrolia, CA",
+        "title_parsed_mag": 5.0,
+        "properties_mag": 4.96,
+        "note": "USGS display rounding; paired with seismic domain card"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "truth-latency-observatory-v1",
+  "description": "Official vs market vs narrative latency rows; domain packs plug into episodes.",
+  "episode_fields": ["episode_id", "window_start_utc", "window_end_utc", "attention_topics", "methodology_url"],
+  "row_fields": {
+    "domain": "string (e.g. gulf_hormuz, macro_ai_reg)",
+    "signal_id": "string",
+    "source_class": "official | market | narrative | verify",
+    "first_seen_utc": "ISO-8601 (capture time in this mesh slice)",
+    "primary_url": "https URL",
+    "summary": "one line, no attribution claims beyond source",
+    "who_moved_first_hint": "optional: market | narrative | official | unknown"
+  }
+}

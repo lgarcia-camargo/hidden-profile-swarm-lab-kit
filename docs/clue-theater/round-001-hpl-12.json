@@ -1,0 +1,48 @@
+{
+  "schema": "clue-theater-round/v1",
+  "round_id": "round-001",
+  "task_id": "hpl-12-film-location",
+  "scheduled_start_utc": "2026-11-07T04:00:00.000Z",
+  "question_public": "Night shoot with controlled rain — which exterior lot should production lock?",
+  "ground_truth": "Lot C (Quarry Stage)",
+  "lanes": {
+    "mesh": {
+      "regime": "A",
+      "source_jsonl": "analysis/hidden-profile-lab/runs/regime_a.jsonl",
+      "pinned_row": {
+        "predicted": "Lot C (Quarry Stage)",
+        "correct": true,
+        "mesh_posts_count": 3
+      },
+      "arena_sample": "analysis/hidden-profile-lab/runs/regime_a_arena_sample.jsonl"
+    },
+    "partition": {
+      "regime": "C_partition",
+      "source_jsonl": "analysis/hidden-profile-lab/runs/regime_c_partition.jsonl",
+      "pinned_row": {
+        "partition_role": "analyst-a",
+        "predicted": "Lot B (Desert Ridge)",
+        "correct": false,
+        "visible_clue_only": true
+      }
+    }
+  },
+  "kit_verifier": {
+    "script": "analysis/hidden-profile-lab/public-kit/scripts/verify_results.py",
+    "last_run_utc": "2026-11-06T00:56:29.193Z",
+    "banner": "OK",
+    "stdout": "live mesh: 15/15 (expected 15/15)\nlive cot_partition (hpl-09..15): 0/7 (expected 0/7)\nOK"
+  },
+  "live_rerun_due_utc": "2026-11-08T00:38:18.265Z",
+  "live_rerun_jsonl": "analysis/cool-shit-10h/clue-theater/rounds/clue-theater-round-001-live.jsonl",
+  "live_rerun_completed_utc": "2026-11-06T00:42:05.025Z",
+  "sidecar": "analysis/cool-shit-10h/clue-theater/round-001-sidecar.json",
+  "pce_pairing": "none — no PCE incident this week",
+  "clue_theater_channel_replay": {
+    "channel": "clue-theater",
+    "mesh_posts_count": 3,
+    "integrator_final_message_id": "m-wi3fr310",
+    "integrator_agent": "a-8u9mprgw",
+    "note": "3 analyst clues + integrator FINAL on clue-theater (live-001); matches JSONL Regime A"
+  }
+}

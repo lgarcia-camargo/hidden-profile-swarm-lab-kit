@@ -1,0 +1,130 @@
+{
+  "schema": "truth-latency-observatory-v1",
+  "episode_id": "w45-gulf-midterm-fuse-2026-11-06",
+  "window_start_utc": "2026-11-05T00:00:00Z",
+  "window_end_utc": "2026-11-06T12:00:00Z",
+  "attention_topics": ["#1 midterm fallout", "#2 Iran/Gulf/Hormuz", "#3 AI regulation → chip crash", "#7 prediction markets"],
+  "grounding": "~/fleet-swarm/bench-hour/analysis/cool-shit-10h/research/world-pulse-2026-11-06.md",
+  "methodology_url": "analysis/cool-shit-10h/truth-latency/tlo-schema-v1.json",
+  "domain_packs": ["gulf_hormuz", "macro_ai_reg"],
+  "owners": {
+    "gulf_hormuz": "a-glaww3aj",
+    "macro_ai_reg": "a-ekl1x949"
+  },
+  "source_files": [
+    "domain-pack-gulf-hormuz-2026-11-06.json",
+    "domain-pack-macro-ai-reg-2026-11-06.json"
+  ],
+  "rows": [
+    {
+      "domain": "gulf_hormuz",
+      "signal_id": "st-nov6-midterm-hormuz",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:24:00Z",
+      "primary_url": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026",
+      "summary": "ST ties GOP midterm loss to Iran war; reports three more tankers damaged in Hormuz Nov 5.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "gulf_hormuz",
+      "signal_id": "aj-nov5-tankers-ukmto",
+      "source_class": "official",
+      "first_seen_utc": "2026-11-05T12:00:00Z",
+      "primary_url": "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack",
+      "summary": "IRGC/army statements + UKMTO projectile report; shipping peril while Gulf war unresolved.",
+      "who_moved_first_hint": "official"
+    },
+    {
+      "domain": "gulf_hormuz",
+      "signal_id": "aj-nov6-live-trump-qatar",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:00:00Z",
+      "primary_url": "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran",
+      "summary": "Liveblog: Trump destroy-rest-of-Iran rhetoric; nuclear proposal via Qatari mediators under review.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "gulf_hormuz",
+      "signal_id": "pm-iran-invasion-theme",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-05T18:00:00Z",
+      "primary_url": "https://www.worldmonitor.app/tools/prediction-markets/",
+      "summary": "Aggregator cites ~$78M on US invade Iran before 2027 theme, 12.5% yes; Hormuz traffic normal by Dec 31 ~$16.8M, 10.5% yes (world-pulse table, Nov 5).",
+      "who_moved_first_hint": "unknown"
+    },
+    {
+      "domain": "gulf_hormuz",
+      "signal_id": "verify-qeshm-fake-strike",
+      "source_class": "verify",
+      "first_seen_utc": "2026-11-04T08:00:00Z",
+      "primary_url": "https://www.thaipbs.or.th/verify/en/content/18053",
+      "summary": "Qeshm strike clip AI-generated; real Nov 2 explosions reported separately — narrative-vs-price divergence row for scoped #1.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "st-nov6-ai-reg-selloff",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:24:00Z",
+      "primary_url": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026",
+      "summary": "ST: Dem midterm wins + data-center backlash narrative; Nasdaq correction, Nvidia −9%, SOX −12% on Nov 5.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "pw-nov4-fed-dec-cut-volume",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-04T14:00:00Z",
+      "primary_url": "https://predictwire.io/markets-in-focus-this-weeks-highest-volume-prediction-contracts-nov-4-2026/",
+      "summary": "PredictWire: Kalshi Dec 2026 cut market ~$340M notional since Monday; 72% cut (was 61%) — priced path ahead of FOMC statement text.",
+      "who_moved_first_hint": "market"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "block-nov2025-pm-infra",
+      "source_class": "market",
+      "first_seen_utc": "2025-12-01T00:00:00Z",
+      "primary_url": "https://www.theblock.co/news/markets/2025-12-01-kalshi-and-polymarket-post-strongest-months-yet-with-nearly-8-billion-in-combined-november-volume-380909",
+      "summary": "The Block: Kalshi ~$5.8B + Polymarket ~$1.87B combined Nov 2025 volume — infrastructure context, not hero app.",
+      "who_moved_first_hint": "unknown"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "blockworks-pm-saturation",
+      "source_class": "narrative",
+      "first_seen_utc": "2025-11-15T00:00:00Z",
+      "primary_url": "https://blockworks.co/news/prediction-markets-neutrl",
+      "summary": "Blockworks: duopoly + sports/farming won; embed mids as signals only (world-pulse overdone #7).",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "arb-hegseth-dec31",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-04T12:00:00Z",
+      "primary_url": "https://arbtrader.co/trending/2026-11-04",
+      "summary": "Pete Hegseth out by Dec 31? ~50% (+6 pts week) — political risk priced post-midterms (world-pulse W45 table).",
+      "who_moved_first_hint": "market"
+    }
+  ],
+  "who_moved_first_summary": {
+    "macro_ai_reg": "market (Fed cut odds) likely led official FOMC text in window; narrative (AI-reg selloff) co-timed ST Nov 6 digest",
+    "gulf_hormuz": "official tanker wires Nov 5; narrative liveblog + ST election→Gulf link Nov 6; market themes via aggregator lag unknown"
+  },
+  "unknowns": [
+    "UKMTO vs IRGC publish lag (gulf_hormuz)",
+    "Sub-minute market mid vs wire ordering (both packs)",
+    "BLS/FRED official JSON rows not yet in macro_ai_reg v1"
+  ],
+  "sibling_artifacts": {
+    "scoped_death_match_qeshm": "analysis/cool-shit-10h/press/death-match-runs/qeshm-gulf-row-card-2026-11-06.json",
+    "status": "regime_a_b_complete",
+    "owner": "a-oe9he6xd",
+    "gallery_id": "scoped-death-match-qeshm-2026-11-06"
+  },
+  "public_pages": {
+    "url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/truth-latency/index.html",
+    "repo_path": "docs/truth-latency/",
+    "mirrored_at_utc": "2026-11-06T01:15:00Z"
+  }
+}

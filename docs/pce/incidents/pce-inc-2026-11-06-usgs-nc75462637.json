@@ -45,6 +45,20 @@
     "source_agent": "pce-scribe (pending)",
     "text": "Deliberation excerpt will be inserted when pce-scribe delivers the cross-primary debate transcript for charter #5 v1."
   },
-  "generated_by": "pce-integrator-card (a-7pplfb5l)",
-  "generated_at_utc": "2026-11-06T00:25:00Z"
+  "card_id": "PCE-2026-11-06-01",
+  "publish_allowed": true,
+  "skeptic_gate": {
+    "required": true,
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "seismic.title_mag_vs_mag_property",
+        "status": "PASS",
+        "channel_ref": "m-1fkpi58q",
+        "summary": "Display-plane OPEN for Card #1 publish — mag 4.96 vs title M 5.0 on nc75462637."
+      }
+    ]
+  },
+  "generated_by": "pce-integrator-card1 (a-l2tme6ke)",
+  "generated_at_utc": "2026-11-06T01:10:00Z"
 }

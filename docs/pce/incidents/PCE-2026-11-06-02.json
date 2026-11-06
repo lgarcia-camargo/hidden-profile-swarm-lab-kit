@@ -1,0 +1,55 @@
+{
+  "card_id": "PCE-2026-11-06-02",
+  "incident_id": "pce-inc-2026-11-06-weather-t2ssp5",
+  "schema_version": "pce-contradiction-card-v1",
+  "detected_at_utc": "2026-11-06T00:33:55Z",
+  "severity": "medium",
+  "status": "UNDER_REVIEW",
+  "api_status": "UNDER_REVIEW",
+  "incident_status": "UNDER_REVIEW",
+  "publish_allowed": false,
+  "card_kind": "cross_primary_weather_seismic",
+  "domain": "weather",
+  "skeptic_gate": {
+    "required": true,
+    "status": "PENDING",
+    "checks": [
+      {
+        "id": "weather.tsunami_origin_vs_usgs",
+        "status": "FAIL",
+        "channel_ref": "m-8azc3dlh",
+        "summary": "NTWC 4.5 Ml vs USGS 4.96 mw — Card #2 candidate; await skeptic PASS before OPEN publish."
+      }
+    ]
+  },
+  "a1_headline": "Card #2 stub — cross-agency weather×seismic (under review)",
+  "summary": "Weather-seismic pairwise: NTWC Information 4.5 Ml vs USGS 4.96 mw for matched origin (t2ssp5 / nc75462637). Stub until skeptic clears cross-primary gate.",
+  "lead_event_id": "t2ssp5",
+  "usgs_event_id": "nc75462637",
+  "mismatch": {
+    "rule_id": "weather.tsunami_origin_vs_usgs",
+    "field": "magnitude",
+    "usgs_mag": 4.96,
+    "tsunami_mag": 4.5,
+    "delta_seconds": 1.33
+  },
+  "primaries": [
+    {
+      "id": "tsunami_esri",
+      "label": "tsunami.gov esri (NTWC origin)",
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "value": "mag 4.5 (Ml)",
+      "snapshot_sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8"
+    },
+    {
+      "id": "usgs_4.5_day",
+      "label": "USGS 4.5_day summary feed",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "value": "mag 4.96 mw (nc75462637)",
+      "snapshot_sha256": "a5b2bb09f24ab6d214d9582529a968eb3007be65ff05d24695e5b727a51a8dad"
+    }
+  ],
+  "machine_record": "data/weather-seismic-pairwise-2026-11-06.json",
+  "generated_by": "pce-integrator-card1 (a-l2tme6ke)",
+  "generated_at_utc": "2026-11-06T01:10:00Z"
+}

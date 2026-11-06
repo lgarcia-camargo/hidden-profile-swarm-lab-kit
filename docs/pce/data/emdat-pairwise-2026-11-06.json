@@ -1,0 +1,226 @@
+{
+  "schema": "pce-emdat-vintage-pairwise/v1",
+  "agent": "pce-hunt-emdat-crossprimary (a-weba5mp8)",
+  "parent": "primary-changelog-lead (a-jbp2qghe)",
+  "charter": "cool-shit #5 \u2014 EM-DAT Archive v1.1 vs v2.0 (doi:10.14428/DVN/I0LTPH)",
+  "fetched_at_utc": "2026-11-06T01:13:19Z",
+  "candidate_id": "pce-emdat-vintage-2023-0636-AFG",
+  "contradiction_open": false,
+  "archive_revision_open": true,
+  "skeptic_clean_for_card1_open_headline": false,
+  "diff_summary": "Verified pairwise on freshly downloaded Dataverse primaries: v1.1 tab (file id 28130) vs v2.0 xlsx (file id 38893). Among 1,602 earthquake rows sharing DisNo., 433 rows differ materially on deaths and/or CPI-adjusted damage (426 dam_adj-only, median |%\u0394|\u22482.95%; 7 death revisions). Hero row 2023-0636-AFG: Total Deaths 2445 (v1.1) vs 1480 (v2.0), \u0394965. This is same-institution published archive vintage disagreement on one entity key \u2014 strong press/catalog-revision evidence, not independent-agency cross-primary (cf. skeptic FAIL on USGS title rounding). Do not broadcast CONTRADICTION OPEN for Card #1 hero without skeptic PASS.",
+  "counts": {
+    "earthquake_rows_v11": 1611,
+    "earthquake_rows_v20": 1619,
+    "overlap_disno": 1602,
+    "material_change_rows": 432,
+    "death_revision_rows": 7,
+    "dam_adj_only_rows": 627
+  },
+  "hero_entity": {
+    "disno": "2023-0636-AFG",
+    "country": "Afghanistan",
+    "start_year": 2023,
+    "field": "Total Deaths",
+    "value_v11": 2445.0,
+    "value_v20": 1480.0,
+    "delta": -965.0
+  },
+  "field_mismatch_examples": [
+    {
+      "disno": "1902-0012-GTM",
+      "country": "Guatemala",
+      "start_year": 1902,
+      "deaths_v11": 2000.0,
+      "deaths_v20": 2000.0,
+      "dam_adj_v11_usd000": 880384.0,
+      "dam_adj_v20_usd000": 906351.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1905-0003-IND",
+      "country": "India",
+      "start_year": 1905,
+      "deaths_v11": 20000.0,
+      "deaths_v20": 20000.0,
+      "dam_adj_v11_usd000": 847777.0,
+      "dam_adj_v20_usd000": 872783.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1905-0008-ALB",
+      "country": "Albania",
+      "start_year": 1905,
+      "deaths_v11": 120.0,
+      "deaths_v20": 120.0,
+      "dam_adj_v11_usd000": 807084.0,
+      "dam_adj_v20_usd000": 830889.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1906-0013-USA",
+      "country": "United States of America",
+      "start_year": 1906,
+      "deaths_v11": 700.0,
+      "deaths_v20": 700.0,
+      "dam_adj_v11_usd000": 17769416.0,
+      "dam_adj_v20_usd000": 18293527.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1906-0014-CHL",
+      "country": "Chile",
+      "start_year": 1906,
+      "deaths_v11": 20000.0,
+      "deaths_v20": 20000.0,
+      "dam_adj_v11_usd000": 3391110.0,
+      "dam_adj_v20_usd000": 3491131.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1907-0004-JAM",
+      "country": "Jamaica",
+      "start_year": 1907,
+      "deaths_v11": 1200.0,
+      "deaths_v20": 1200.0,
+      "dam_adj_v11_usd000": 981000.0,
+      "dam_adj_v20_usd000": 1009934.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1908-0007-ITA",
+      "country": "Italy",
+      "start_year": 1908,
+      "deaths_v11": 75000.0,
+      "deaths_v20": 75000.0,
+      "dam_adj_v11_usd000": 3933688.0,
+      "dam_adj_v20_usd000": 4049712.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1915-0002-ITA",
+      "country": "Italy",
+      "start_year": 1915,
+      "deaths_v11": 29980.0,
+      "deaths_v20": 29980.0,
+      "dam_adj_v11_usd000": 1810388.0,
+      "dam_adj_v20_usd000": 1863786.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1918-0008-PRI",
+      "country": "Puerto Rico",
+      "start_year": 1918,
+      "deaths_v11": 116.0,
+      "deaths_v20": 116.0,
+      "dam_adj_v11_usd000": 589181.0,
+      "dam_adj_v20_usd000": 606559.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1920-0007-CHN",
+      "country": "China",
+      "start_year": 1920,
+      "deaths_v11": 180000.0,
+      "deaths_v20": 180000.0,
+      "dam_adj_v11_usd000": 380936.0,
+      "dam_adj_v20_usd000": 392172.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1923-0006-JPN",
+      "country": "Japan",
+      "start_year": 1923,
+      "deaths_v11": 143000.0,
+      "deaths_v20": 143000.0,
+      "dam_adj_v11_usd000": 10692938.0,
+      "dam_adj_v20_usd000": 11008327.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1925-0005-USA",
+      "country": "United States of America",
+      "start_year": 1925,
+      "deaths_v11": 13.0,
+      "deaths_v20": 13.0,
+      "dam_adj_v11_usd000": 139314.0,
+      "dam_adj_v20_usd000": 143423.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1927-0004-JPN",
+      "country": "Japan",
+      "start_year": 1927,
+      "deaths_v11": 3022.0,
+      "deaths_v20": 3022.0,
+      "dam_adj_v11_usd000": 700572.0,
+      "dam_adj_v20_usd000": 721235.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1930-0008-ITA",
+      "country": "Italy",
+      "start_year": 1930,
+      "deaths_v11": 1883.0,
+      "deaths_v20": 1883.0,
+      "dam_adj_v11_usd000": 91242.0,
+      "dam_adj_v20_usd000": 93933.0,
+      "change_flags": "dam_adj"
+    },
+    {
+      "disno": "1930-0028-NIC",
+      "country": "Nicaragua",
+      "start_year": 1930,
+      "deaths_v11": 1000.0,
+      "deaths_v20": 1000.0,
+      "dam_adj_v11_usd000": 273726.0,
+      "dam_adj_v20_usd000": 281800.0,
+      "change_flags": "dam_adj"
+    }
+  ],
+  "sources": [
+    {
+      "id": "emdat_archive_v11",
+      "label": "EM-DAT Archive v1.1",
+      "url": "https://doi.org/10.14428/DVN/I0LTPH/1.1",
+      "download_url": "https://dataverse.uclouvain.be/api/access/datafile/28130",
+      "filename": "241204_emdat_archive.tab",
+      "dataverse_file_id": 28130,
+      "dataverse_md5": "e78b986f8234a48de376b8026017d1dc",
+      "local_md5": "f9aa08121d9036f7e2470471e3c5cff7",
+      "content_sha256": "636e02f55e2ea05af277ad6b1dcea4b3a9d0a09a1d637c447f89119a2187c78f",
+      "bytes": 11433618,
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/emdat-2026-11-06/241204_emdat_archive.tab",
+      "publisher": "UCLouvain CRED"
+    },
+    {
+      "id": "emdat_archive_v20",
+      "label": "EM-DAT Archive v2.0",
+      "url": "https://doi.org/10.14428/DVN/I0LTPH",
+      "download_url": "https://dataverse.uclouvain.be/api/access/datafile/38893",
+      "filename": "260430_emdat_archive.xlsx",
+      "dataverse_file_id": 38893,
+      "dataverse_md5": "ae67e9e076fef86bd9c29d8a579b3967",
+      "local_md5": "ae67e9e076fef86bd9c29d8a579b3967",
+      "content_sha256": "21c210e479623144cef32c11c0a57c21094ea66f4ad0a0a248d8239f3a5e9847",
+      "bytes": 8137119,
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/emdat-2026-11-06/260430_emdat_archive.xlsx",
+      "publisher": "UCLouvain CRED"
+    }
+  ],
+  "verified": [
+    "Both archive files downloaded 2026-11-06 via public Dataverse API; v2.0 MD5 matches Dataverse checksum.",
+    "v1.1 local MD5 f9aa081\u2026 (11,433,618 B) \u2014 note Dataverse metadata lists e78b986f @ 11,433,001 B; byte-identical to prior fleet cache used in emdat-revision-audit.",
+    "433/1602 material earthquake revisions recomputed from snapshot join (matches audit_stats.json).",
+    "Seven death-field revisions including 2023-0636-AFG and 2023-0054-SYR."
+  ],
+  "inferred": [
+    "Majority dam_adj deltas reflect CPI/deflator rebasing between archive releases, not simultaneous conflicting field reports.",
+    "EM-DAT vintage lane supports press annex / catalog-integrity essay; skeptic may still withhold OPEN headline vs USGS-style display or BLS-style independent primary pairs."
+  ],
+  "cmp_00258orc_note": "Competition closed with USGS nc75462637 winner; lead integration overruled OPEN ship pending skeptic-clean candidate \u2014 EM-DAT proposal deferred to integrator/skeptic.",
+  "reused_audit_artifacts": [
+    "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/emdat-revision-audit/audit_stats.json",
+    "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/emdat-revision-audit/emdat_quake_revision_diff.csv"
+  ]
+}

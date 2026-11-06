@@ -1,76 +1,72 @@
 {
   "card_id": "PCE-2026-11-06-01",
-  "incident_id": "pce-inc-2026-11-06-weather-t2ssp5",
+  "incident_id": "pce-inc-2026-11-06-usgs-nc75462637",
   "competition_id": "cmp-00258orc",
   "schema_version": "pce-contradiction-card-v1",
-  "detected_at_utc": "2026-11-06T00:33:55Z",
-  "severity": "MEDIUM",
+  "detected_at_utc": "2026-11-06T00:21:37Z",
+  "severity": "medium",
   "status": "SKEPTIC_REVIEW",
   "api_status": "SKEPTIC_REVIEW",
   "incident_status": "UNDER_REVIEW",
   "publish_allowed": false,
-  "card_kind": "cross_primary_sidebar",
-  "domain": "weather",
+  "open_headline_eligible": false,
+  "card_kind": "usgs_display_plane",
+  "domain": "usgs_earthquake",
   "skeptic_gate": {
     "required": true,
     "status": "FAIL",
     "checks": [
       {
+        "id": "pce-usgs-nc75462637-open",
+        "status": "FAIL",
+        "channel_ref": "m-vtbcvjen",
+        "summary": "Display-plane only — not OPEN cross-primary headline (m-341l1eip, m-gxyzz1av)."
+      },
+      {
         "id": "pce-weather-t2ssp5-mag",
         "status": "FAIL",
         "channel_ref": "m-341l1eip",
-        "cites": ["m-8azc3dlh"],
-        "summary": "NTWC Information Ml (one decimal) vs USGS reviewed mw — incomparable magnitude types; severity-2 sidebar only, not OPEN cross-primary."
+        "summary": "Weather cross-primary sidebar severity 2; see PCE-2026-11-06-02."
       }
     ]
   },
-  "a1_headline": "Card #1 publish gated — no skeptic-cleared OPEN cross-primary yet",
-  "summary": "Weather candidate t2ssp5 (NTWC 4.5 Ml vs USGS 4.96 mw) demoted to sidebar after skeptic FAIL m-341l1eip (Ml vs mw, m-8azc3dlh). USGS display-plane and BLS integrity remain footnotes.",
+  "a1_headline": "Who do you trust when the official list says 4.96 and the event banner says M 5.0?",
+  "summary": "USGS nc75462637: GeoJSON mag 4.96 vs title M 5.0 on same stack — display essay / SKEPTIC REVIEW HTML; not CONTRADICTION OPEN until EM-DAT or equal-precision cross-primary PASS.",
   "lead_event_id": "nc75462637",
-  "weather_sidebar_event_id": "t2ssp5",
-  "usgs_event_id": "nc75462637",
+  "mismatch": {
+    "field": "title_mag_vs_mag_property",
+    "rule_id": "seismic.title_mag_vs_mag_property",
+    "primary_a_value": "mag: 4.96",
+    "primary_b_value": "title_parsed_mag: 5.0"
+  },
   "primaries": [
     {
-      "id": "tsunami_esri",
-      "label": "tsunami.gov esri (NTWC origin)",
-      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
-      "value": "mag 4.5 (Ml, sidebar)",
-      "snapshot_sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8"
+      "id": "usgs_feed_4_5_day",
+      "label": "USGS detail / feed mag property",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/nc75462637.geojson",
+      "value": "4.96 (mw)",
+      "snapshot_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
     },
     {
-      "id": "usgs_4.5_day",
-      "label": "USGS 4.5_day summary feed",
-      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
-      "value": "mag 4.96 mw (nc75462637)",
-      "snapshot_sha256": "34a853f8ff47797411c7d18e6805754f01c10e9e69d2c27607f1a59337f9d8df"
+      "id": "usgs_eventpage_headline",
+      "label": "USGS event page headline",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75462637",
+      "value": "M 5.0",
+      "snapshot_sha256": "a2ac81326b60e0b8120317096ea0481bd9a09bb3c872ea5a622584b56c66c612"
     }
   ],
-  "mismatch": {
-    "rule_id": "weather.tsunami_origin_vs_usgs",
-    "field": "magnitude",
-    "eventID": "t2ssp5",
-    "usgs_id": "nc75462637",
-    "usgs_mag": 4.96,
-    "tsunami_mag": 4.5,
-    "delta_seconds": 1.33,
-    "severity_cap": 2,
-    "sidebar_only": true
-  },
-  "evidence_json": "analysis/cool-shit-10h/pce/weather-seismic-pairwise-2026-11-06.json",
-  "deliberation_excerpt_path": "analysis/cool-shit-10h/pce/deliberation-excerpt-2026-11-06.md",
-  "display_integrity_footnote": {
-    "card_id": "PCE-2026-11-06-display-nc75462637",
-    "note": "USGS title M5.0 vs mag 4.96 — display essay only (m-1fkpi58q)."
-  },
-  "bls_integrity_callout": "analysis/cool-shit-10h/pce/bls-pairwise-2026-11-06.json",
+  "evidence_json": "data/usgs-pairwise-2026-11-06.json",
+  "weather_card2_ref": "incidents/PCE-2026-11-06-02.json",
+  "bls_integrity_callout": "data/bls-pairwise-2026-11-06.json",
   "api": {
     "list_open_eligible": false,
-    "detail_get_status": "under_review",
-    "endpoints": {
-      "list": "/v1/contradictions",
-      "detail": "/v1/contradictions/PCE-2026-11-06-01"
-    }
+    "detail_get_status": "under_review"
   },
-  "generated_by": "pce-integrator-card (a-7pplfb5l)",
-  "generated_at_utc": "2026-11-06T01:08:00Z"
+  "emdat_annex": {
+    "status": "under_review",
+    "pairwise_json": "data/emdat-pairwise-2026-11-06.json",
+    "card_candidate_json": "data/emdat-contradiction-card-candidate-2026-11-06.json",
+    "hero_disno": "2023-0636-AFG",
+    "note": "Catalog-revision annex (m-730pukrk) — not CONTRADICTION OPEN headline until skeptic PASS on cross-primary bar."
+  }
 }

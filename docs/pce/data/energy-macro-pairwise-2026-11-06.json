@@ -1,0 +1,144 @@
+{
+  "release": "eia_wpsr_2026_11_04_week_ending_2026_10_30",
+  "fetched_at_utc": "2026-11-06T00:35:42Z",
+  "tolerance_kbbl_commercial_crude_change": 50,
+  "contradiction_open": false,
+  "diff_summary": "Live ir.eia.gov WPSR primaries for 2026-11-04 release (week ending 2026-10-30): summary.txt headline commercial crude draw -900 kbbl (-0.9 mbbl) matches table1.csv / psw00.csv WCESTUS1 week-on-week -865 kbbl within EIA one-decimal rounding (35 kbbl gap). Stock levels 409.8 mbbl (summary) vs 409760 kbbl (table1/psw00) align. EIA Open Data API v2 petroleum/sum/sndw returns API_KEY_MISSING without key; wpsr.json returns HTTP 403 from this host while summary.txt, table1.csv, psw00.csv return 200. Weekly landing HTML table-00 tbody is JS-hydrated (empty in static fetch); release schedule 10:30 a.m. ET documented in HTML. Seismic-macro-cascade memo uses [-5,+20] trading-day event windows and cites EIA Today in Energy for Japan LNG history only — no WPSR release-clock claim. Quake-supply-exposure cites EIA refinery capacity and a 6-day LA CARBOB spot analog (Torrance), not WPSR cadence vs quake CAR windows.",
+  "seismic_macro_lane_cross_note": "Macro/seismic memos do not assert EIA petroleum weekly release timing relative to USGS anchor windows; PCE energy lane pairs federal WPSR cross-primary numerics and documents orthogonal timing (Wed ~10:30 ET WPSR vs trading-day event study).",
+  "values": {
+    "week_ending": "2026-10-30",
+    "release_date": "2026-11-04",
+    "commercial_crude_ex_spr_level_kbbl": 409760,
+    "commercial_crude_ex_spr_level_mbbl_summary_rounded": 409.8,
+    "commercial_crude_ex_spr_change_kbbl_table1": -865,
+    "commercial_crude_ex_spr_change_kbbl_summary_headline": -900,
+    "commercial_crude_ex_spr_change_mbbl_table1": -0.865,
+    "commercial_crude_ex_spr_change_mbbl_summary": -0.9,
+    "total_commercial_petroleum_change_mbbl_summary": -8.2,
+    "total_stocks_ex_spr_change_mbbl_table1": -8.182,
+    "wce_series_id": "WCESTUS1",
+    "wpsr_release_time_et_documented": "10:30 a.m.",
+    "eia_api_v2_wcestus1_latest": null
+  },
+  "pairwise": {
+    "summary_txt_vs_table1_csv_commercial_crude_change_kbbl": {
+      "delta_kbbl": 35,
+      "within_rounding_tolerance": true,
+      "flag": "headline_one_decimal_rounding_not_contradiction"
+    },
+    "table1_csv_vs_psw00_csv_wcestus1_level_kbbl": true,
+    "table1_csv_vs_psw00_csv_wcestus1_change_kbbl": true,
+    "summary_txt_vs_psw00_csv": "same_as_table1_via_wcestus1",
+    "html_landing_table00_vs_csv": "incomparable_static_html_empty_tbody",
+    "eia_api_v2_vs_ir_csv": "blocked_api_key_missing",
+    "wpsr_json_vs_table1_csv": "blocked_wpsr_json_403"
+  },
+  "macro_memo_timing_claims": [
+    {
+      "memo_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/seismic-macro-cascade-2026-11-05.md",
+      "memo_sha256": "84be059871317599de203e8ef31a5b76ce5b17e7b69202799b7376d4b61f9dfe",
+      "claim": "Event-study backtest uses [-5, +20] trading days around USGS M6.5+ anchors; Japan 2nd-order cites EIA Today in Energy (id=6470) for post-Fukushima LNG — not WPSR release schedule.",
+      "status": "verified_no_wpsr_timing_assertion",
+      "vs_eia_wpsr_verified": "orthogonal — trading-day windows vs weekly Wed petroleum release"
+    },
+    {
+      "memo_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/regions/california.md",
+      "memo_sha256": "839d3214b520496bf811bd1590ef8425af1ab1eca28f33f04b2727afdb38b6c5",
+      "claim": "EIA Today in Energy Torrance analog: +$0.22/gal LA CARBOB within 6 days of outage; refinery capacities from EIA Table 3 PDF.",
+      "status": "verified_spot_price_lag_not_wpsr_clock",
+      "vs_eia_wpsr_verified": "no conflict — supply-exposure uses narrative/market lag, not headline inventory release timing"
+    }
+  ],
+  "sources": [
+    {
+      "id": "eia_wpsr_summary_txt",
+      "url": "https://ir.eia.gov/wpsr/summary.txt",
+      "http_status": 200,
+      "snapshot_sha256": "efea4e898102ab983cd8371480b339ca5eafb0ef4a3611e092169abf4feb5806",
+      "fetched_at_utc": "2026-11-06T00:33:16Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_https___ir_eia_gov_wpsr_summary_txt_live",
+      "parsed_commercial_crude_change_mbbl": -0.9,
+      "parsed_commercial_crude_level_mbbl": 409.8
+    },
+    {
+      "id": "eia_wpsr_table1_csv",
+      "url": "https://ir.eia.gov/wpsr/table1.csv",
+      "http_status": 200,
+      "snapshot_sha256": "6e7111336bb6bdd0e8143c17a2cad49f7c0296444ef611ad1440cf320266efb8",
+      "fetched_at_utc": "2026-11-06T00:33:16Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_https___ir_eia_gov_wpsr_table1_csv_live",
+      "parsed_commercial_crude_level_mbbl": 409.76,
+      "parsed_commercial_crude_change_mbbl": -0.865
+    },
+    {
+      "id": "eia_wpsr_psw00_csv",
+      "url": "https://ir.eia.gov/wpsr/psw00.csv",
+      "http_status": 200,
+      "snapshot_sha256": "24a347758b24776d67953f73a96c4fd1407e2236497b280003ed2229a509c98e",
+      "fetched_at_utc": "2026-11-06T00:34:48Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_psw00_csv_live.csv",
+      "series_id": "WCESTUS1",
+      "parsed_commercial_crude_level_kbbl": 409760,
+      "parsed_commercial_crude_change_kbbl": -865,
+      "release_date_field": "2026-11-04"
+    },
+    {
+      "id": "eia_weekly_landing_html",
+      "url": "https://www.eia.gov/petroleum/supply/weekly/",
+      "http_status": 200,
+      "snapshot_sha256": "42d6dc71d16dd3c0157121fb280ca73083ddc1e7c376c8c8b80d1712ffa758d5",
+      "fetched_at_utc": "2026-11-06T00:33:28Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_weekly_landing_live.html",
+      "evidence_role": "release_schedule_1030_et_and_archive_link_2026_11_04"
+    },
+    {
+      "id": "eia_wpsr_archive_2026_11_04",
+      "url": "https://www.eia.gov/petroleum/supply/weekly/archive/2026/2026_11_04/wpsr_2026_11_04.php",
+      "http_status": 200,
+      "snapshot_sha256": "d0cef64281d3d1eeb3212f7561a4c0dfc022a9ee154d849a58b32919701f2abc",
+      "fetched_at_utc": "2026-11-06T00:33:16Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_m_supply_weekly_archive_2026_2026_11_04_wpsr_2026_11_04_php_live"
+    },
+    {
+      "id": "eia_api_v2_petroleum_sndw_wcestus1",
+      "url": "https://api.eia.gov/v2/petroleum/sum/sndw/data/?frequency=weekly&facets[series][]=WCESTUS1",
+      "http_status": 200,
+      "snapshot_sha256": "b71fb384d31b5e7ccc66d279785c9e6cd51fa51f07820a3363c849034b9608bd",
+      "fetched_at_utc": "2026-11-06T00:34:20Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_eia_api_v2_wcestus1.json",
+      "error_code": "API_KEY_MISSING"
+    },
+    {
+      "id": "eia_wpsr_wpsr_json",
+      "url": "https://ir.eia.gov/wpsr/wpsr.json",
+      "http_status": 403,
+      "snapshot_sha256": "70fc674ff32291e76f487638c73c0e6ffb3af44c6648b8e39539a54ee29061d5",
+      "fetched_at_utc": "2026-11-06T00:33:16Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_energy_https___ir_eia_gov_wpsr_wpsr_json_live"
+    },
+    {
+      "id": "seismic_macro_cascade_memo",
+      "url": "file:///Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/seismic-macro-cascade-2026-11-05.md",
+      "snapshot_sha256": "84be059871317599de203e8ef31a5b76ce5b17e7b69202799b7376d4b61f9dfe",
+      "evidence_role": "macro_timing_claims_reference"
+    },
+    {
+      "id": "quake_supply_california_md",
+      "url": "file:///Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/quake-supply-exposure/regions/california.md",
+      "snapshot_sha256": "839d3214b520496bf811bd1590ef8425af1ab1eca28f33f04b2727afdb38b6c5",
+      "evidence_role": "eia_padd5_refs_not_wpsr_clock"
+    }
+  ],
+  "verified": [
+    "Hosted fetch 200 for ir.eia.gov summary.txt, table1.csv, psw00.csv for current WPSR week.",
+    "WCESTUS1 409760 kbbl (2026-10-30) and -865 kbbl change match table1 Commercial (Excluding SPR) row.",
+    "summary.txt week-ending 2026-10-30 prose matches same release as archive 2026-11-04.",
+    "Weekly landing and archive HTML document 10:30 a.m. release column for summary/table CSV.",
+    "Seismic-macro and quake-supply memos contain no false claim that WPSR publishes inside [-5,+20] trading-day quake windows."
+  ],
+  "inferred": [
+    "Headline -0.9 mbbl draw is rounded from -0.865 mbbl (-865 kbbl) per EIA independent rounding footnote.",
+    "EIA API v2 would mirror WCESTUS1 once operator registers api_key at eia.gov/opendata.",
+    "wpsr.json 403 may be bot/WAF on hosted IP; psw00.csv is acceptable alternate machine-readable primary for table 0 series."
+  ]
+}

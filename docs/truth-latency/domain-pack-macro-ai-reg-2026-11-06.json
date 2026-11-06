@@ -1,0 +1,60 @@
+{
+  "schema": "truth-latency-observatory-v1",
+  "domain_pack": "macro_ai_reg",
+  "episode_id": "w45-gulf-midterm-fuse-2026-11-06",
+  "window_start_utc": "2026-11-05T00:00:00Z",
+  "window_end_utc": "2026-11-06T12:00:00Z",
+  "attention_topics": ["#3 AI regulation fear → chip crash", "#7 prediction markets", "#1 midterm fallout"],
+  "grounding": "~/fleet-swarm/bench-hour/analysis/cool-shit-10h/research/world-pulse-2026-11-06.md",
+  "owner_agent": "a-ekl1x949",
+  "methodology": "Parallel fetch in one mesh slice; first_seen_utc = agent capture time. Contract mids via public aggregators only (no wallet UX).",
+  "rows": [
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "st-nov6-ai-reg-selloff",
+      "source_class": "narrative",
+      "first_seen_utc": "2026-11-06T06:24:00Z",
+      "primary_url": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026",
+      "summary": "ST: Dem midterm wins + data-center backlash narrative; Nasdaq correction, Nvidia −9%, SOX −12% on Nov 5.",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "pw-nov4-fed-dec-cut-volume",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-04T14:00:00Z",
+      "primary_url": "https://predictwire.io/markets-in-focus-this-weeks-highest-volume-prediction-contracts-nov-4-2026/",
+      "summary": "PredictWire: Kalshi Dec 2026 cut market ~$340M notional since Monday; 72% cut (was 61%) — priced path ahead of FOMC statement text.",
+      "who_moved_first_hint": "market"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "block-nov2025-pm-infra",
+      "source_class": "market",
+      "first_seen_utc": "2025-12-01T00:00:00Z",
+      "primary_url": "https://www.theblock.co/news/markets/2025-12-01-kalshi-and-polymarket-post-strongest-months-yet-with-nearly-8-billion-in-combined-november-volume-380909",
+      "summary": "The Block: Kalshi ~$5.8B + Polymarket ~$1.87B combined Nov 2025 volume — infrastructure context, not hero app.",
+      "who_moved_first_hint": "unknown"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "blockworks-pm-saturation",
+      "source_class": "narrative",
+      "first_seen_utc": "2025-11-15T00:00:00Z",
+      "primary_url": "https://blockworks.co/news/prediction-markets-neutrl",
+      "summary": "Blockworks: duopoly + sports/farming won; embed mids as signals only (world-pulse overdone #7).",
+      "who_moved_first_hint": "narrative"
+    },
+    {
+      "domain": "macro_ai_reg",
+      "signal_id": "arb-hegseth-dec31",
+      "source_class": "market",
+      "first_seen_utc": "2026-11-04T12:00:00Z",
+      "primary_url": "https://arbtrader.co/trending/2026-11-04",
+      "summary": "Pete Hegseth out by Dec 31? ~50% (+6 pts week) — political risk priced post-midterms (world-pulse W45 table).",
+      "who_moved_first_hint": "market"
+    }
+  ],
+  "board_note": "Macro/regulatory clock orthogonal to Gulf fuse; same TLO episode for Nov 2025 attention economy intersection.",
+  "unknowns": ["Sub-minute ordering between equity futures narrative and Kalshi mid moves not fully instrumented in v1", "BLS/FRED official JSON timestamps not yet rowed in this pack"]
+}

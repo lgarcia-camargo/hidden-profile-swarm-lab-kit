@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TLO — W45 merged board (Gulf + macro)</title>
+<meta name="description" content="Truth Latency Observatory episode w45-gulf-midterm-fuse-2026-11-06: official vs market vs narrative rows for Gulf and macro AI-reg attention week."/>
+<style>
+  :root { --bg:#0d1117; --text:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --line:#30363d; --ok:#3fb950; --warn:#d29922; }
+  body { font:15px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--text); max-width:920px; margin:0 auto; padding:24px; }
+  h1 { font-size:1.45rem; margin:0 0 8px; }
+  h2 { font-size:1.1rem; margin:24px 0 8px; color:var(--accent); }
+  .muted { color:var(--muted); font-size:13px; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 20px; font-size:14px; }
+  th, td { text-align:left; padding:8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  .tag { font-size:11px; padding:2px 6px; border-radius:4px; background:#21262d; color:var(--muted); }
+  .pack { font-size:11px; padding:2px 6px; border-radius:4px; background:#1f2a44; color:#79c0ff; }
+  a { color:var(--accent); }
+  .banner { border:1px solid var(--ok); color:var(--ok); background:#122117; padding:10px 14px; border-radius:8px; margin:12px 0; font-size:14px; }
+  .summary { border-left:3px solid var(--warn); padding:8px 12px; margin:16px 0; background:#1c1608; font-size:14px; }
+</style>
+</head>
+<body>
+<h1>Truth Latency Observatory — merged episode</h1>
+<p class="muted">Episode <code>w45-gulf-midterm-fuse-2026-11-06</code> · public mirror · <code>domain_pack=gulf_hormuz</code> + <code>macro_ai_reg</code></p>
+<div class="banner">Official vs market vs narrative — embed contract mids only; not a Polymarket clone.</div>
+
+<p>Canonical JSON: <a href="episode-w45-truth-latency-2026-11-06.json">episode-w45-truth-latency-2026-11-06.json</a> · Schema: <a href="tlo-schema-v1.json">tlo-schema-v1.json</a></p>
+
+<div class="summary">
+  <strong>Who moved first (v1 hints):</strong> Macro — market (Fed cut odds, PredictWire Nov 4) likely before official FOMC text; narrative AI-reg selloff co-timed ST Nov 6. Gulf — official tanker wires Nov 5; ST election→Hormuz narrative Nov 6.
+</div>
+
+<h2><span class="pack">macro_ai_reg</span> #3 AI regulation → chip crash · #7 markets</h2>
+<table>
+  <tr><th>Signal</th><th>Class</th><th>First seen (UTC)</th><th>Primary</th></tr>
+  <tr>
+    <td>AI-reg selloff / Nasdaq correction</td>
+    <td><span class="tag">narrative</span></td>
+    <td>2026-11-06T06:24:00Z</td>
+    <td><a href="https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026">Straits Times Nov 6</a></td>
+  </tr>
+  <tr>
+    <td>Kalshi Dec cut ~$340M, 72%</td>
+    <td><span class="tag">market</span></td>
+    <td>2026-11-04T14:00:00Z</td>
+    <td><a href="https://predictwire.io/markets-in-focus-this-weeks-highest-volume-prediction-contracts-nov-4-2026/">PredictWire Nov 4</a></td>
+  </tr>
+  <tr>
+    <td>Nov 2025 PM combined volume</td>
+    <td><span class="tag">market</span></td>
+    <td>2025-12-01T00:00:00Z</td>
+    <td><a href="https://www.theblock.co/news/markets/2025-12-01-kalshi-and-polymarket-post-strongest-months-yet-with-nearly-8-billion-in-combined-november-volume-380909">The Block</a></td>
+  </tr>
+  <tr>
+    <td>Hegseth out by Dec 31 ~50%</td>
+    <td><span class="tag">market</span></td>
+    <td>2026-11-04T12:00:00Z</td>
+    <td><a href="https://arbtrader.co/trending/2026-11-04">ArbTrader Nov 4</a></td>
+  </tr>
+</table>
+
+<h2><span class="pack">gulf_hormuz</span> #2 Gulf · #7 priced risk</h2>
+<table>
+  <tr><th>Signal</th><th>Class</th><th>First seen (UTC)</th><th>Primary</th></tr>
+  <tr>
+    <td>ST midterm → Hormuz tankers</td>
+    <td><span class="tag">narrative</span></td>
+    <td>2026-11-06T06:24:00Z</td>
+    <td><a href="https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026">Straits Times Nov 6</a></td>
+  </tr>
+  <tr>
+    <td>Tankers / UKMTO reporting</td>
+    <td><span class="tag">official</span></td>
+    <td>2026-11-05T12:00:00Z</td>
+    <td><a href="https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack">Al Jazeera Nov 5</a></td>
+  </tr>
+  <tr>
+    <td>Liveblog + Qatar proposal</td>
+    <td><span class="tag">narrative</span></td>
+    <td>2026-11-06T06:00:00Z</td>
+    <td><a href="https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran">Al Jazeera live Nov 6</a></td>
+  </tr>
+  <tr>
+    <td>Iran / Hormuz contract themes</td>
+    <td><span class="tag">market</span></td>
+    <td>2026-11-05T18:00:00Z</td>
+    <td><a href="https://www.worldmonitor.app/tools/prediction-markets/">World Monitor</a></td>
+  </tr>
+  <tr>
+    <td>Qeshm fake strike verify</td>
+    <td><span class="tag">verify</span></td>
+    <td>2026-11-04T08:00:00Z</td>
+    <td><a href="https://www.thaipbs.or.th/verify/en/content/18053">Thai PBS Verify</a></td>
+  </tr>
+</table>
+
+<p class="muted">Domain packs: <a href="domain-pack-macro-ai-reg-2026-11-06.json">macro_ai_reg</a> · <a href="domain-pack-gulf-hormuz-2026-11-06.json">gulf_hormuz</a></p>
+<p class="muted">Related: <a href="../clue-theater/index.html">Clue Theater round-001</a> · Scoped #1 Qeshm (<a href="https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/truth-latency/episode-w45-truth-latency-2026-11-06.json">episode JSON</a> <code>sibling_artifacts</code> → VERIFIED_AI mesh 4.6m vs solo 2.3m; Gallery on fleet dashboard when hosted)</p>
+<p class="muted">PM saturation (embed only): <a href="https://blockworks.co/news/prediction-markets-neutrl">Blockworks Nov 2025</a></p>
+</body>
+</html>

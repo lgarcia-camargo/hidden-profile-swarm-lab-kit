@@ -1,0 +1,105 @@
+{
+  "schema": "scoped-death-match-v1",
+  "claim_id": "qeshm-fake-strike-vs-real-nov-2026",
+  "episode": "w45-gulf-midterm-fuse-2026-11-06",
+  "tlo_domain_pack": "gulf_hormuz",
+  "tlo_feed": "analysis/cool-shit-10h/truth-latency/domain-pack-gulf-hormuz-2026-11-06.json",
+  "verdict": "VERIFIED_AI",
+  "verdict_detail": "Viral Qeshm 'US strike' clip is AI-generated (Thai PBS Verify ClaimReview Fake image, Nov 4–5 2026). Real Nov 2 explosions on Qeshm/Bandar Lengeh and Nov 5 Hormuz tanker peril are separate primaries — clip must not be read as authentic strike footage.",
+  "primary_urls": [
+    "https://www.thaipbs.or.th/verify/en/content/18053",
+    "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran",
+    "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack",
+    "https://www.worldmonitor.app/tools/prediction-markets/"
+  ],
+  "primary_sha256": {
+    "https://www.thaipbs.or.th/verify/en/content/18053": "cc90cacfebdf977b72fef4112a22007f00245b3369bd609ab225af0e6deea074",
+    "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack": "1e44b925f630790d4acf4573c06926aae7a99bd87a6785891810277f05cc4ea0",
+    "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran": "8674d90c4f224ceb43c08cca9c16463f6248f3b60e15de0fd60332306762cfc6",
+    "https://www.worldmonitor.app/tools/prediction-markets/": "14acece2b930f104c808f1c5e9bb03682dc53425800838e7a6149673840fa10b"
+  },
+  "tlo_merged_episode": "analysis/cool-shit-10h/truth-latency/episode-w45-truth-latency-2026-11-06.json",
+  "skeptic_flip_log": [
+    {
+      "utc": "2026-11-06T01:07:30Z",
+      "agent": "a-rg3grcjh",
+      "rejected": "https://www.straitstimes.com/world/while-you-were-sleeping-5-stories-you-might-have-missed-nov-6-2026",
+      "reason": "In TLO domain pack but not Row 1 primaries in scoped-death-match-gulf-row-spec-2026-11-06.md — primaries-only charter"
+    },
+    {
+      "utc": "2026-11-06T01:07:31Z",
+      "agent": "a-rg3grcjh",
+      "rejected": "https://www.hindustantimes.com/world-news/us-news/fact-check-irans-ai-generated-video-of-trump-fainting-after-midterms-loss-falsely-shared-as-real-101793805632087.html",
+      "reason": "Spec Row 2 optional political slop — out of scope for qeshm-gulf row card"
+    }
+  ],
+  "regime_a": {
+    "mode": "mesh",
+    "agent": "a-rg3grcjh",
+    "started_utc": "2026-11-06T01:05:07.744Z",
+    "completed_utc": "2026-11-06T01:09:45Z",
+    "minutes": 4.6,
+    "primary_count": 4,
+    "verdict": "VERIFIED_AI",
+    "skeptic_flips": 2,
+    "primary_sha256": {
+      "https://www.thaipbs.or.th/verify/en/content/18053": "cc90cacfebdf977b72fef4112a22007f00245b3369bd609ab225af0e6deea074",
+      "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack": "1e44b925f630790d4acf4573c06926aae7a99bd87a6785891810277f05cc4ea0",
+      "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran": "8674d90c4f224ceb43c08cca9c16463f6248f3b60e15de0fd60332306762cfc6",
+      "https://www.worldmonitor.app/tools/prediction-markets/": "14acece2b930f104c808f1c5e9bb03682dc53425800838e7a6149673840fa10b"
+    },
+    "domain_checks": {
+      "thaipbs_verify_qeshm": {
+        "verified": true,
+        "label": "Fake image / AI-generated clip",
+        "note": "ClaimReview ratingValue 1; reverse-image + InVID; real Nov 2 explosions cited separately via IRNA/Fars/AP — not proof clip is real"
+      },
+      "aljazeera_nov5_tankers": {
+        "verified": true,
+        "note": "IRGC/army: ≥5 tankers + tug; UKMTO projectile off Qatar 23:20 GMT Nov 5"
+      },
+      "aljazeera_nov6_liveblog": {
+        "verified": true,
+        "note": "Trump destroy-rest-of-Iran rhetoric; Iran nuclear proposal via Qatari mediators under review (dateModified 2026-11-06T01:00:00Z)"
+      },
+      "worldmonitor_pm_row": {
+        "verified": true,
+        "as_of_utc": "2026-11-06T01:01:00Z",
+        "us_invade_iran_before_2027": "12.5% yes, $78.0M",
+        "hormuz_traffic_normal_dec31": "10.5% yes, $16.8M"
+      }
+    }
+  },
+  "regime_b": {
+    "mode": "solo",
+    "agent": "a-g0bjhrkz",
+    "started_utc": "2026-11-06T01:05:09Z",
+    "completed_utc": "2026-11-06T01:07:28Z",
+    "minutes": 2.3,
+    "primary_count": 4,
+    "verdict": "VERIFIED_AI",
+    "skeptic_flips": 0,
+    "primary_sha256": {
+      "https://www.thaipbs.or.th/verify/en/content/18053": "cc90cacfebdf977b72fef4112a22007f00245b3369bd609ab225af0e6deea074",
+      "https://www.aljazeera.com/news/2026/11/5/iran-says-tankers-struck-in-hormuz-amid-fears-of-new-us-attack": "1e44b925f630790d4acf4573c06926aae7a99bd87a6785891810277f05cc4ea0",
+      "https://www.aljazeera.com/news/liveblog/2026/11/6/iran-war-live-trump-warns-us-may-have-to-destroy-rest-of-iran": "8674d90c4f224ceb43c08cca9c16463f6248f3b60e15de0fd60332306762cfc6",
+      "https://www.worldmonitor.app/tools/prediction-markets/": "14acece2b930f104c808f1c5e9bb03682dc53425800838e7a6149673840fa10b"
+    }
+  },
+  "regime_a_status": "complete",
+  "regime_b_status": "complete",
+  "ab_summary": {
+    "verdict_match": true,
+    "mesh_skeptic_flips": 2,
+    "solo_skeptic_flips": 0,
+    "mesh_minutes": 4.6,
+    "solo_minutes": 2.3,
+    "interpretation": "Same verdict and primary set; mesh slower but vetoed 2 non-spec primaries (ST narrative, HT optional row)."
+  },
+  "refuse_classes_checked": ["single-hop", "outlet-only", "ballot", "living-person-criminal"],
+  "integrator": "a-oe9he6xd",
+  "mesh_researcher": "a-rg3grcjh",
+  "solo_researcher": "a-g0bjhrkz",
+  "gallery_url": "http://127.0.0.1:4318/#/gallery/scoped-death-match-qeshm-2026-11-06",
+  "note": "Scoped #1 Gulf row A/B complete; CONDITIONAL PASS gate satisfied (≥3 primaries, flip log, solo baseline)."
+}
