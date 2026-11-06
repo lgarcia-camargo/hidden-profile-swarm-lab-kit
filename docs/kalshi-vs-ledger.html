@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalshi vs open ledger — research only</title>
+  <meta name="description" content="Read-only comparison of Kalshi public market mids to pre-registered boolean ledger calls." />
+  <link rel="icon" href="assets/avatar.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --line: #30363d;
+      --link: #58a6ff;
+      --accent: #a371f7;
+      --mono: ui-monospace, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.55 system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 860px;
+      margin-inline: auto;
+      padding: 0 1.25rem 3rem;
+    }
+    header { padding: 1.25rem 0 0.75rem; border-bottom: 2px solid var(--accent); margin-bottom: 1rem; }
+    h1 { font-size: 1.35rem; margin: 0 0 0.35rem; }
+    .lede { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    .disclaimer {
+      margin: 1rem 0;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #21262d;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    a { color: var(--link); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .card h2 { font-family: var(--mono); font-size: 0.92rem; margin: 0 0 0.45rem; }
+    .meta { font-size: 0.82rem; color: var(--muted); margin: 0.25rem 0; }
+    .nums { font-family: var(--mono); font-size: 0.95rem; margin: 0.5rem 0; }
+    .note { font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; }
+    footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
+    footer nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MARKET vs LEDGER</h1>
+    <p class="lede">Kalshi public mids (read-only API) vs pre-registered YES calls · <span id="fetched-at">loading…</span></p>
+  </header>
+
+  <p class="disclaimer" id="legal">Research only — not investment advice. No trading, no wallet, no credentials. Contract mapping is approximate where Kalshi wording differs from USGS/BLS/NOAA primaries.</p>
+
+  <div id="rows"><p style="color:var(--muted)">Loading divergence JSON…</p></div>
+
+  <footer>
+    <p>Data: <code>public-predictions/kalshi-divergence.json</code> · API <a href="https://api.elections.kalshi.com/trade-api/v2/">Kalshi trade-api v2</a></p>
+    <nav>
+      <a href="predictions-live.html">Live ledger scores</a>
+      <a href="index.html">Lab home</a>
+    </nav>
+  </footer>
+
+  <script>
+(function () {
+  const DATA = 'data/kalshi-divergence.json';
+
+  function esc(s) {
+    const d = document.createElement('div');
+    d.textContent = s == null ? '' : String(s);
+    return d.innerHTML;
+  }
+
+  function pct(x) {
+    if (x == null || Number.isNaN(x)) return '—';
+    return (Number(x) * 100).toFixed(1) + '%';
+  }
+
+  function render(doc) {
+    document.getElementById('fetched-at').textContent = 'fetched ' + esc(doc.fetched_at_utc);
+    document.getElementById('legal').textContent = doc.disclaimer || document.getElementById('legal').textContent;
+    const host = document.getElementById('rows');
+    host.innerHTML = (doc.pairs || []).map(function (p) {
+      const k = p.kalshi;
+      let kalshiBlock = '<p class="meta">No Kalshi mapping</p><p class="note">' + esc(p.kalshi_match_note) + '</p>';
+      if (k) {
+        kalshiBlock =
+          '<p class="nums">Kalshi YES mid: <strong>' + pct(k.yes_mid) + '</strong> · ledger YES (1.0): divergence ' +
+          (p.divergence_from_ledger == null ? '—' : p.divergence_from_ledger) +
+          '</p>' +
+          '<p class="meta"><a href="' + esc(k.kalshi_url) + '" rel="noopener">' + esc(k.ticker) + '</a> · ' +
+          esc(k.status) + (k.result ? ' · result ' + esc(k.result) : '') +
+          (k.expiration_value ? ' · print ' + esc(k.expiration_value) : '') + '</p>' +
+          '<p class="meta">' + esc(k.yes_sub_title || '') + ' · close ' + esc(k.close_time_utc) + '</p>' +
+          '<p class="note">' + esc(p.kalshi_match_note || k.match_note) + '</p>';
+      }
+      if (p.kalshi_reference_finalized) {
+        const r = p.kalshi_reference_finalized;
+        kalshiBlock += '<p class="note">Reference settled: <a href="' + esc(r.kalshi_url) + '">' + esc(r.ticker) +
+          '</a> → ' + esc(r.result) + ' (value ' + esc(r.expiration_value) + ')</p>';
+      }
+      return '<article class="card"><h2>' + esc(p.prediction_id) + '</h2>' +
+        '<p class="meta">' + esc(p.ledger_claim_summary) + '</p>' +
+        kalshiBlock + '</article>';
+    }).join('');
+  }
+
+  fetch(DATA + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(render)
+    .catch(function (e) {
+      document.getElementById('rows').innerHTML = '<p class="note">Failed to load JSON: ' + esc(e.message) + '</p>';
+    });
+})();
+  </script>
+</body>
+</html>

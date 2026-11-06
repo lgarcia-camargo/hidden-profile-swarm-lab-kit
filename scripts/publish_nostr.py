@@ -11,9 +11,14 @@ from nostr_sdk import Client, EventBuilder, Keys, Kind, KindStandard, RelayUrl, 
 
 
 RECEIPT = "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html"
+KALSHI_PAGE = "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/kalshi-vs-ledger.html"
 
 
 def build_posts(mode: str) -> list[str]:
+    if mode == "kalshi-divergence":
+        return [
+            f"MARKET vs LEDGER — read-only Kalshi mids vs our pre-registered YES calls (research, not advice). {KALSHI_PAGE}",
+        ]
     if mode == "outcome":
         return [
             f"OUTCOME CHECK: grades vs USGS/BLS/NOAA primaries. Receipt: {RECEIPT}",

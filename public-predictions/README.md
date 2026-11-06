@@ -20,6 +20,17 @@ Machine-readable pre-registrations **before** outcomes. Reporters and skeptics s
 - **Baseline USGS M4.5+ count:** 6
 - **Baseline feed file:** `baseline-usgs-4.5_day-2026-11-05T2155Z.json`
 
+## Kalshi divergence (read-only)
+
+Compare public Kalshi contract mids to ledger boolean calls (no trading):
+
+```bash
+python3 scripts/fetch_kalshi_divergence.py
+```
+
+Writes `public-predictions/kalshi-divergence.json` and mirrors to `docs/data/` for Pages.
+Browser: https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/kalshi-vs-ledger.html
+
 ## Scoring
 
 Run from repo root (network required; fetches USGS / BLS / NOAA **primary** URLs only):

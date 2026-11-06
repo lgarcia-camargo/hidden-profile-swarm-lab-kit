@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: preregister or outcome
+        description: preregister, outcome, or kalshi-divergence
         required: true
         default: preregister
   schedule:
