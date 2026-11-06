@@ -43,7 +43,6 @@
     <p>Pairwise: <a href="data/usgs-pairwise-2026-11-06.json">usgs</a> ·
       <a href="data/weather-seismic-pairwise-2026-11-06.json">weather×seismic (Card #2 stub)</a> ·
       <a href="data/bls-pairwise-2026-11-06.json">bls footnote</a> ·
-      <a href="data/energy-pairwise-2026-11-06.json">energy footnote</a> ·
       <a href="data/emdat-pairwise-2026-11-06.json">emdat pairwise</a> ·
       <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
     <p><code>incidents/PCE-2026-11-06-01.json</code> · <code id="api-line">…</code></p>
@@ -88,8 +87,6 @@
       '<h2>BLS integrity (footnote only)</h2><div class="card"><p class="lede">' +
       esc((inc.bls_integrity_footnote || {}).note || 'Mac/hosted claims.nr0 403 — see bls-pairwise + bls-live-fetch.') +
       ' · <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a></p></div>' +
-      '<h2>Energy / WPSR (footnote only)</h2><div class="card"><p class="lede">WPSR pairwise closed false — ' +
-      '<a href="data/energy-pairwise-2026-11-06.json">energy-pairwise</a> · not Card #1 hero.</p></div>' +
       '<h2>EM-DAT catalog revision (annex — under review)</h2><div class="card"><p class="lede">' +
       (em.hero_entity ? ('Hero <span class="mono">' + esc(em.hero_entity.disno) + '</span>: deaths ' +
       esc(em.hero_entity.value_v11) + ' (v1.1) vs ' + esc(em.hero_entity.value_v20) + ' (v2.0). ') : '') +
