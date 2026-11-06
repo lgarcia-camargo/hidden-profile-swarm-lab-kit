@@ -3,54 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Primary Wire Beater — live stopwatch</title>
+  <title>Wire Beater — BLS stopwatch</title>
+  <meta name="description" content="Public stopwatch: SA initial claims from bls.gov primary, latency_ms, ledger PASS/FAIL." />
   <link rel="icon" href="assets/avatar.svg" type="image/svg+xml" />
   <style>
-    :root { --bg:#0d1117; --panel:#161b22; --text:#e6edf3; --muted:#8b949e; --line:#30363d; --link:#58a6ff; --pass:#3fb950; --pending:#d29922; }
-    body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--text); max-width:760px; margin-inline:auto; padding:1.25rem 1rem 3rem; }
-    h1 { font-size:1.35rem; margin:0 0 0.35rem; }
-    .sub { color:var(--muted); margin:0 0 1rem; }
-    section { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:1rem; margin-bottom:1rem; }
-    .phase { font-weight:650; text-transform:uppercase; letter-spacing:0.05em; font-size:0.85rem; }
-    .phase.waiting { color:var(--pending); }
-    .phase.beat { color:var(--pass); }
-    pre { background:#21262d; padding:0.75rem; border-radius:8px; overflow:auto; font-size:0.82rem; }
-    a { color:var(--link); }
-    footer { margin-top:1.5rem; font-size:0.85rem; color:var(--muted); }
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --line: #30363d;
+      --link: #58a6ff;
+      --pass: #3fb950;
+      --fail: #f85149;
+      --pending: #d29922;
+      --accent: #ff6b4a;
+      --mono: ui-monospace, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 15px/1.55 system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 820px;
+      margin-inline: auto;
+      padding: 0 1.25rem 3rem;
+    }
+    header { padding: 1.25rem 0 0.5rem; border-bottom: 2px solid var(--accent); margin-bottom: 1.25rem; }
+    h1 { font-size: 1.4rem; margin: 0 0 0.35rem; font-weight: 650; }
+    .lede { color: var(--muted); font-size: 0.92rem; margin: 0; }
+    a { color: var(--link); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1rem;
+    }
+    .big {
+      font: 700 2.4rem/1.1 var(--mono);
+      margin: 0.5rem 0;
+    }
+    .status-wait { color: var(--pending); }
+    .status-pass { color: var(--pass); }
+    .status-fail { color: var(--fail); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
+    th { color: var(--muted); font-weight: 600; }
+    td.mono { font-family: var(--mono); font-size: 0.85rem; }
+    footer { margin-top: 2rem; font-size: 0.85rem; color: var(--muted); }
   </style>
 </head>
 <body>
-  <h1>Primary Wire Beater</h1>
-  <p class="sub">Official number the second BLS/USGS/NOAA changes their primary page — one Nostr note with latency + pre-reg PASS/FAIL.</p>
+  <header>
+    <h1>Primary Wire Beater</h1>
+    <p class="lede">Anonymous Nostr feed posts BLS SA initial claims within seconds of the primary page change — with a public stopwatch and pre-reg PASS/FAIL on <code>pred-bls-claims-2026-11-06</code> (&gt;225k).</p>
+    <p class="lede" style="margin-top:0.5rem">
+      Canonical npub: <a id="npub-link" href="#">loading…</a> ·
+      <a href="predictions-live.html">Live ledger</a>
+    </p>
+  </header>
 
-  <section id="status">Loading…</section>
-  <section>
-    <h2 style="margin:0 0 0.5rem;font-size:1rem;color:var(--muted)">Beat log</h2>
-    <pre id="log">Loading…</pre>
+  <section class="card">
+    <h2 style="margin:0 0 0.5rem;font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em">Stopwatch</h2>
+    <p id="monitor-state" class="big status-wait">WAITING</p>
+    <p id="headline" style="margin:0;font-family:var(--mono)">—</p>
+    <p id="meta" style="margin:0.75rem 0 0;color:var(--muted);font-size:0.9rem">Scheduled BLS window: 2026-11-06 ~13:30 UTC (8:30 AM ET). Log: <code>docs/data/beat-log.jsonl</code></p>
+  </section>
+
+  <section class="card">
+    <h2 style="margin:0 0 0.5rem;font-size:0.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em">Beat log</h2>
+    <table>
+      <thead><tr><th>UTC</th><th>SA claims</th><th>latency_ms</th><th>Grade</th><th>dry</th></tr></thead>
+      <tbody id="log-body"><tr><td colspan="5">Loading…</td></tr></tbody>
+    </table>
   </section>
 
   <footer>
-    <p>Canonical feed: <a id="npub" href="#">Nostr npub</a> · <a href="predictions-live.html">Prediction ledger</a> · <a href="index.html">Lab home</a></p>
+    <p>Immutable receipt: same lines on GitHub Pages and Nostr. No press kit — speed + proof only.</p>
   </footer>
 
   <script>
-    async function load() {
-      const st = await fetch('data/wire-beater-status.json?t=' + Date.now()).then(r => r.json());
-      const el = document.getElementById('status');
-      el.innerHTML = '<p class="phase ' + st.phase + '">' + st.phase + '</p>' +
-        '<p>' + (st.message || st.next_event || '') + '</p>' +
-        '<p style="color:var(--muted);font-size:0.9rem">Updated ' + st.updated_at_utc + '</p>';
-      document.getElementById('npub').href = 'https://njump.me/' + st.canonical_npub;
-      document.getElementById('npub').textContent = st.canonical_npub;
+    const MANIFEST = 'data/ledger-manifest.json';
+    const LOG_URL = 'data/beat-log.jsonl?t=' + Date.now();
+
+    async function loadManifest() {
       try {
-        const logTxt = await fetch('data/beat-log.jsonl?t=' + Date.now()).then(r => r.ok ? r.text() : '');
-        document.getElementById('log').textContent = logTxt.trim() || '(no beats yet — BLS Thu is first headline shot)';
+        const r = await fetch(MANIFEST);
+        const m = await r.json();
+        const a = document.getElementById('npub-link');
+        a.textContent = m.canonical_npub.slice(0, 20) + '…';
+        a.href = m.canonical_nostr_profile || m.canonical_profile || '#';
+      } catch (_) {}
+    }
+
+    function renderRows(lines) {
+      const events = lines.filter(l => l.event === 'bls_claims_detected');
+      const tbody = document.getElementById('log-body');
+      if (!events.length) {
+        tbody.innerHTML = '<tr><td colspan="5">No detections yet — monitor armed.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = events.slice().reverse().slice(0, 20).map(e => {
+        const g = e.ledger_grade || '—';
+        const cls = g === 'PASS' ? 'status-pass' : g === 'FAIL' ? 'status-fail' : '';
+        return `<tr>
+          <td class="mono">${(e.first_seen_utc || '').replace('T',' ').replace('Z','')}</td>
+          <td class="mono">${e.sa_initial_claims ?? '—'}</td>
+          <td class="mono">${e.latency_ms ?? '—'}</td>
+          <td class="${cls}">${g}</td>
+          <td>${e.dry_run ? 'yes' : 'no'}</td>
+        </tr>`;
+      }).join('');
+
+      const latest = events[events.length - 1];
+      const st = document.getElementById('monitor-state');
+      st.textContent = latest.dry_run ? 'DRY-RUN HIT' : 'LIVE HIT';
+      st.className = 'big ' + (latest.ledger_grade === 'PASS' ? 'status-pass' : latest.ledger_grade === 'FAIL' ? 'status-fail' : 'status-wait');
+      document.getElementById('headline').textContent =
+        `SA=${latest.sa_initial_claims} · ${latest.latency_ms}ms · ${latest.ledger_grade} · ${latest.primary_url}`;
+    }
+
+    async function refresh() {
+      try {
+        const r = await fetch(LOG_URL);
+        const text = await r.text();
+        const lines = text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l));
+        renderRows(lines);
       } catch (e) {
-        document.getElementById('log').textContent = '(beat log not available yet)';
+        document.getElementById('log-body').innerHTML = '<tr><td colspan="5">Could not load beat-log.jsonl</td></tr>';
       }
     }
-    load();
-    setInterval(load, 60000);
+
+    loadManifest();
+    refresh();
+    setInterval(refresh, 15000);
   </script>
 </body>
 </html>

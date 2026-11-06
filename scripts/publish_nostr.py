@@ -6,12 +6,26 @@ import asyncio
 import json
 import os
 import sys
+from pathlib import Path
 
 from nostr_sdk import Client, EventBuilder, Keys, Kind, KindStandard, RelayUrl, init_logger, LogLevel
 
 
 RECEIPT = "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html"
 KALSHI_PAGE = "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/kalshi-vs-ledger.html"
+WIRE_BEAT_PAGE = "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/wire-beater.html"
+BEAT_LOG = Path(__file__).resolve().parents[1] / "docs" / "data" / "beat-log.jsonl"
+
+
+def load_latest_beat() -> dict | None:
+    if not BEAT_LOG.is_file():
+        return None
+    last = None
+    for line in BEAT_LOG.read_text().splitlines():
+        line = line.strip()
+        if line:
+            last = json.loads(line)
+    return last
 
 
 def build_posts(mode: str) -> list[str]:
@@ -22,6 +36,20 @@ def build_posts(mode: str) -> list[str]:
     if mode == "outcome":
         return [
             f"OUTCOME CHECK: grades vs USGS/BLS/NOAA primaries. Receipt: {RECEIPT}",
+        ]
+    if mode == "wire-beat":
+        beat = load_latest_beat()
+        if not beat:
+            return [f"WIRE BEATER armed — waiting for BLS SA initial claims. Stopwatch: {WIRE_BEAT_PAGE}"]
+        sa = beat.get("sa_initial_claims")
+        lat = beat.get("latency_ms")
+        grade = beat.get("ledger_grade") or "UNKNOWN"
+        url = beat.get("primary_url", "")
+        return [
+            (
+                f"WIRE BEAT BLS: SA initial claims={sa} · latency_ms={lat} · "
+                f"pred-bls-claims-2026-11-06 {grade} (>225k) · {url} · {WIRE_BEAT_PAGE}"
+            ),
         ]
     return [
         f"PRE-REGISTER (before the news): 5 falsifiable calls graded on government primaries only. Receipt: {RECEIPT}",
