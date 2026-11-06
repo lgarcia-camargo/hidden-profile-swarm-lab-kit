@@ -1,0 +1,85 @@
+{
+  "release": "bls_initial_claims_2026-11-06",
+  "fetched_at_utc": "2026-11-06T00:22:05Z",
+  "tolerance": 0,
+  "contradiction_open": true,
+  "diff_summary": "Hosted fetch of claims.nr0.htm and claims.pdf returned HTTP 403 Access Denied; no live HTML/PDF body to parse or cross-check. wire-beater-status page_fingerprint 0dff14c546dc4f2c\u2026 equals SHA-256 of fixtures/bls_claims_sample.html (DRY-RUN FIXTURE), while primary_url is live bls.gov \u2014 live primary not independently hashed on this host. FRED ICSA latest observation 2026-10-31=189000; wire-beater SA=228000 \u2014 different series lag / week (FRED not updated for Nov 6 release at fetch time); not treated as same-week numeric contradiction without BLS primary. Ledger scorer scores-2026-11-06.json fetched empsit.toc.htm (wrong release family) and reported HTTP 403 \u2014 internal primary URL drift vs claims.nr0.htm charter.",
+  "usgs_lane_cross_primary_note": "USGS pairwise lane (usgs-pairwise-2026-11-06.json): smallest open cross-primary mismatch is nc75462637 eventpage headline rounding vs detail API mag (0.1 display); analogous BLS risk is publishing fixture/fingerprint as live primary without HTML/PDF verification.",
+  "values": {
+    "bls_html_nr0_sa_initial_claims": null,
+    "bls_pdf_claims_sa_initial_claims": null,
+    "fred_icsa_sa_initial_claims": 189000,
+    "fred_icsa_observation_date": "2026-10-31",
+    "wire_beater_sa_initial_claims": 228000,
+    "fixture_sa_initial_claims": 228000
+  },
+  "pairwise": {
+    "fixture_vs_wire_beater_fingerprint": true,
+    "html_vs_pdf": "blocked_both_403",
+    "html_vs_fred": "incomparable_missing_html_and_week_lag",
+    "wire_beater_vs_fred_numeric_delta": 39000
+  },
+  "sources": [
+    {
+      "id": "bls_html_nr0",
+      "url": "https://www.bls.gov/news.release/claims.nr0.htm",
+      "http_status": 403,
+      "snapshot_sha256": "e81a107dbedae83dcd9da6de280f4668a361af0ea263fad2bde678b5aea75465",
+      "fetched_at_utc": "2026-11-06T00:22:05Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_bls.htm"
+    },
+    {
+      "id": "bls_pdf_claims",
+      "url": "https://www.bls.gov/news.release/pdf/claims.pdf",
+      "http_status": 403,
+      "snapshot_sha256": "b9a78e64d812b50cf2272333ab2418e5a1c6c57c414b44c66d5c0840c6097b4d",
+      "fetched_at_utc": "2026-11-06T00:22:05Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fetch_claims.pdf"
+    },
+    {
+      "id": "fred_icsa_csv",
+      "url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=ICSA",
+      "series_id": "ICSA",
+      "http_status": 200,
+      "snapshot_sha256": "f84a9c9c6831eeb41b5b15125008f5d48d72c91453d75ad9e05118d40702f428",
+      "fetched_at_utc": "2026-11-06T00:22:05Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/_fred_icsa.csv",
+      "parsed_sa_initial_claims": 189000,
+      "observation_date": "2026-10-31"
+    },
+    {
+      "id": "wire_beater_status_json",
+      "url": "https://www.bls.gov/news.release/claims.nr0.htm",
+      "snapshot_sha256": "628b5a0f280947048ebcccf84de7b8e41739ed9bc22f9f367f46fc081d269423",
+      "fetched_at_utc": "2026-11-06T00:16:58.877000Z",
+      "local_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/hidden-profile-lab/public-kit/docs/data/wire-beater-status.json",
+      "page_fingerprint": "0dff14c546dc4f2c5ee100f4ec3c05744e031147b58ad8930c7257a0d20fa424",
+      "parsed_sa_initial_claims": 228000
+    },
+    {
+      "id": "bls_fixture_sample",
+      "url": "file:///Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/hidden-profile-lab/public-kit/fixtures/bls_claims_sample.html",
+      "snapshot_sha256": "0dff14c546dc4f2c5ee100f4ec3c05744e031147b58ad8930c7257a0d20fa424",
+      "evidence_role": "fingerprint_collision_with_wire_beater",
+      "parsed_sa_initial_claims": 228000
+    }
+  ],
+  "evidence_input": {
+    "wire_beater_status_path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/hidden-profile-lab/public-kit/docs/data/wire-beater-status.json",
+    "reused_fields": [
+      "sa_initial_claims",
+      "primary_url",
+      "page_fingerprint",
+      "first_seen_utc"
+    ]
+  },
+  "verified": [
+    "FRED fredgraph.csv fetched without credentials; latest ICSA row parsed.",
+    "wire-beater page_fingerprint byte-identical to fixture SHA-256.",
+    "BLS HTML/PDF return 403 from hosted deployment (body hashed)."
+  ],
+  "inferred": [
+    "228000 SA figure is from dry-run fixture content unless Mac/local primary fetch proves otherwise.",
+    "FRED 189000 reflects prior week until post-release BLS ingest."
+  ]
+}

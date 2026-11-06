@@ -6,6 +6,7 @@ PATHS=(
   "/"
   "/predictions-live.html"
   "/wire-beater.html"
+  "/pce/index.html"
   "/data/wire-beater-status.json"
   "/data/latest-scores.json"
 )
