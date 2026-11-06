@@ -4,6 +4,13 @@
   "domain": "seismic_catalog",
   "status": "annex_only",
   "severity": 4,
+  "doi": "https://doi.org/10.14428/DVN/I0LTPH",
+  "killer_row": {
+    "disno": "2023-0636-AFG",
+    "deaths_v11": 2445,
+    "deaths_v20": 1480,
+    "delta": -965
+  },
   "headline": "EM-DAT Archive v1.1 vs v2.0 disagree on deaths for 2023-0636-AFG",
   "summary": "Verified pairwise on freshly downloaded Dataverse primaries: v1.1 tab (file id 28130) vs v2.0 xlsx (file id 38893). Among 1,602 earthquake rows sharing DisNo., 433 rows differ materially on deaths and/or CPI-adjusted damage (426 dam_adj-only, median |Δ|≈2.95%; 7 death revisions). Hero row 2023-0636-AFG: Total Deaths 2445 (v1.1) vs 1480 (v2.0), Δ965. Same-institution archive vintage — press/catalog-revision annex only.",
   "observed_at_iso": "2026-11-06T01:13:19Z",
