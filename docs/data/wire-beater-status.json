@@ -1,0 +1,10 @@
+{
+  "updated_at_utc": "2026-11-06T00:12:00Z",
+  "phase": "waiting",
+  "next_event": "bls_initial_claims_2026-11-06",
+  "next_event_window_et": "2026-11-06 ~08:30 ET (13:30 UTC)",
+  "monitor_owner": "wire-beater-lead",
+  "canonical_npub": "npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
+  "receipt_url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html",
+  "message": "Waiting for BLS primary page change — beat note will include SA number, latency_ms, and ledger PASS/FAIL in one post."
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Primary Wire Beater — live stopwatch</title>
+  <link rel="icon" href="assets/avatar.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0d1117; --panel:#161b22; --text:#e6edf3; --muted:#8b949e; --line:#30363d; --link:#58a6ff; --pass:#3fb950; --pending:#d29922; }
+    body { margin:0; font:16px/1.5 system-ui,sans-serif; background:var(--bg); color:var(--text); max-width:760px; margin-inline:auto; padding:1.25rem 1rem 3rem; }
+    h1 { font-size:1.35rem; margin:0 0 0.35rem; }
+    .sub { color:var(--muted); margin:0 0 1rem; }
+    section { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:1rem; margin-bottom:1rem; }
+    .phase { font-weight:650; text-transform:uppercase; letter-spacing:0.05em; font-size:0.85rem; }
+    .phase.waiting { color:var(--pending); }
+    .phase.beat { color:var(--pass); }
+    pre { background:#21262d; padding:0.75rem; border-radius:8px; overflow:auto; font-size:0.82rem; }
+    a { color:var(--link); }
+    footer { margin-top:1.5rem; font-size:0.85rem; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <h1>Primary Wire Beater</h1>
+  <p class="sub">Official number the second BLS/USGS/NOAA changes their primary page — one Nostr note with latency + pre-reg PASS/FAIL.</p>
+
+  <section id="status">Loading…</section>
+  <section>
+    <h2 style="margin:0 0 0.5rem;font-size:1rem;color:var(--muted)">Beat log</h2>
+    <pre id="log">Loading…</pre>
+  </section>
+
+  <footer>
+    <p>Canonical feed: <a id="npub" href="#">Nostr npub</a> · <a href="predictions-live.html">Prediction ledger</a> · <a href="index.html">Lab home</a></p>
+  </footer>
+
+  <script>
+    async function load() {
+      const st = await fetch('data/wire-beater-status.json?t=' + Date.now()).then(r => r.json());
+      const el = document.getElementById('status');
+      el.innerHTML = '<p class="phase ' + st.phase + '">' + st.phase + '</p>' +
+        '<p>' + (st.message || st.next_event || '') + '</p>' +
+        '<p style="color:var(--muted);font-size:0.9rem">Updated ' + st.updated_at_utc + '</p>';
+      document.getElementById('npub').href = 'https://njump.me/' + st.canonical_npub;
+      document.getElementById('npub').textContent = st.canonical_npub;
+      try {
+        const logTxt = await fetch('data/beat-log.jsonl?t=' + Date.now()).then(r => r.ok ? r.text() : '');
+        document.getElementById('log').textContent = logTxt.trim() || '(no beats yet — BLS Thu is first headline shot)';
+      } catch (e) {
+        document.getElementById('log').textContent = '(beat log not available yet)';
+      }
+    }
+    load();
+    setInterval(load, 60000);
+  </script>
+</body>
+</html>

@@ -4,6 +4,9 @@
   "canonical_profile": "https://njump.me/npub1re8upn82vffnqgqqhcxyuq8vuu26nfyh3jvx59x6lmf0390a9wssee0ppk",
   "preregister_pin": "https://njump.me/24d30ddf797297703ae86d8e295578312712f43badae8250ef9f201c48798f89",
   "receipt_url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/predictions-live.html",
+  "wire_beater_url": "https://lgarcia-camargo.github.io/hidden-profile-swarm-lab-kit/wire-beater.html",
+  "wire_beat_publish": "scripts/publish_wire_beat.py",
+  "wire_beat_payload_schema": "docs/data/wire-beater-payload.schema.json",
   "deprecated_npubs": [
     {
       "npub": "npub1fea4nqc5suqs34dhsv5sp3hj8st6j3vg80v43zl0365l9ryzzspsc9phwn",

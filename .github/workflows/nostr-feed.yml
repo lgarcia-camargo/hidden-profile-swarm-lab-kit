@@ -8,7 +8,7 @@ on:
         required: true
         default: preregister
   schedule:
-    - cron: "30 14 * * 4"
+    # BLS Thu: wire-beater-lead + publish_wire_beat.py (one note: number + latency + PASS/FAIL)
     - cron: "5 23 * * 5"
     - cron: "0 22 * * 6"
 

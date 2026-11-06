@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WireBeatPayload",
+  "description": "wire-beater-lead → external-news-stunt-lead publish_wire_beat.py",
+  "type": "object",
+  "required": ["source", "sa_initial_claims", "latency_ms", "primary_url", "ledger_prediction_id", "ledger_status", "threshold"],
+  "properties": {
+    "source": { "const": "bls" },
+    "sa_initial_claims": { "type": "integer" },
+    "latency_ms": { "type": "number" },
+    "primary_url": { "type": "string", "format": "uri" },
+    "ledger_prediction_id": { "const": "pred-bls-claims-2026-11-06" },
+    "ledger_status": { "enum": ["TRUE", "FALSE", "PASS", "FAIL"] },
+    "threshold": { "const": 225000 },
+    "page_fingerprint": { "type": "string" }
+  }
+}
