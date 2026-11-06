@@ -6,10 +6,10 @@
   "detected_at_utc": "2026-11-06T00:21:37Z",
   "severity": "MEDIUM",
   "status": "CONTRADICTION OPEN",
-  "publish_allowed": true,
+  "publish_allowed": false,
   "skeptic_gate": {
     "required": true,
-    "status": "PASS",
+    "status": "FAIL",
     "checks": [
       {
         "id": "pce-usgs-nc75462637",
@@ -92,10 +92,5 @@
   "deliberation_excerpt_path": "../data/deliberation-excerpt-2026-11-06.md",
   "wild_pitch_ref": "press/wild-front-page-brainstorm-2026-11-05.md #8",
   "generated_by": "pce-integrator-card (a-7pplfb5l)",
-  "generated_at_utc": "2026-11-06T00:35:00Z",
-  "deliberation_excerpt": {
-    "status": "published",
-    "source_agent": "pce-deliberation-scribe (a-migo7qc2)",
-    "text": "Skeptic reframed PASS (m-1fkpi58q): publish nc75462637 as display-plane mismatch — official mag 4.96 vs title M 5.0; do not claim feed-vs-detail lag. BLS integrity-only; us7000tw43 sidebar severity 1."
-  }
+  "generated_at_utc": "2026-11-06T00:35:00Z"
 }

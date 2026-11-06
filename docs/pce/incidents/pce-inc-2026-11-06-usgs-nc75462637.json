@@ -41,9 +41,9 @@
     "bls_lane_note": "BLS HTML/PDF 403 on hosted fetch; wire-beater page_fingerprint matches dry-run fixture SHA-256 (see bls-pairwise)."
   },
   "deliberation_excerpt": {
-    "status": "published",
-    "source_agent": "pce-deliberation-scribe (a-migo7qc2)",
-    "text": "Skeptic arc: strict FAIL on same-plane rounding, then PASS for Card #1 as display-plane mismatch (mag 4.96 vs title M 5.0 on nc75462637). Lede must not claim feed-vs-detail lag; BLS lane stays integrity-only. Full mesh citations in data/deliberation-excerpt-2026-11-06.md."
+    "status": "placeholder",
+    "source_agent": "pce-scribe (pending)",
+    "text": "Deliberation excerpt will be inserted when pce-scribe delivers the cross-primary debate transcript for charter #5 v1."
   },
   "generated_by": "pce-integrator-card (a-7pplfb5l)",
   "generated_at_utc": "2026-11-06T00:25:00Z"

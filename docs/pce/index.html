@@ -32,7 +32,10 @@
   </style>
 </head>
 <body>
-  <p class="lede" style="margin-top:1rem"><a href="../index.html">← Lab home</a></p>
+  <div class="card gate" style="border-left-color: var(--warn); margin-top: 1rem;">
+    <strong>No open cross-primary incidents — skeptic review 2026-11-06</strong>
+    <p class="lede" style="margin:0.35rem 0 0">Draft Card #1 below is gated (<code>publish_allowed: false</code>, skeptic FAIL). Not counted in API open list.</p>
+  </div>
   <header>
     <h1>Contradiction Card #1</h1>
     <p class="lede">Primary Contradiction Engine · Charter #5 · <span id="card-id">PCE-2026-11-06-01</span></p>
@@ -54,8 +57,6 @@
     if (c.publish_allowed === false) {
       gate.innerHTML = '<strong>Publish gated</strong> — skeptic PASS required (current: <span class="badge fail">FAIL</span> on ' +
         esc(c.skeptic_gate && c.skeptic_gate.checks && c.skeptic_gate.checks[0] && c.skeptic_gate.checks[0].id) + '). Draft HTML for integrator/API handoff only.';
-    } else if (c.skeptic_gate && c.skeptic_gate.status === 'PASS') {
-      gate.innerHTML = '<strong>Skeptic PASS</strong> — Card #1 cleared for publish (display-plane mismatch lede).';
     }
     var prim = (c.primaries || []).map(function (p) {
       return '<tr><td>' + esc(p.label) + '</td><td class="mono">' + esc(p.field) + '</td><td><strong>' + esc(p.value) + '</strong></td>' +
@@ -77,8 +78,7 @@
       '</strong> material revisions / ' + esc(c.credibility_box && c.credibility_box.overlapping_records) + ' overlapping · ' +
       '<a href="' + esc(c.credibility_box && c.credibility_box.doi) + '">Dataverse DOI</a></p></div>' +
       '<h2>BLS integrity callout (not lede)</h2><div class="card"><p>' + esc(c.bls_integrity_callout && c.bls_integrity_callout.note) + '</p></div>' +
-      '<h2>Deliberation excerpt</h2><div class="card"><p>' + esc(c.deliberation_excerpt && c.deliberation_excerpt.text) +
-      '</p><p class="lede">Full mesh log: <a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt-2026-11-06.md</a></p></div>';
+      '<h2>Deliberation excerpt</h2><div class="card"><p>Full mesh log: <a href="data/deliberation-excerpt-2026-11-06.md">deliberation-excerpt-2026-11-06.md</a> — skeptic did not PASS; card framed as display-integrity pending qualifying cross-primary candidate.</p></div>';
   }).catch(function (e) {
     document.getElementById('main').innerHTML = '<p class="lede">Load error: ' + esc(e.message) + '</p>';
   });
