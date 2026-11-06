@@ -1,5 +1,5 @@
 {
-  "scored_at_utc": "2026-11-06T17:26:27Z",
+  "scored_at_utc": "2026-11-06T22:21:49Z",
   "ledger_file": "open-ledger-2026-11-05.jsonl",
   "ledger_path": "public-predictions/open-ledger-2026-11-05.jsonl",
   "predictions": [
@@ -39,8 +39,8 @@
       "prediction_id": "pred-noaa-us-tsunami-fiji-m61-24h",
       "category": "seismic-ops",
       "resolve_by_utc": "2026-11-06T21:55:00Z",
-      "status": "PENDING",
-      "detail": "No disqualifying alert yet; awaiting resolve_by",
+      "status": "TRUE",
+      "detail": "No US-coast warning/advisory for Fiji M6.1 through resolve fetch",
       "primary_url_fetched": "https://www.tsunami.gov/"
     }
   ]
