@@ -47,6 +47,7 @@
     <p>Pairwise: <a href="data/weather-pairwise-2026-11-06.json">weather-pairwise-2026-11-06.json</a> ·
       <a href="data/usgs-pairwise-2026-11-06.json">usgs-pairwise</a> ·
       <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a> ·
+      <a href="data/energy-macro-pairwise-2026-11-06.json">energy-macro-pairwise</a> ·
       <a href="data/deliberation-excerpt-2026-11-06.md">deliberation</a></p>
     <p>Incident stub: <code>incidents/PCE-2026-11-06-01.json</code> · <code>cmp-00258orc</code> · API <code id="api-line">…</code></p>
   </footer>
@@ -143,6 +144,7 @@
       delib +
       '<h2>Method credibility (EM-DAT)</h2><div class="card"><p class="lede">v1.1→v2.0 earthquakes: 433 material revisions / 1602 overlapping · <a href="https://doi.org/10.14428/DVN/I0LTPH">Dataverse DOI</a> — parallel method warning on the card.</p></div>' +
       '<h2>BLS integrity callout (not lede)</h2><div class="card"><p class="lede">Hosted 403 on claims.nr0 + wire-beater fixture; see <a href="data/bls-pairwise-2026-11-06.json">bls-pairwise</a>. Not headline fight.</p></div>' +
+      '<h2>EIA WPSR integrity callout (not lede)</h2><div class="card"><p class="lede">2026-11-04 release: summary −0.9 mbbl vs table1/psw00 −0.865 mbbl (rounding); <code>contradiction_open: false</code>. API v2 key missing + <code>wpsr.json</code> 403 = blocked planes, not mismatch. Macro/quake memos do not assert WPSR clock. See <a href="data/energy-macro-pairwise-2026-11-06.json">energy-macro-pairwise</a>.</p></div>' +
       '</div>' + sidebar + '</div>';
   }).catch(function (e) {
     document.getElementById('main').innerHTML = '<p class="lede">Load error: ' + esc(e.message) + '</p>';

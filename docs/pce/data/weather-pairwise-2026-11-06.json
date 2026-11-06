@@ -1,0 +1,164 @@
+{
+  "generated_at_utc": "2026-11-06T00:31:46Z",
+  "agent": "pce-domain-weather a-n9d6s5d3",
+  "focus_event": {
+    "eventID": "to0j1g",
+    "originTime": "2026-11-05T04:56:04 UTC",
+    "latitude": "40.396",
+    "longitude": "-125.484",
+    "magnitude": "4.5",
+    "category": "Information",
+    "quakeLocation": "75 miles SW of Eureka, California",
+    "WMOID": "WEAK53",
+    "bulletinIssueTime": "2026-11-05T05:01:47Z"
+  },
+  "primary_sources_verified": [
+    {
+      "name": "tsunami.gov esri JSON",
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "notes": "Requires parsing parenthesized JSON; not strict JSON"
+    },
+    {
+      "name": "tsunami.gov PAAQ Atom",
+      "url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml"
+    },
+    {
+      "name": "api.weather.gov alerts/active",
+      "url": "https://api.weather.gov/alerts/active",
+      "notes": "User-Agent required"
+    },
+    {
+      "name": "USGS 4.5_day geojson",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    }
+  ],
+  "deprecated_urls_404": [
+    "https://www.tsunami.gov/events/json/PDAA.json",
+    "https://www.tsunami.gov/events/json/latest.json",
+    "https://www.tsunami.gov/events/xml/PTWCAtom.xml"
+  ],
+  "snapshots_dir": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06",
+  "snapshots": [
+    {
+      "label": "tsunami_esri_json",
+      "url": "https://www.tsunami.gov/php/esri.php?p=t&format=json",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06/tsunami_esri_json.json",
+      "sha256": "a7176315005f54b507418f1b7e149d2f2adff9b0ab5d9f8e998384a5cbf48bb8",
+      "bytes": 25710
+    },
+    {
+      "label": "tsunami_paaq_atom",
+      "url": "https://www.tsunami.gov/events/xml/PAAQAtom.xml",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06/tsunami_paaq_atom.xml",
+      "sha256": "a7a61a4b2ac4727ed4862bacb6c25fe34ec9bd1d03dd152ad62c987467b6ddb7",
+      "bytes": 1983
+    },
+    {
+      "label": "nws_alerts_active",
+      "url": "https://api.weather.gov/alerts/active?status=actual&message_type=alert&event=Tsunami%20Warning",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06/nws_alerts_active.json",
+      "sha256": "20cf8fa4d7dffd475cc4bcd3847e0387e6f522a60a69eae2ac0b6175685b9f54",
+      "bytes": 197
+    },
+    {
+      "label": "nws_alerts_active_all",
+      "url": "https://api.weather.gov/alerts/active",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06/nws_alerts_active_all.json",
+      "sha256": "030bb3e9b427c9257a34133c54f64433208749b2d1e41fdbbb58ade66ec71204",
+      "bytes": 2465877
+    },
+    {
+      "label": "usgs_4.5_day",
+      "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+      "path": "/Users/leon.garciacamargo/fleet-swarm/bench-hour/analysis/cool-shit-10h/pce/snapshots/weather-2026-11-06/usgs_4.5_day.json",
+      "sha256": "8662abb6f0f46de7860051d5c55c1e249e7ba92bde98a8b3aa5154cdeb8f6c04",
+      "bytes": 6052
+    }
+  ],
+  "candidates": [
+    {
+      "rule_id": "weather.tsunami_product_vs_nws_alerts",
+      "contradiction_open": false,
+      "severity": "low",
+      "summary": "category 'Information'; NWS tsunami-tagged alerts 0",
+      "evidence": {
+        "eventID": "to0j1g",
+        "nws_tsunami_count": 0
+      }
+    },
+    {
+      "rule_id": "weather.tsunami_origin_vs_usgs",
+      "contradiction_open": true,
+      "severity": "medium",
+      "summary": "USGS 75462637 \u0394t=1.33s (tol 120s)",
+      "evidence": {
+        "usgs_id": "75462637",
+        "usgs_time_utc": "2026-11-05T04:56:02.670000Z",
+        "tsunami_originTime": "2026-11-05T04:56:04 UTC",
+        "delta_seconds": 1.33,
+        "usgs_mag": 4.96,
+        "tsunami_mag": 4.5,
+        "usgs_place": "111 km W of Petrolia, CA",
+        "tsunami_flag": 0
+      }
+    },
+    {
+      "rule_id": "weather.tsunami_esri_modified_stale",
+      "contradiction_open": true,
+      "severity": "low",
+      "summary": "modified Thu Sep 18 21:06:48 UTC 2025 vs bulletin 2026-11-05T05:01:47Z (412d)",
+      "evidence": {
+        "note": "metadata ingest \u2014 flag for pollers not public safety"
+      }
+    },
+    {
+      "rule_id": "weather.paaq_atom_vs_esri_category",
+      "contradiction_open": false,
+      "severity": "low",
+      "summary": "atom 'Information' vs esri 'Information'",
+      "evidence": {
+        "eventID": "to0j1g"
+      }
+    }
+  ],
+  "skeptic_gate": {
+    "required": true,
+    "status": "FAIL",
+    "checks": [
+      {
+        "id": "pce-weather-t2ssp5-mag",
+        "status": "FAIL",
+        "channel_ref": "m-341l1eip",
+        "cites": ["m-8azc3dlh"],
+        "summary": "Ml vs mw magnitude types — sidebar severity 2 max, not OPEN."
+      }
+    ]
+  },
+  "open_candidates": [
+    {
+      "rule_id": "weather.tsunami_origin_vs_usgs",
+      "contradiction_open": true,
+      "severity": "medium",
+      "summary": "USGS 75462637 \u0394t=1.33s (tol 120s)",
+      "evidence": {
+        "usgs_id": "75462637",
+        "usgs_time_utc": "2026-11-05T04:56:02.670000Z",
+        "tsunami_originTime": "2026-11-05T04:56:04 UTC",
+        "delta_seconds": 1.33,
+        "usgs_mag": 4.96,
+        "tsunami_mag": 4.5,
+        "usgs_place": "111 km W of Petrolia, CA",
+        "tsunami_flag": 0
+      }
+    },
+    {
+      "rule_id": "weather.tsunami_esri_modified_stale",
+      "contradiction_open": true,
+      "severity": "low",
+      "summary": "modified Thu Sep 18 21:06:48 UTC 2025 vs bulletin 2026-11-05T05:01:47Z (412d)",
+      "evidence": {
+        "note": "metadata ingest \u2014 flag for pollers not public safety"
+      }
+    }
+  ]
+}
