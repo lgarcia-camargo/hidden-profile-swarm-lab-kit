@@ -1,5 +1,5 @@
 {
-  "scored_at_utc": "2026-11-07T20:11:35Z",
+  "scored_at_utc": "2026-11-07T23:55:48Z",
   "ledger_file": "open-ledger-2026-11-05.jsonl",
   "ledger_path": "public-predictions/open-ledger-2026-11-05.jsonl",
   "predictions": [
@@ -15,9 +15,9 @@
       "prediction_id": "pred-usgs-45count-2026-11-07T22Z",
       "category": "seismic",
       "resolve_by_utc": "2026-11-07T22:00:00Z",
-      "status": "PENDING",
-      "detail": "Resolution snapshot at 2026-11-07T22:00:00Z",
-      "primary_url_fetched": null
+      "status": "TRUE",
+      "detail": "feature_count=15 (need >=8)",
+      "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
     },
     {
       "prediction_id": "pred-bls-claims-2026-11-06",
