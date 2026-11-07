@@ -1,5 +1,5 @@
 {
-  "scored_at_utc": "2026-11-07T09:13:38Z",
+  "scored_at_utc": "2026-11-07T15:54:07Z",
   "ledger_file": "open-ledger-2026-11-05.jsonl",
   "ledger_path": "public-predictions/open-ledger-2026-11-05.jsonl",
   "predictions": [
@@ -7,8 +7,8 @@
       "prediction_id": "pred-usgs-m6-global-2026-11-12",
       "category": "seismic",
       "resolve_by_utc": "2026-11-12T23:59:59Z",
-      "status": "TRUE",
-      "detail": "1 feature(s) with mag>=6.0, e.g. id=us7000twg9",
+      "status": "PENDING",
+      "detail": "No M>=6.0 yet; resolve_by not reached",
       "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
     },
     {
@@ -32,7 +32,7 @@
       "category": "seismic",
       "resolve_by_utc": "2026-11-07T21:55:00Z",
       "status": "TRUE",
-      "detail": "New M>=6.1 id=us7000twg9 at lat=34.9677, lon=142.1175",
+      "detail": "New M>=5.5 id=us7000twrq at lat=36.1884, lon=141.4404",
       "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
     },
     {
