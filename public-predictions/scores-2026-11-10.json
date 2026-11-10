@@ -1,0 +1,47 @@
+{
+  "scored_at_utc": "2026-11-10T03:29:08Z",
+  "ledger_file": "open-ledger-2026-11-05.jsonl",
+  "ledger_path": "public-predictions/open-ledger-2026-11-05.jsonl",
+  "predictions": [
+    {
+      "prediction_id": "pred-usgs-m6-global-2026-11-12",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-12T23:59:59Z",
+      "status": "TRUE",
+      "detail": "1 feature(s) with mag>=6.0, e.g. id=us7000tx16",
+      "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-usgs-45count-2026-11-07T22Z",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-07T22:00:00Z",
+      "status": "TRUE",
+      "detail": "feature_count=18 (need >=8)",
+      "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-bls-claims-2026-11-06",
+      "category": "macro",
+      "resolve_by_utc": "2026-11-06T16:00:00Z",
+      "status": "FALSE",
+      "detail": "BLS fetch HTTP 403",
+      "primary_url_fetched": "https://www.bls.gov/news.release/empsit.toc.htm"
+    },
+    {
+      "prediction_id": "pred-usgs-new-m5-rof-48h",
+      "category": "seismic",
+      "resolve_by_utc": "2026-11-07T21:55:00Z",
+      "status": "FALSE",
+      "detail": "No qualifying new M>=5.0 in Ring-of-Fire band through resolve_by",
+      "primary_url_fetched": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson"
+    },
+    {
+      "prediction_id": "pred-noaa-us-tsunami-fiji-m61-24h",
+      "category": "seismic-ops",
+      "resolve_by_utc": "2026-11-06T21:55:00Z",
+      "status": "TRUE",
+      "detail": "No US-coast warning/advisory for Fiji M6.1 through resolve fetch",
+      "primary_url_fetched": "https://www.tsunami.gov/"
+    }
+  ]
+}
